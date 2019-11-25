@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="MarketProject.MasterPage"  %>
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" type="text/css" href="~/CSS/Master.css"/>
+    <link rel="stylesheet" type="text/css" href="~/CSS/BuyStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="~/CSS/SellStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="~/CSS/HomeStyle.css"/>
+</head>
+<body> 
+<form runat="server">
+   <div>
+          <asp:ContentPlaceHolder ID="templateContent" runat="server">
+            <div>
+              <asp:Image CssClass="banner" ID="banner" runat="server" ImageUrl="~/Resources/Banner.png"/>
+
+              <div class="logout">
+                    <asp:Label   ID="lblLogedIn" runat="server"></asp:Label>
+                    <asp:LinkButton ID="lblLogout" Text="Logout" runat="server"></asp:LinkButton>
+              </div>
+            </div >
+          
+           <div>
+              <asp:TreeView CssClass="menu" ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1"></asp:TreeView>
+          
+
+                <div class="PageContent">
+                      <asp:ContentPlaceHolder   ID="WebPageContent" runat="server">
+                      </asp:ContentPlaceHolder>
+              
+                </div>
+            </div>
+
+           
+              <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+         
+
+
+           
+          </asp:ContentPlaceHolder>
+   </div>
+</form>
+
+</body>
+</html>
+
+              
+         
+
+       

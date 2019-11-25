@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+  <siteMapNode url="" title="Web Market Managment">
+    <siteMapNode url="" title="Admin panel">
+      <siteMapNode url="~/View/AdminPanel/NewUser.aspx" title="User"  description="Create new user" />
+      <siteMapNode url="~/View/AdminPanel/ProductGroupView.aspx" title="Product Group"  description="Create new Product Group" />
+      <siteMapNode url="~/View/AdminPanel/UnitView.aspx" title="Unit"  description="Create Unit" />
+      <siteMapNode url="~/View/AdminPanel/ProducerView.aspx" title="Producer"  description="Create Prodact producer" />
+      <siteMapNode url="~/View/AdminPanel/ProductView.aspx" title="Product"  description="Create Product" />
+      <siteMapNode url="~/TestMessageBox.aspx" title="Message"  description="Message" />
+
+    </siteMapNode>
+    <siteMapNode url="" title="Market"  description="Create Message" >
+      <siteMapNode url="~/View/Market/BuyView.aspx" title="Buy Product"  description="Buy Product" />
+      <siteMapNode url="~/View/Market/SellView.aspx" title="Sell Product"  description="Buy Product" />
+      <siteMapNode url="~/View/Market/Warehouse.aspx" title="Warehouse"  description="Warehouse" />
+      <siteMapNode url="~/View/Market/Transactions.aspx" title="Transactions"  description="Transactions" />
+
+
+
+
+    </siteMapNode>
+  </siteMapNode>
+
+
+
+
+
+
+
+
+
+</siteMap>
