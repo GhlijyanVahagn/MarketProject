@@ -101,17 +101,26 @@ namespace MarketProject.View.Market
         {
             if (string.IsNullOrWhiteSpace(txtCount.Text) || string.IsNullOrWhiteSpace(txtPrice.Text))
                 return;
-            int nextIndex = BuyManager.BasketItems.Count();
+            int nextIndex = SaleManager.BasketItems.Count();
+            var _userName = Session[Sessions.LogedInUserName] ?? "Debug Mode";
+            decimal _price, _count, _discount;
+            decimal.TryParse(txtCount.Text, out _count);
+            decimal.TryParse(txtPrice.Text, out _price);
+            decimal.TryParse(txtDiscount.Text, out _discount);
+            if(_count<=0)
+            {
+                Response.Redirect("~/error.aspx");
+            }
 
-            BuyManager.AddNewItemToBasket(
-                new Buy()
+            SaleManager.AddNewItemToBasket(
+                new Sale()
                 {
                     Id = nextIndex++,
-                    Count = Convert.ToDecimal(txtCount.Text),
-                    Price = Convert.ToDecimal(txtPrice.Text),
-                    UserName = Session[Sessions.LogedInUserName]?.ToString(),
+                    Count = _count,
+                    Price = _price,
+                    UserName = _userName.ToString(),
                     DateTime = DateTime.Now,
-                    RetailPrice = Convert.ToDecimal(txtBoxRetailPrice.Text),
+                    Discount = _discount,
                     ProductId = Helpers.GetProductIdFromDropDownSelectedItem(dropDownProducts.SelectedValue)
 
                 }
@@ -125,7 +134,7 @@ namespace MarketProject.View.Market
             //GridViewBasket.DataSource = MarketManagment.BuyManager.BasketViewItems;
             GridViewBasketSale.DataBind();
             FillFooter();
-            btnComplateSale.Visible = BuyManager.IsExistItemInBasket;
+            btnComplateSale.Visible = SaleManager.IsExistItemInBasket;
 
         }
         private void FillFooter()
@@ -134,10 +143,10 @@ namespace MarketProject.View.Market
             GridViewBasketSale.FooterRow.HorizontalAlign = HorizontalAlign.Center;
             GridViewBasketSale.FooterRow.VerticalAlign = VerticalAlign.Middle;
      
-            GridViewBasketSale.FooterRow.Cells[2].Text = $"COUNT\n{BuyManager.TotalCount }";
-            GridViewBasketSale.FooterRow.Cells[5].Text = $"Retail\n{BuyManager.TotalRetailPrice}";
+            GridViewBasketSale.FooterRow.Cells[2].Text = $"COUNT\n{SaleManager.TotalCount }";
+            //GridViewBasketSale.FooterRow.Cells[5].Text = $"Retail\n{SaleManager.TotalRetailPrice}";
 
-            GridViewBasketSale.FooterRow.Cells[6].Text = $"TOTAL\n{BuyManager.TotalMoney}";
+            GridViewBasketSale.FooterRow.Cells[6].Text = $"TOTAL\n{SaleManager.TotalMoney}";
 
         }
 

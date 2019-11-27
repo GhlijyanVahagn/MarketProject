@@ -16,10 +16,19 @@ namespace MarketManagment.Products
 
 
 
-        public static async void RefreshLocalProductsList()
+        public static async void RefreshLocalProductsList(bool ChacForCountChanged)
         {
-            MarketManagment.Products.ProductsLocal.LocalProducts = await ProductManager.GetALLProductDetailInfo();
-        }
+            if(ChacForCountChanged)
+            {
+                if (ProductManager.GetProductsCountFromDataBase() != LocalProducts.Count())
+                {
+                    MarketManagment.Products.ProductsLocal.LocalProducts = await ProductManager.GetALLProductDetailInfo();
 
+                }
+            }
+            else
+                MarketManagment.Products.ProductsLocal.LocalProducts = await ProductManager.GetALLProductDetailInfo();
+        }
+       
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master"    AutoEventWireup="true" CodeBehind="SellView.aspx.cs"    Inherits="MarketProject.View.Market.BuyView"   Async="true"   %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master"    AutoEventWireup="true" CodeBehind="SellView.aspx.cs"    Inherits="MarketProject.View.Market.SellView"   Async="true"   %>
 
 <asp:Content  ID="Content2" runat="server" contentplaceholderid="WebPageContent" ViewStateMode="Enabled">
     <div class="backGroundSell">
@@ -65,19 +65,7 @@
        
       </div>
         <div class="GridStyle">
-            <asp:ObjectDataSource ID="ObjectDataSourceBuyView" runat="server" DeleteMethod="RemoveItemFromBasketById" SelectMethod="ShowBasketViewItems" TypeName="MarketManagment.BuyManager" OnDeleted="ObjectDataSourceBuyView_Deleted" OnInserted="ObjectDataSourceBuyView_Inserted" UpdateMethod="UpdateBasketItemInfo">
-                <DeleteParameters>
-                    <asp:Parameter Name="id" Type="Int32" />
-                </DeleteParameters>
-                <UpdateParameters>
-                    <asp:Parameter Name="Id" Type="Int32" />
-                    <asp:Parameter Name="count" Type="Decimal" />
-                    <asp:Parameter Name="price" Type="Decimal" />
-                    <asp:Parameter Name="Payed" Type="Decimal" />
-                    <asp:Parameter Name="Total" Type="Decimal" />
-                    <asp:Parameter Name="ProductName" Type="String" />
-                    <asp:Parameter Name="RetailPrice" Type="Decimal" />
-                </UpdateParameters>
+            <asp:ObjectDataSource ID="ObjectDataSourceBuyView" runat="server" SelectMethod="ShowBasketViewItems" TypeName="MarketManagment.Sales.SaleManager" OnDeleted="ObjectDataSourceBuyView_Deleted" OnInserted="ObjectDataSourceBuyView_Inserted">
             </asp:ObjectDataSource>
             <asp:GridView ID="GridViewBasketSale"
                 runat="server" 
@@ -96,10 +84,8 @@
                     <asp:BoundField DataField="Count" HeaderText="Count" SortExpression="Count" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
                     <asp:BoundField DataField="Payed" HeaderText="Payed" SortExpression="Payed" />
-                    <asp:BoundField DataField="RetailPrice" HeaderText="RetailPrice" SortExpression="RetailPrice" />
+                    <asp:BoundField DataField="Discount" HeaderText="Discount" SortExpression="Discount" />
                     <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" />
-                    <asp:CommandField ControlStyle-CssClass="GridUpdateButtons" ButtonType="Image" DeleteImageUrl="~/Resources/delete-2-xxl.png" ShowDeleteButton="True" />
-                    <asp:CommandField ControlStyle-CssClass="GridUpdateButtons" ButtonType="Image" CancelImageUrl="~/Resources/cancel_grid_row_updating.png" EditImageUrl="~/Resources/Edit.png" ShowEditButton="True" UpdateImageUrl="~/Resources/Update_grid_row_editing.png" />
                 </Columns>
                 <EditRowStyle BackColor="#2461BF" />
                 <FooterStyle  BackColor="#507CD1" Font-Bold="True" Font-Size="Large" HorizontalAlign="Right" ForeColor="White"  />

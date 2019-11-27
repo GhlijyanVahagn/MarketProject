@@ -63,6 +63,13 @@ namespace MarketManagment.Sales
             }
         }
 
+        public static void AddNewItemToBasket(Sale item)
+        {
+
+            BasketItems.Add(item);
+
+        }
+
         public static bool ComplateSaleOrder(List<Sale> BasketItems, string LogedInUserName)
         {
 

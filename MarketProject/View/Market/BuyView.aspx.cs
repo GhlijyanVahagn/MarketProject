@@ -106,7 +106,7 @@ namespace MarketProject.View.Market
             if (string.IsNullOrWhiteSpace(txtCount.Text) || string.IsNullOrWhiteSpace(txtPrice.Text))
                 return;
             int nextIndex = BuyManager.BasketItems.Count();
-
+            
             BuyManager.AddNewItemToBasket(
                 new Buy()
                 {
@@ -120,6 +120,7 @@ namespace MarketProject.View.Market
 
                 }
             );
+        
 
         }
 
@@ -129,7 +130,7 @@ namespace MarketProject.View.Market
             //GridViewBasket.DataSource = MarketManagment.BuyManager.BasketViewItems;
             GridViewBasket.DataBind();
             FillFooter();
-            btnComplateSale.Visible = BuyManager.IsExistItemInBasket;
+            ImageButtonComplateOrder.Visible = BuyManager.IsExistItemInBasket;
 
         }
         private void FillFooter()
@@ -175,6 +176,12 @@ namespace MarketProject.View.Market
             var isOk = BuyManager.ComplateOrder(BuyManager.BasketItems, _userName.ToString());
             if (!isOk)
                 Response.Redirect("~/Error.aspx");
+            else
+            {
+                BuyManager.ClearBasket();
+                RefreshGridView();
+
+            }
         }
 
         protected void imgButtonAddToCard_Click(object sender, EventArgs e)

@@ -353,6 +353,10 @@ namespace MarketManagment
             }
         }
 
+        public static int GetProductsCountFromDataBase()
+        {
+            return _db.Product.Count();
+        }
         #endregion
 
 
@@ -386,9 +390,11 @@ namespace MarketManagment
         public static string GetProductNameById(int id)
         {
             if (ProductsLocal.LocalProducts == null || ProductsLocal.LocalProducts.Count() == 0)
-               ProductsLocal.RefreshLocalProductsList();
+               ProductsLocal.RefreshLocalProductsList(false);
             return ProductsLocal.LocalProducts.FirstOrDefault(x => x.Id == id)?.Name;
         }
+
+
         #endregion
     }
 }

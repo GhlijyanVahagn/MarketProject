@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master"    AutoEventWireup="true" CodeBehind="BuyView.aspx.cs"    Inherits="MarketProject.View.Market.BuyView"   Async="true"   %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master"  ViewStateMode="Disabled"   AutoEventWireup="true" CodeBehind="BuyView.aspx.cs"    Inherits="MarketProject.View.Market.BuyView"   Async="true"   %>
 
 <asp:Content  ID="Content2" runat="server" contentplaceholderid="WebPageContent" ViewStateMode="Enabled">
 

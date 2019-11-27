@@ -49,6 +49,8 @@ namespace MarketHelpers
         }
         public static int GetProductIdFromDropDownSelectedItem(string txt)
         {
+            if (string.IsNullOrWhiteSpace(txt))
+                return -1;
             int id = -1;
             var startIndex = txt.IndexOf(symbolStart);
             var endIndex = txt.IndexOf(symbolSpaces);

@@ -12,8 +12,8 @@
 
     </siteMapNode>
     <siteMapNode url="" title="Market"  description="Create Message" >
-      <siteMapNode url="~/View/Market/BuyView.aspx" title="Buy Product"  description="Buy Product" />
-      <siteMapNode url="~/View/Market/SellView.aspx" title="Sell Product"  description="Buy Product" />
+      <siteMapNode url="~/View/Market/BuyView.aspx" title="Buy"  description="Buy Product" />
+      <siteMapNode url="~/View/Market/SellView.aspx" title="Sale"  description="sale Product" />
       <siteMapNode url="~/View/Market/Warehouse.aspx" title="Warehouse"  description="Warehouse" />
       <siteMapNode url="~/View/Market/Transactions.aspx" title="Transactions"  description="Transactions" />
 
