@@ -61,6 +61,8 @@
     <div class="buyBasketComplateOrder">
                 <asp:Button CssClass="buttonStyle" ID="AddToBasket" runat="server" Text="Add to basket" OnClick="imgButtonAddToCard_Click" />
                 <asp:Button CssClass="buttonStyle" Text="Complate Sale " ID="btnComplateSale" runat="server"  OnClick="ImageButtonComplateOrder_Click" Visible="False" />
+                <asp:Button CssClass="buttonStyle" Text="Cancel Sale " ID="ButtonCancel" runat="server"   Visible="False" OnClick="ButtonCancel_Click" />
+
 
        
       </div>

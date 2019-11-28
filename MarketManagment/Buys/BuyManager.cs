@@ -141,7 +141,7 @@ namespace MarketManagment
                                 return true;
 
                             }
-                            catch
+                            catch(Exception e)
                             {
                             transact.Rollback();
                                 return false;

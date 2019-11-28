@@ -26,6 +26,25 @@ namespace DbManager.Migrations
                 .ForeignKey("dbo.Transactions", t => t.TransactionId, cascadeDelete: true)
                 .Index(t => t.TransactionId)
                 .Index(t => t.ProductId);
+
+
+            Sql(@"
+                    CREATE TRIGGER [dbo].[TG_Sale] ON [dbo].[Sales] AFTER INSERT,DELETE,UPDATE AS 
+                    BEGIN
+	                    SET NOCOUNT ON;
+
+	                    declare @IsExsist int
+	                    set @IsExsist=(SELECT count(*) from Warehouses where productId=(select ProductId from INSERTED))
+	
+	                    IF @IsExsist>0 
+		                    BEGIN
+			                    UPDATE Warehouses SET TotalRemind=TotalRemind-(select [count] from INSERTED where INSERTED.productId=Warehouses.productId)
+		
+			                    UPDATE Warehouses SET TotalRemind=TotalRemind+(select [count] from DELETED where DELETED.productId=Warehouses.productId)
+		                    END
+	                    END
+                    GO
+                ");
             
         }
         
@@ -36,6 +55,8 @@ namespace DbManager.Migrations
             DropIndex("dbo.Sales", new[] { "ProductId" });
             DropIndex("dbo.Sales", new[] { "TransactionId" });
             DropTable("dbo.Sales");
+
+            Sql(@"DROP TRIGGER [dbo].[TG_Sale]");
         }
     }
 }

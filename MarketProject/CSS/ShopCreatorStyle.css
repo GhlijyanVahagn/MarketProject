@@ -1,0 +1,45 @@
+﻿body {
+}
+
+.banner {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom:30px;
+    width: 50%;
+}
+
+
+.buttonStyle {
+    color: #494949 !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #ffffff;
+    padding: 18px;
+    border: 4px solid #494949 !important;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+    border-radius:10px;
+
+}
+
+.buttonStyle:hover {
+        color: #ffffff !important;
+        background: #f6b93b;
+        border-color: #f6b93b !important;
+        transition: all 0.4s ease 0s;
+        border-radius:10px;
+    }
+
+.textBoxStyle{
+    border-radius:3px;
+}
+
+.LableStyle {
+   padding:0px 8px 0px 0px;
+}
+.Title{
+    text-align:center;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+}

@@ -75,8 +75,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\HomeStyle.css" />
+    <Content Include="CSS\ShopCreatorStyle.css" />
     <Content Include="CSS\Master.css" />
     <Content Include="Error.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Resources\addToBAsket.png" />
     <Content Include="CSS\MessageBox.css" />
     <Content Include="Home.aspx" />
@@ -107,11 +109,15 @@
     <Content Include="CSS\SellStyle.css" />
     <Content Include="View\Market\Transactions.aspx" />
     <Content Include="View\Market\Warehouse.aspx" />
+    <Content Include="View\ShopCreator\ShopCreator.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -224,6 +230,13 @@
     </Compile>
     <Compile Include="View\Market\Warehouse.aspx.designer.cs">
       <DependentUpon>Warehouse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShopCreator\ShopCreator.aspx.cs">
+      <DependentUpon>ShopCreator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ShopCreator\ShopCreator.aspx.designer.cs">
+      <DependentUpon>ShopCreator.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

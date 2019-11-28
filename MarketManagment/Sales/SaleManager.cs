@@ -70,6 +70,11 @@ namespace MarketManagment.Sales
 
         }
 
+        public static void ClearBasketItems()
+        {
+            BasketItems.Clear();
+        }
+
         public static bool ComplateSaleOrder(List<Sale> BasketItems, string LogedInUserName)
         {
 
@@ -90,13 +95,13 @@ namespace MarketManagment.Sales
 
                         _db.Sale.AddRange(BasketItems);
                         _db.SaveChanges();
-                        WareHouseManagment.SaleFromWarehouse(BasketItems);
+                        //WareHouseManagment.SaleFromWarehouse(BasketItems);
 
                         transact.Commit();
                         return true;
 
                     }
-                    catch
+                    catch(Exception e)
                     {
                         transact.Rollback();
                         return false;

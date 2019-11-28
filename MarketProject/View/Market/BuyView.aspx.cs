@@ -130,19 +130,22 @@ namespace MarketProject.View.Market
             //GridViewBasket.DataSource = MarketManagment.BuyManager.BasketViewItems;
             GridViewBasket.DataBind();
             FillFooter();
-            ImageButtonComplateOrder.Visible = BuyManager.IsExistItemInBasket;
+            ImageButtonComplateOrder.Visible = buttonCancel.Visible= BuyManager.IsExistItemInBasket;
 
         }
         private void FillFooter()
         {
+            if(GridViewBasket.FooterRow!=null)
+            {
+                GridViewBasket.FooterRow.HorizontalAlign = HorizontalAlign.Center;
+                GridViewBasket.FooterRow.VerticalAlign = VerticalAlign.Middle;
 
-            GridViewBasket.FooterRow.HorizontalAlign = HorizontalAlign.Center;
-            GridViewBasket.FooterRow.VerticalAlign = VerticalAlign.Middle;
+                GridViewBasket.FooterRow.Cells[2].Text = $"COUNT\n{BuyManager.TotalCount }";
+                GridViewBasket.FooterRow.Cells[5].Text = $"Retail\n{BuyManager.TotalRetailPrice}";
 
-            GridViewBasket.FooterRow.Cells[2].Text = $"COUNT\n{BuyManager.TotalCount }";
-            GridViewBasket.FooterRow.Cells[5].Text = $"Retail\n{BuyManager.TotalRetailPrice}";
-
-            GridViewBasket.FooterRow.Cells[6].Text = $"TOTAL\n{BuyManager.TotalMoney}";
+                GridViewBasket.FooterRow.Cells[6].Text = $"TOTAL\n{BuyManager.TotalMoney}";
+            }
+            
 
         }
 
@@ -180,14 +183,31 @@ namespace MarketProject.View.Market
             {
                 BuyManager.ClearBasket();
                 RefreshGridView();
+                ClearBoardFields();
 
             }
         }
 
         protected void imgButtonAddToCard_Click(object sender, EventArgs e)
         {
+
             AddNewItemToBasket();
             RefreshGridView();
+        }
+        private void ClearBoardFields()
+        {
+            txtCount.Text = string.Empty;
+            txtBoxRetailPrice.Text = string.Empty;
+            txtDiscount.Text = string.Empty;
+            txtPrice.Text = string.Empty;
+            txtSearchString.Text = string.Empty;
+        }
+
+        protected void canel_Click(object sender, EventArgs e)
+        {
+            BuyManager.ClearBasket();
+            RefreshGridView();
+            ClearBoardFields();
         }
     }
 }

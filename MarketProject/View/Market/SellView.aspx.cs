@@ -15,9 +15,6 @@ namespace MarketProject.View.Market
 {
     public partial class SellView : System.Web.UI.Page
     {
-
-
-
         IEnumerable<ProductView> saleProducts = new List<ProductView>();
         protected  void Page_Load(object sender, EventArgs e)
         {
@@ -134,7 +131,7 @@ namespace MarketProject.View.Market
             //GridViewBasket.DataSource = MarketManagment.BuyManager.BasketViewItems;
             GridViewBasketSale.DataBind();
             FillFooter();
-            btnComplateSale.Visible = SaleManager.IsExistItemInBasket;
+            btnComplateSale.Visible = ButtonCancel.Visible= SaleManager.IsExistItemInBasket;
 
         }
         private void FillFooter()
@@ -180,12 +177,34 @@ namespace MarketProject.View.Market
             var isOk = SaleManager.ComplateSaleOrder(SaleManager.BasketItems, _userName.ToString());
             if (!isOk)
                 Response.Redirect("~/Error.aspx");
+
+            else
+            {
+                SaleManager.ClearBasketItems();
+                RefreshGridView();
+                ClearBoardFields();
+            }
         }
 
         protected void imgButtonAddToCard_Click(object sender, EventArgs e)
         {
             AddNewItemToBasket();
             RefreshGridView();
+        }
+
+        protected void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            SaleManager.ClearBasketItems();
+            RefreshGridView();
+            ClearBoardFields();
+        }
+        private void ClearBoardFields()
+        {
+            txtBoxRetailPrice.Text = string.Empty;
+            txtCount.Text = string.Empty;
+            txtDiscount.Text = string.Empty;
+            txtPrice.Text = string.Empty;
+            txtSearchString.Text = string.Empty;
         }
     }
 }
