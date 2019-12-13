@@ -135,7 +135,7 @@ namespace MarketManagment
 
                             _db.Buy.AddRange(BasketItems);
                             _db.SaveChanges();
-                                //WareHouseManagment.AddToWarehouse(BasketItems);
+                            WareHouseManagment.AddToWarehouse(BasketItems);
 
                             transact.Commit();
                                 return true;
@@ -151,6 +151,8 @@ namespace MarketManagment
                 }
 
             }
+
+      
     }
 
         

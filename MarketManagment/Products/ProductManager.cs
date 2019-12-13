@@ -74,12 +74,12 @@ namespace MarketManagment
       
 
         #region SQL Query
-        public static async Task<IEnumerable<ProductView>> GetALLProductDetailInfo()
+        public static async Task<List<ProductView>> GetALLProductDetailInfo()
         {
 
             try
             {
-                var producList = (from product in _db.Product
+                return await (from product in _db.Product
 
                                   join producer in _db.Producers on product.ProducerId equals producer.Id
                                   join unit in _db.Unit on product.UnitId equals unit.Id
@@ -104,7 +104,7 @@ namespace MarketManagment
                                       GroupId= pgroup.Id
                                   }).ToListAsync();
 
-                return await producList;
+      
             }
             catch(Exception error)
             {
@@ -393,8 +393,18 @@ namespace MarketManagment
                ProductsLocal.RefreshLocalProductsList(false);
             return ProductsLocal.LocalProducts.FirstOrDefault(x => x.Id == id)?.Name;
         }
+        public static void AddToLocalList(ProductView product)
+        {
+            ProductsLocal.LocalProducts.Add(product);
+        }
+        public static decimal GetLastSalePriceByProductId(int productId, decimal price=0)
+        {
+            var lastBuy = _db.Buy.Where(x => x.ProductId == productId && x.Price >= price).OrderByDescending(x => x.TransactionId).FirstOrDefault();
+            if (lastBuy != null)
+                return lastBuy.RetailPrice;
+            return 0;
 
-
+        }
         #endregion
     }
 }

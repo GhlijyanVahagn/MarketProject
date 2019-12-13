@@ -25,24 +25,14 @@
                     <asp:LinkButton ID="lblLogout" Text="Logout" runat="server"></asp:LinkButton>
               </div>
             </div >
-          
            <div>
               <asp:TreeView CssClass="menu" ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1"></asp:TreeView>
-          
-
                 <div class="PageContent">
                       <asp:ContentPlaceHolder   ID="WebPageContent" runat="server">
                       </asp:ContentPlaceHolder>
-              
                 </div>
             </div>
-
-           
               <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
-         
-
-
-           
           </asp:ContentPlaceHolder>
    </div>
 </form>

@@ -45,6 +45,7 @@ namespace MarketProject.View.Market
         private void CalculatePrice()
         {
             decimal price, count,discount;
+
             decimal.TryParse(txtPrice.Text.Trim(), out price);
             decimal.TryParse(txtCount.Text.Trim(), out count);
             decimal.TryParse(txtDiscount.Text.Trim(), out discount);
@@ -200,11 +201,18 @@ namespace MarketProject.View.Market
         }
         private void ClearBoardFields()
         {
-            txtBoxRetailPrice.Text = string.Empty;
+
             txtCount.Text = string.Empty;
             txtDiscount.Text = string.Empty;
             txtPrice.Text = string.Empty;
             txtSearchString.Text = string.Empty;
+        }
+
+        protected void dropDownProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var id=Helpers.GetProductIdFromDropDownSelectedItem(dropDownProducts.SelectedValue);
+            var price=ProductManager.GetLastSalePriceByProductId(id);
+            txtPrice.Text = price.ToString();
         }
     }
 }

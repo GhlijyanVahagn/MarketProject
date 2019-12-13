@@ -90,12 +90,13 @@ namespace MarketManagment.Sales
                         _db.SaveChanges();
                         foreach (var item in BasketItems)
                         {
+
                             item.TransactionId = transaction.Id;
                         }
 
                         _db.Sale.AddRange(BasketItems);
                         _db.SaveChanges();
-                        //WareHouseManagment.SaleFromWarehouse(BasketItems);
+                        WareHouseManagment.SaleFromWarehouse(BasketItems);
 
                         transact.Commit();
                         return true;

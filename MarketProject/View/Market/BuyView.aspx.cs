@@ -16,7 +16,7 @@ namespace MarketProject.View.Market
     {
 
         private DataBinder dataBinder = new DataBinder();
-        
+
 
         protected  void Page_Load(object sender, EventArgs e)
         {
@@ -49,6 +49,11 @@ namespace MarketProject.View.Market
 
         }
 
+        private decimal SuggestLastSalePrice(int productId,decimal price)
+        {
+           return ProductManager.GetLastSalePriceByProductId(productId,price);
+        }
+
         private void CalculatePrice()
         {
             decimal price, count;
@@ -57,7 +62,13 @@ namespace MarketProject.View.Market
 
 
             if (price > 0 && count > 0)
+            {
                 lbltotalMoney.Text = $"{price * count} {UsersManager.Currency}";
+                var productId = Helpers.GetProductIdFromDropDownSelectedItem(dropDownProducts.SelectedValue);
+                var lastRetailPrie=SuggestLastSalePrice(productId,price);
+                txtBoxRetailPrice.Text = lastRetailPrie>0? lastRetailPrie.ToString():string.Empty;
+            }
+
         }
 
       
@@ -120,6 +131,8 @@ namespace MarketProject.View.Market
 
                 }
             );
+
+
         
 
         }

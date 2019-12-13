@@ -75,7 +75,7 @@ namespace MarketManagment.Warehouses
                 {
                     //need to  update product
 
-                    if (buy.RetailPrice!=0)
+                    if (buy.RetailPrice!=0 && buy.RetailPrice!= _prod.RetailPrice)
                         _prod.RetailPrice = buy.RetailPrice;
                     _prod.TotalRemind += buy.Count;
                     _db.Warehouse.Attach(_prod);
@@ -105,7 +105,7 @@ namespace MarketManagment.Warehouses
                     //need to  update product
 
 
-                    _whProd.TotalRemind -= sales.Count;
+                    _whProd.TotalRemind -= sale.Count;
                     _db.Warehouse.Attach(_whProd);
                     _db.Entry<Warehouse>(_whProd).State = EntityState.Modified;
                 }

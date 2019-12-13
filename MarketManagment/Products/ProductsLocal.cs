@@ -11,7 +11,7 @@ namespace MarketManagment.Products
         /// <summary>
         /// Using this static property instead of SQL query
         /// </summary>
-        public static IEnumerable<ProductView> LocalProducts { get; set; }
+        public static List<ProductView> LocalProducts { get; set; }
 
 
 

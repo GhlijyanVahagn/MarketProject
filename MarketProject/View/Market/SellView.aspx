@@ -25,7 +25,7 @@
          
            
                     <asp:Label CssClass="LableStyle" ID="lblProduct" runat="server" Text="Product"></asp:Label>
-                    <asp:DropDownList CssClass="buyProdTxtBoxProductDropDownList" ID="dropDownProducts" runat="server">
+                    <asp:DropDownList CssClass="buyProdTxtBoxProductDropDownList" ID="dropDownProducts" runat="server" OnSelectedIndexChanged="dropDownProducts_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
 
@@ -41,10 +41,7 @@
                 <asp:TextBox CssClass="buyProdTxtBoxPrice" ID="txtPrice" runat="server" MaxLength="7" TabIndex="2" OnTextChanged="txtCount_TextChanged"></asp:TextBox>
             </div>
 
-        <div>
-                <asp:Label CssClass="LableStyle" ID="lblRetailSalePrice" runat="server" Text="Retail Price"></asp:Label>
-                <asp:TextBox CssClass="buyProdTxtBoxRetailPrice" ID="txtBoxRetailPrice" runat="server" MaxLength="9" TabIndex="2" ></asp:TextBox>
-            </div>
+      
 
             <div>
                 <asp:Label CssClass="LableStyle" ID="lblDiscount" runat="server" Text="Discount"></asp:Label>
