@@ -10,12 +10,22 @@ using System.Data.Entity.Migrations;
 
 namespace DbManager
 {
-    public  class DataBaseManager : DbContext
+    public   class DataBaseManager : DbContext
     {
-        public DataBaseManager() : base("DefaultConnection")
-        {
+        //Using Singleton Design Pattern
 
+        private static DataBaseManager dbInstance=null;
+        private DataBaseManager() : base("DefaultConnection")
+        {
+          
             Database.SetInitializer<DataBaseManager>(new CreateDatabaseIfNotExists<DataBaseManager>());
+        }
+        public static DataBaseManager GetDatabaseInstance()
+        {
+            if (dbInstance == null)
+                dbInstance= new DataBaseManager();
+            return dbInstance;
+
         }
 
         #region Product
@@ -149,6 +159,11 @@ namespace DbManager
 
 
 
+        }
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            dbInstance = null;
         }
     }
 }

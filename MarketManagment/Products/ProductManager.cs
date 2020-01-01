@@ -14,7 +14,7 @@ namespace MarketManagment
 {
     public static class ProductManager
     {
-        private static DataBaseManager _db = new DataBaseManager();
+        private static DataBaseManager _db = DataBaseManager.GetDatabaseInstance();
 
         
 

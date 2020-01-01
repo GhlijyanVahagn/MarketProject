@@ -12,7 +12,8 @@ namespace MarketManagment.Sales
 {
     public static class SaleManager
     {
-        private static DataBaseManager _db = new DataBaseManager();
+        private static DataBaseManager DataBase = DataBaseManager.GetDatabaseInstance();
+
         public static List<Sale> BasketItems { get; set; } = new List<Sale>();
 
         public static List<SaleView> ConvertFromSaleToSaleViewer(List<Sale> Sales)
@@ -78,25 +79,25 @@ namespace MarketManagment.Sales
         public static bool ComplateSaleOrder(List<Sale> BasketItems, string LogedInUserName)
         {
 
-            using (var context = new DataBaseManager())
+            using (DataBase)
             {
-                using (var transact = context.Database.BeginTransaction())
+                using (var transact = DataBase.Database.BeginTransaction())
                 {
                     try
                     {
 
                         var transaction = new Transaction((int)ETransactionType.Sell, DateTime.Now, LogedInUserName);
-                        _db.Transaction.Add(transaction);
-                        _db.SaveChanges();
+                        DataBase.Transaction.Add(transaction);
+                        DataBase.SaveChanges();
                         foreach (var item in BasketItems)
                         {
 
                             item.TransactionId = transaction.Id;
                         }
 
-                        _db.Sale.AddRange(BasketItems);
-                        _db.SaveChanges();
-                        WareHouseManagment.SaleFromWarehouse(BasketItems);
+                        DataBase.Sale.AddRange(BasketItems);
+                        DataBase.SaveChanges();
+                        WareHouseManagment.SaleFromWarehouseWithTransaction(BasketItems);
 
                         transact.Commit();
                         return true;

@@ -189,15 +189,15 @@ namespace MarketProject.View.Market
             var _userName = Session[Sessions.LogedInUserName]?? "Debug Mode";
 
             // Created Without Async because Method  in transaction 
-            var isOk = BuyManager.ComplateOrder(BuyManager.BasketItems, _userName.ToString());
-            if (!isOk)
-                Response.Redirect("~/Error.aspx");
+            var message = BuyManager.ComplateOrder(BuyManager.BasketItems, _userName.ToString());
+            if (message != null)
+                Response.Redirect($"~/Error.aspx?error={message}");
             else
             {
                 BuyManager.ClearBasket();
                 RefreshGridView();
                 ClearBoardFields();
-
+              
             }
         }
 

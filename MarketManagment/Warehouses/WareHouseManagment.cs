@@ -14,19 +14,19 @@ namespace MarketManagment.Warehouses
 {
     public static class WareHouseManagment
     {
-        private static DataBaseManager _db=new DataBaseManager();
+        //private static DataBaseManager _db=DataBaseManager.GetDatabaseInstance();
 
-   
+        
         
         public static async Task<decimal> GetProductPriceById(int productId)
         {
-            var currentProduct = await _db.Warehouse.FirstOrDefaultAsync(x => x.ProductId == productId);
+            var currentProduct = await DataBaseManager.GetDatabaseInstance().Warehouse.FirstOrDefaultAsync(x => x.ProductId == productId);
 
             return currentProduct != null ? currentProduct.RetailPrice : 0;
         }
         public static async Task<List<Warehouse>> GetALLProductsFromWarehouse()
         {
-           return  await _db.Warehouse.ToListAsync();
+           return  await DataBaseManager.GetDatabaseInstance().Warehouse.ToListAsync();
         }
         /// <summary>
         /// Binded to datasource
@@ -34,7 +34,7 @@ namespace MarketManagment.Warehouses
         /// <returns></returns>
         public static  List<WareHouseViewer> GetRemindProductsFromWarehouseSearch(string filter)
         {
-         
+            var _db = DataBaseManager.GetDatabaseInstance();
            return   (from wh in _db.Warehouse
                           join product in _db.Product on wh.ProductId equals product.Id
                           where (
@@ -60,6 +60,8 @@ namespace MarketManagment.Warehouses
         /// <param name="buys"></param>
         public static  void AddToWarehouse(List<Buy> buys)
         {
+            var _db = DataBaseManager.GetDatabaseInstance();
+
             foreach (var buy in buys)
             {
 
@@ -89,30 +91,45 @@ namespace MarketManagment.Warehouses
 
         }
 
-        public static void SaleFromWarehouse(List<Sale> sales)
+        public static void SaleFromWarehouseWithTransaction(List<Sale> sales)
         {
-            foreach (var sale in sales)
-            {
+            var _db = DataBaseManager.GetDatabaseInstance();
 
-                var _whProd = _db.Warehouse.Where(x => x.ProductId == sale.ProductId).FirstOrDefault();
-                if (_whProd == null)
+            using (var transact = _db.Database.BeginTransaction())
+            {
+                try
                 {
+                    foreach (var sale in sales)
+                    {
+
+                        var _whProd = _db.Warehouse.Where(x => x.ProductId == sale.ProductId).FirstOrDefault();
+                        if (_whProd == null)
+                        {
+                            throw new InvalidOperationException();
+                        }
+
+                        else
+                        {
+                            //need to  update product
+
+
+                            _whProd.TotalRemind -= sale.Count;
+                            _db.Warehouse.Attach(_whProd);
+                            _db.Entry<Warehouse>(_whProd).State = EntityState.Modified;
+                        }
+
+                    }
+
+                    _db.SaveChanges();
+                    transact.Commit();
+                }
+                catch
+                {
+                    transact.Rollback();
                     throw new InvalidOperationException();
                 }
-
-                else
-                {
-                    //need to  update product
-
-
-                    _whProd.TotalRemind -= sale.Count;
-                    _db.Warehouse.Attach(_whProd);
-                    _db.Entry<Warehouse>(_whProd).State = EntityState.Modified;
-                }
-
             }
-
-            _db.SaveChanges();
+       
 
 
         }
@@ -125,11 +142,12 @@ namespace MarketManagment.Warehouses
         /// <param name="ProductId"></param>
         public static bool RemoveFromWarehouse(int ProductId)
         {
-            var _warehouseItem=_db.Warehouse.Where(x => x.ProductId == ProductId).FirstOrDefault();
+            var _db = DataBaseManager.GetDatabaseInstance();
+
+            var _warehouseItem =_db.Warehouse.Where(x => x.ProductId == ProductId).FirstOrDefault();
             if(_warehouseItem!=null)
             {
                 _db.Warehouse.Remove(_warehouseItem);
-
             }
 
             return _db.SaveChanges() > 0;
@@ -143,6 +161,8 @@ namespace MarketManagment.Warehouses
         /// <returns></returns>
         public static bool RemoveItemsFromWarehouse(List<int> producIds)
         {
+            var _db = DataBaseManager.GetDatabaseInstance();
+
             foreach (var id in producIds)
             {
                 var _removeItem = _db.Warehouse.FirstOrDefault(x => x.ProductId == id);

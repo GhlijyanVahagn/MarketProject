@@ -14,7 +14,7 @@ namespace MarketManagment
 {
     public static class BuyManager
     {
-        private static DataBaseManager  _db = new DataBaseManager();
+        private static DataBaseManager  _db = DataBaseManager.GetDatabaseInstance();
         public static List<Buy> BasketItems { get; set; } = new List<Buy>();
 
         public static void AddNewItemToBasket(Buy item)
@@ -115,12 +115,12 @@ namespace MarketManagment
             }
         }
 
-        public static bool ComplateOrder(List<Buy> BasketItems,string LogedInUserName)
+        public static string ComplateOrder(List<Buy> BasketItems,string LogedInUserName)
         {
           
-                using (var context = new DataBaseManager())
+                using (_db)
                 {
-                    using (var transact = context.Database.BeginTransaction())
+                    using (var transact = _db.Database.BeginTransaction())
                     {
                         try
                         {
@@ -138,13 +138,13 @@ namespace MarketManagment
                             WareHouseManagment.AddToWarehouse(BasketItems);
 
                             transact.Commit();
-                                return true;
+                                return null;
 
                             }
                             catch(Exception e)
                             {
                             transact.Rollback();
-                                return false;
+                                return e.Message;
                             }
                        
                     }

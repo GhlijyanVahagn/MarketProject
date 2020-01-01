@@ -12,6 +12,9 @@
     <link rel="stylesheet" type="text/css" href="~/CSS/BuyStyle.css"/>
     <link rel="stylesheet" type="text/css" href="~/CSS/SellStyle.css"/>
     <link rel="stylesheet" type="text/css" href="~/CSS/HomeStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="~/CSS/ErrorPageStyle.css"/>
+
+   
 </head>
 <body> 
 <form runat="server">
