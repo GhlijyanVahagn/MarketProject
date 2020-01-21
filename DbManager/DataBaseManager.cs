@@ -12,21 +12,15 @@ namespace DbManager
 {
     public   class DataBaseManager : DbContext
     {
-        //Using Singleton Design Pattern
+     
 
-        private static DataBaseManager dbInstance=null;
-        private DataBaseManager() : base("DefaultConnection")
+       
+        public DataBaseManager() : base("DefaultConnection")
         {
           
             Database.SetInitializer<DataBaseManager>(new CreateDatabaseIfNotExists<DataBaseManager>());
         }
-        public static DataBaseManager GetDatabaseInstance()
-        {
-            if (dbInstance == null)
-                dbInstance= new DataBaseManager();
-            return dbInstance;
-
-        }
+       
 
         #region Product
         public virtual DbSet<Producer> Producers { get; set; }
@@ -163,7 +157,7 @@ namespace DbManager
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
-            dbInstance = null;
+       
         }
     }
 }

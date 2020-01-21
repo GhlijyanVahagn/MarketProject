@@ -14,58 +14,82 @@ namespace MarketManagment
 {
     public static class ProductManager
     {
-        private static DataBaseManager _db = DataBaseManager.GetDatabaseInstance();
-
+       
+              
         
 
         public static async void CreateProductGroupAsync(ProductGroup productGroup)
         {
-             _db.ProductGroup.Add(productGroup);
-            await _db.SaveChangesAsync();
+            using (DataBaseManager _db = new DataBaseManager())
+            {
+                _db.ProductGroup.Add(productGroup);
+                await _db.SaveChangesAsync();
+            }
+             
         }
         public static async void CreateUnitAsync(Unit unit)
         {
-            _db.Unit.Add(unit);
-            await _db.SaveChangesAsync();
+            using (DataBaseManager _db = new DataBaseManager())
+            {
+                _db.Unit.Add(unit);
+                await _db.SaveChangesAsync();
+            }
         }
         public static async void CreateProducerAsync(Producer producer)
         {
-            _db.Producers.Add(producer);
-            await _db.SaveChangesAsync();
+            using (DataBaseManager _db = new DataBaseManager())
+            {
+                _db.Producers.Add(producer);
+                await _db.SaveChangesAsync();
+            }
         }
         public static async void CreateProduct(Product product)
         {
-            _db.Product.Add(product);
-            await _db.SaveChangesAsync();
+            using (DataBaseManager _db = new DataBaseManager())
+            {
+                _db.Product.Add(product);
+                await _db.SaveChangesAsync();
+            }
          
 
         }
         public static async Task<Product> GetProductByIdAsync(int Id)
         {
-            return await _db.Product.FirstOrDefaultAsync(x => x.Id == Id); 
+            using (DataBaseManager _db = new DataBaseManager())
+            {
+                return await _db.Product.FirstOrDefaultAsync(x => x.Id == Id);
+            }
         }
         public static async void RemoveProductByIdAsync(int Id)
         {
             var _product = await GetProductByIdAsync(Id);
             if (_product == null)
                 return;
-
-            _db.Product.Remove(_product);
-            await _db.SaveChangesAsync();
+            using (DataBaseManager _db = new DataBaseManager())
+            {
+                _db.Product.Remove(_product);
+                await _db.SaveChangesAsync();
+            }
 
 
         }
         public static async Task<Producer> GetProducerByIdAsync(int Id)
         {
-            return await _db.Producers.FirstOrDefaultAsync(x => x.Id == Id);
+            using (DataBaseManager _db = new DataBaseManager())
+            {
+                return await _db.Producers.FirstOrDefaultAsync(x => x.Id == Id);
+            }
         }
         public static async Task<bool> RemoveProducerById(int Id)
         {
             var producer = await GetProducerByIdAsync(Id);
             if (producer == null)
                 return false;
-            _db.Producers.Remove(producer);
-            return  _db.SaveChanges()>0;
+            using (DataBaseManager _db = new DataBaseManager())
+            {
+                _db.Producers.Remove(producer);
+                return _db.SaveChanges() > 0;
+            }
         }
         /// <summary>
         /// Need to refresh Products list after delete add or edit product
@@ -79,7 +103,9 @@ namespace MarketManagment
 
             try
             {
-                return await (from product in _db.Product
+                using (DataBaseManager _db = new DataBaseManager())
+                {
+                    return await (from product in _db.Product
 
                                   join producer in _db.Producers on product.ProducerId equals producer.Id
                                   join unit in _db.Unit on product.UnitId equals unit.Id
@@ -99,10 +125,11 @@ namespace MarketManagment
                                       UnitName = unit.Name,
                                       GroupName = pgroup.Name,
 
-                                      ProducerId= producer.Id,
-                                      UnitId=unit.Id,
-                                      GroupId= pgroup.Id
+                                      ProducerId = producer.Id,
+                                      UnitId = unit.Id,
+                                      GroupId = pgroup.Id
                                   }).ToListAsync();
+                }
 
       
             }
@@ -118,32 +145,36 @@ namespace MarketManagment
 
             try
             {
-                var producList = (from product in _db.Product
+                using (DataBaseManager _db = new DataBaseManager())
+                {
+                    var producList = (from product in _db.Product
 
-                                  join producer in _db.Producers on product.ProducerId equals producer.Id
-                                  join unit in _db.Unit on product.UnitId equals unit.Id
-                                  join pgroup in _db.ProductGroup on product.GroupId equals pgroup.Id
-                                  join wh in _db.Warehouse on product.Id equals wh.ProductId
-                                  where wh.TotalRemind > 0
-                                  select new ProductView
-                                  {
-                                      Id = product.Id,
-                                      Name = product.Name,
-                                      UnicCode = product.UnicCode,
-                                      BarCode = product.BarCode,
-                                      Description = product.Description,
-                                      //Price = product.Price,
-                                      //Count = product.Count,
-                                      Producer = producer.Name,
-                                      UnitName = unit.Name,
-                                      GroupName = pgroup.Name,
+                                      join producer in _db.Producers on product.ProducerId equals producer.Id
+                                      join unit in _db.Unit on product.UnitId equals unit.Id
+                                      join pgroup in _db.ProductGroup on product.GroupId equals pgroup.Id
+                                      join wh in _db.Warehouse on product.Id equals wh.ProductId
+                                      where wh.TotalRemind > 0
+                                      select new ProductView
+                                      {
+                                          Id = product.Id,
+                                          Name = product.Name,
+                                          UnicCode = product.UnicCode,
+                                          BarCode = product.BarCode,
+                                          Description = product.Description,
+                                          //Price = product.Price,
+                                          //Count = product.Count,
+                                          Producer = producer.Name,
+                                          UnitName = unit.Name,
+                                          GroupName = pgroup.Name,
 
-                                      ProducerId = producer.Id,
-                                      UnitId = unit.Id,
-                                      GroupId = pgroup.Id
-                                  }).ToListAsync();
+                                          ProducerId = producer.Id,
+                                          UnitId = unit.Id,
+                                          GroupId = pgroup.Id
+                                      }).ToListAsync();
+               
 
                 return await producList;
+                }
             }
             catch
             {
@@ -156,30 +187,34 @@ namespace MarketManagment
         {
             try
             {
-                var producList = (from product in _db.Product
+                using (DataBaseManager _db = new DataBaseManager())
+                {
+                    var producList = (from product in _db.Product
 
-                                  join producer in _db.Producers on product.ProducerId equals producer.Id
-                                  join unit in _db.Unit on product.UnitId equals unit.Id
-                                  join pgroup in _db.ProductGroup on product.GroupId equals pgroup.Id
+                                      join producer in _db.Producers on product.ProducerId equals producer.Id
+                                      join unit in _db.Unit on product.UnitId equals unit.Id
+                                      join pgroup in _db.ProductGroup on product.GroupId equals pgroup.Id
 
-                                  where product.Id == ProductId
-                                  select new ProductView
-                                  {
-                                      Id = product.Id,
-                                      Name = product.Name,
-                                      UnicCode = product.UnicCode,
-                                      BarCode = product.BarCode,
-                                      Description = product.Description,
-                                      //Price = product.Price,
-                                      //Count = product.Count,
-                                      Producer = producer.Name,
-                                      UnitName = unit.Name,
-                                      GroupName = pgroup.Name
+                                      where product.Id == ProductId
+                                      select new ProductView
+                                      {
+                                          Id = product.Id,
+                                          Name = product.Name,
+                                          UnicCode = product.UnicCode,
+                                          BarCode = product.BarCode,
+                                          Description = product.Description,
+                                          //Price = product.Price,
+                                          //Count = product.Count,
+                                          Producer = producer.Name,
+                                          UnitName = unit.Name,
+                                          GroupName = pgroup.Name
 
 
-                                  }).FirstOrDefault();
+                                      }).FirstOrDefault();
 
-                return  producList;
+                    return producList;
+                }
+                  
             }
             catch
             {
@@ -192,26 +227,30 @@ namespace MarketManagment
         {
             try
             {
-                var result=(from product in _db.Product
-                 join producer in _db.Producers on product.ProducerId equals producer.Id
-                 join unit in _db.Unit on product.UnitId equals unit.Id
-                 join productgroup in _db.ProductGroup on product.GroupId equals productgroup.Id
-                 where product.Name.Trim().ToLower().Equals(ProductName.Trim().ToLower())
-                 select new ProductView
-                 {
-                     Id = product.Id,
-                     Name = product.Name,
-                     UnicCode = product.UnicCode,
-                     BarCode = product.BarCode,
-                     Description = product.Description,
-                     //Price = product.Price,
-                     //Count = product.Count,
-                     Producer = producer.Name,
-                     UnitName = unit.Name,
-                     GroupName = productgroup.Name
-                 }).ToListAsync();
+                using (DataBaseManager _db = new DataBaseManager())
+                {
+                    var result = (from product in _db.Product
+                                  join producer in _db.Producers on product.ProducerId equals producer.Id
+                                  join unit in _db.Unit on product.UnitId equals unit.Id
+                                  join productgroup in _db.ProductGroup on product.GroupId equals productgroup.Id
+                                  where product.Name.Trim().ToLower().Equals(ProductName.Trim().ToLower())
+                                  select new ProductView
+                                  {
+                                      Id = product.Id,
+                                      Name = product.Name,
+                                      UnicCode = product.UnicCode,
+                                      BarCode = product.BarCode,
+                                      Description = product.Description,
+                                      //Price = product.Price,
+                                      //Count = product.Count,
+                                      Producer = producer.Name,
+                                      UnitName = unit.Name,
+                                      GroupName = productgroup.Name
+                                  }).ToListAsync();
 
-                return await result;
+                    return await result;
+                }
+                   
 
 
             }
@@ -225,27 +264,29 @@ namespace MarketManagment
         {
             try
             {
-                var result = (from product in _db.Product
-                              join producer in _db.Producers on product.ProducerId equals producer.Id
-                              join unit in _db.Unit on product.UnitId equals unit.Id
-                              join productgroup in _db.ProductGroup on product.GroupId equals productgroup.Id
-                              where product.UnicCode.Trim().ToLower().Equals(UnicalCode.Trim().ToLower())
-                              select new ProductView
-                              {
-                                  Id = product.Id,
-                                  Name = product.Name,
-                                  UnicCode = product.UnicCode,
-                                  BarCode = product.BarCode,
-                                  Description = product.Description,
-                                  //Price = product.Price,
-                                  //Count = product.Count,
-                                  Producer = producer.Name,
-                                  UnitName = unit.Name,
-                                  GroupName = productgroup.Name
-                              }).ToListAsync();
+                using (DataBaseManager _db = new DataBaseManager())
+                {
+                    var result = (from product in _db.Product
+                                  join producer in _db.Producers on product.ProducerId equals producer.Id
+                                  join unit in _db.Unit on product.UnitId equals unit.Id
+                                  join productgroup in _db.ProductGroup on product.GroupId equals productgroup.Id
+                                  where product.UnicCode.Trim().ToLower().Equals(UnicalCode.Trim().ToLower())
+                                  select new ProductView
+                                  {
+                                      Id = product.Id,
+                                      Name = product.Name,
+                                      UnicCode = product.UnicCode,
+                                      BarCode = product.BarCode,
+                                      Description = product.Description,
+                                      //Price = product.Price,
+                                      //Count = product.Count,
+                                      Producer = producer.Name,
+                                      UnitName = unit.Name,
+                                      GroupName = productgroup.Name
+                                  }).ToListAsync();
 
-                return await result;
-
+                    return await result;
+                }
 
             }
             catch
@@ -258,28 +299,30 @@ namespace MarketManagment
         {
             try
             {
-                var result = (from product in _db.Product
-                              join producer in _db.Producers on product.ProducerId equals producer.Id
-                              join unit in _db.Unit on product.UnitId equals unit.Id
-                              join productgroup in _db.ProductGroup on product.GroupId equals productgroup.Id
-                              where product.BarCode.Trim().ToLower().Equals(BarCode.Trim().ToLower())
-                              select new ProductView
-                              {
-                                  Id = product.Id,
-                                  Name = product.Name,
-                                  UnicCode = product.UnicCode,
-                                  BarCode = product.BarCode,
-                                  Description = product.Description,
-                                  //Price = product.Price,
-                                  //Count = product.Count,
-                                  Producer = producer.Name,
-                                  UnitName = unit.Name,
-                                  GroupName = productgroup.Name
-                              }).ToListAsync();
+                using (DataBaseManager _db = new DataBaseManager())
+                {
+                    var result = (from product in _db.Product
+                                  join producer in _db.Producers on product.ProducerId equals producer.Id
+                                  join unit in _db.Unit on product.UnitId equals unit.Id
+                                  join productgroup in _db.ProductGroup on product.GroupId equals productgroup.Id
+                                  where product.BarCode.Trim().ToLower().Equals(BarCode.Trim().ToLower())
+                                  select new ProductView
+                                  {
+                                      Id = product.Id,
+                                      Name = product.Name,
+                                      UnicCode = product.UnicCode,
+                                      BarCode = product.BarCode,
+                                      Description = product.Description,
+                                      //Price = product.Price,
+                                      //Count = product.Count,
+                                      Producer = producer.Name,
+                                      UnitName = unit.Name,
+                                      GroupName = productgroup.Name
+                                  }).ToListAsync();
 
-                return await result;
+                    return await result;
 
-
+                }
             }
             catch
             {
@@ -291,27 +334,29 @@ namespace MarketManagment
         {
             try
             {
-                var result = (from product in _db.Product
-                              join producer in _db.Producers on product.ProducerId equals producer.Id
-                              join unit in _db.Unit on product.UnitId equals unit.Id
-                              join productgroup in _db.ProductGroup on product.GroupId equals productgroup.Id
-                              where producer.Name.Trim().ToLower().Equals(ProducerName.Trim().ToLower())
-                              select new ProductView
-                              {
-                                  Id = product.Id,
-                                  Name = product.Name,
-                                  UnicCode = product.UnicCode,
-                                  BarCode = product.BarCode,
-                                  Description = product.Description,
-                                  //Price = product.Price,
-                                  //Count = product.Count,
-                                  Producer = producer.Name,
-                                  UnitName = unit.Name,
-                                  GroupName = productgroup.Name
-                              }).ToListAsync();
+                using (DataBaseManager _db = new DataBaseManager())
+                {
+                    var result = (from product in _db.Product
+                                  join producer in _db.Producers on product.ProducerId equals producer.Id
+                                  join unit in _db.Unit on product.UnitId equals unit.Id
+                                  join productgroup in _db.ProductGroup on product.GroupId equals productgroup.Id
+                                  where producer.Name.Trim().ToLower().Equals(ProducerName.Trim().ToLower())
+                                  select new ProductView
+                                  {
+                                      Id = product.Id,
+                                      Name = product.Name,
+                                      UnicCode = product.UnicCode,
+                                      BarCode = product.BarCode,
+                                      Description = product.Description,
+                                      //Price = product.Price,
+                                      //Count = product.Count,
+                                      Producer = producer.Name,
+                                      UnitName = unit.Name,
+                                      GroupName = productgroup.Name
+                                  }).ToListAsync();
 
-                return await result;
-
+                    return await result;
+                }
 
             }
             catch
@@ -324,27 +369,29 @@ namespace MarketManagment
         {
             try
             {
-                var result = (from product in _db.Product
-                              join producer in _db.Producers on product.ProducerId equals producer.Id
-                              join unit in _db.Unit on product.UnitId equals unit.Id
-                              join productgroup in _db.ProductGroup on product.GroupId equals productgroup.Id
-                              where productgroup.Name.Trim().ToLower().Equals(groupName.Trim().ToLower())
-                              select new ProductView
-                              {
-                                  Id = product.Id,
-                                  Name = product.Name,
-                                  UnicCode = product.UnicCode,
-                                  BarCode = product.BarCode,
-                                  Description = product.Description,
-                                  //Price = product.Price,
-                                  //Count = product.Count,
-                                  Producer = producer.Name,
-                                  UnitName = unit.Name,
-                                  GroupName = productgroup.Name
-                              }).ToListAsync();
+                using (DataBaseManager _db = new DataBaseManager())
+                {
+                    var result = (from product in _db.Product
+                                  join producer in _db.Producers on product.ProducerId equals producer.Id
+                                  join unit in _db.Unit on product.UnitId equals unit.Id
+                                  join productgroup in _db.ProductGroup on product.GroupId equals productgroup.Id
+                                  where productgroup.Name.Trim().ToLower().Equals(groupName.Trim().ToLower())
+                                  select new ProductView
+                                  {
+                                      Id = product.Id,
+                                      Name = product.Name,
+                                      UnicCode = product.UnicCode,
+                                      BarCode = product.BarCode,
+                                      Description = product.Description,
+                                      //Price = product.Price,
+                                      //Count = product.Count,
+                                      Producer = producer.Name,
+                                      UnitName = unit.Name,
+                                      GroupName = productgroup.Name
+                                  }).ToListAsync();
 
-                return await result;
-
+                    return await result;
+                }
 
             }
             catch
@@ -355,7 +402,10 @@ namespace MarketManagment
 
         public static int GetProductsCountFromDataBase()
         {
-            return _db.Product.Count();
+            using (DataBaseManager _db = new DataBaseManager())
+            {
+                return _db.Product.Count();
+            }
         }
         #endregion
 
@@ -399,10 +449,13 @@ namespace MarketManagment
         }
         public static decimal GetLastSalePriceByProductId(int productId, decimal price=0)
         {
-            var lastBuy = _db.Buy.Where(x => x.ProductId == productId && x.Price >= price).OrderByDescending(x => x.TransactionId).FirstOrDefault();
-            if (lastBuy != null)
-                return lastBuy.RetailPrice;
-            return 0;
+            using (DataBaseManager _db = new DataBaseManager())
+            {
+                var lastBuy = _db.Buy.Where(x => x.ProductId == productId && x.Price >= price).OrderByDescending(x => x.TransactionId).FirstOrDefault();
+                if (lastBuy != null)
+                    return lastBuy.RetailPrice;
+                return 0;
+            }
 
         }
         #endregion

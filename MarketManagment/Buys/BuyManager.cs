@@ -14,7 +14,7 @@ namespace MarketManagment
 {
     public static class BuyManager
     {
-        private static DataBaseManager  _db = DataBaseManager.GetDatabaseInstance();
+
         public static List<Buy> BasketItems { get; set; } = new List<Buy>();
 
         public static void AddNewItemToBasket(Buy item)
@@ -118,7 +118,7 @@ namespace MarketManagment
         public static string ComplateOrder(List<Buy> BasketItems,string LogedInUserName)
         {
           
-                using (_db)
+                using (DataBaseManager _db=new DataBaseManager())
                 {
                     using (var transact = _db.Database.BeginTransaction())
                     {
