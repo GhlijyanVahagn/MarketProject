@@ -20,6 +20,7 @@ namespace MarketManagment
 
         public static async void CreateProductGroupAsync(ProductGroup productGroup)
         {
+            ProductGroupRepository 
             using (DataBaseManager _db = new DataBaseManager())
             {
                 _db.ProductGroup.Add(productGroup);

@@ -1,15 +1,19 @@
 ﻿using System;
+using DbManager.ProductGroupRepository;
 using DbModel;
 using MarketManagment;
 namespace MarketProject.View.AdminPanel
 {
     public partial class ProductGroupView : System.Web.UI.Page
     {
- 
+        IProductGroupReository productGroupRepository;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!UsersManager.IsUserAutorized)
                 Response.Redirect("~/Login.aspx");
+            else
+                productGroupRepository = new ProductGroupRepository();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -22,8 +26,8 @@ namespace MarketProject.View.AdminPanel
             };
             if (string.IsNullOrWhiteSpace(_newProdGroup.Name))
                 return;
-
-            ProductManager.CreateProductGroupAsync(_newProdGroup);
+            productGroupRepository.Create(_newProdGroup);
+            productGroupRepository.Save();
         }
     }
 }

@@ -254,6 +254,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DbManager\DbManager.csproj">
+      <Project>{0E3E6905-210F-4E61-91E4-1C0662F4E9E1}</Project>
+      <Name>DbManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DbModel\DbModel.csproj">
       <Project>{6e3c4712-26d9-4ed7-adbf-4358d6e37aad}</Project>
       <Name>DbModel</Name>

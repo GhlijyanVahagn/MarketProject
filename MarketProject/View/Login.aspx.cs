@@ -1,4 +1,5 @@
-﻿using MarketHelpers;
+﻿using DbManager.Repository;
+using MarketHelpers;
 using MarketManagment;
 using System;
 using System.Collections.Generic;
@@ -11,27 +12,28 @@ namespace MarketProject
 {
     public partial class Login : System.Web.UI.Page
     {
+        LoginRepostory login;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (UsersManager.IsUserAutorized)
+            if (login.IsUserAutorized)
                 Response.Redirect("~/Default.aspx");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            var logedIn=  UsersManager.IdentifyUser(txtLogin.Text, txtPassword.Text);
+            var logedIn= login.Authenticate(txtLogin.Text, txtPassword.Text);
         
             if (string.IsNullOrWhiteSpace(logedIn.UserName))
             {
                 lblMessage.Text = "* Login or Password incorrect";
-                UsersManager.IsUserAutorized = false;
+                login.IsUserAutorized = false;
                 return;
             }
             else
             {
                 Session[Sessions.LogedInUserName] = logedIn;
 
-                UsersManager.IsUserAutorized = true;
+                login.IsUserAutorized = true;
                 Response.Redirect("~/Default.aspx");
                 Panel1.Visible = false;
             }

@@ -5,13 +5,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using DbManager.Repository;
 namespace MarketProject.View.Market
 {
     public partial class Warehouse : System.Web.UI.Page
     {
+        private WareHouseRepository repository;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+                repository = new WareHouseRepository();
             LoadingProductAsync();
 
         }
@@ -24,7 +27,7 @@ namespace MarketProject.View.Market
 
         protected void btnFind_Click(object sender, ImageClickEventArgs e)
         {
-            var x=MarketManagment.Warehouses.WareHouseManagment.GetRemindProductsFromWarehouseSearch(txtProductName.Text);
+            var x= repository.GetRemindProductsFromWarehouseSearch(txtProductName.Text);
         }
     }
 }

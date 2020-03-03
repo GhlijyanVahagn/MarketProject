@@ -8,21 +8,21 @@ namespace UserIdentity
 {
     public static class Login
     {
-        public static async Task<bool> CreateUser(User user)
-        {
+        //public static async Task<bool> CreateUser(User user)
+        //{
 
-            var userStore = new UserStore<IdentityUser>();
-            var manager = new UserManager<IdentityUser>(userStore);
+        //    var userStore = new UserStore<IdentityUser>();
+        //    var manager = new UserManager<IdentityUser>(userStore);
 
-            var IdentityUser = new IdentityUser() { UserName = user.Login, Email = user.Email };
-            IdentityResult result = await manager.CreateAsync(IdentityUser, user.Password);
-            if (result != null && result.Succeeded)
-                return result.Succeeded;
-            return false;
+        //    var IdentityUser = new IdentityUser() { UserName = user.Login, Email = user.Email };
+        //    IdentityResult result = await manager.CreateAsync(IdentityUser, user.Password);
+        //    if (result != null && result.Succeeded)
+        //        return result.Succeeded;
+        //    return false;
 
 
- 
-        }
+
+        //}
 
         public static IdentityUser UserLogin(string Login, string Password)
         {

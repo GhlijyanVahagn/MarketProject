@@ -1,0 +1,27 @@
+﻿using DbModel;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DbManager.DatabaseContext
+{
+    class ProductProducerDBContext : DataBaseManager
+    {
+        public virtual DbSet<Producer> Producers { get; set; }
+
+        public ProductProducerDBContext()
+        {
+
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Producer>().HasKey(x => x.Id);
+            modelBuilder.Entity<Producer>().Property(x => x.Name).IsRequired().HasMaxLength(100);
+        }
+        
+    }
+}
