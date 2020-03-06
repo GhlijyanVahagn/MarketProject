@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DbManager.DatabaseContext
 {
-    class ProductUnitDBContext: DataBaseManager
+    class ProductUnitDbContext: DataBaseManager
     {
       
         public virtual DbSet<Unit> Unit { get; set; }
-        public ProductUnitDBContext()
+        public ProductUnitDbContext()
         {
 
         }

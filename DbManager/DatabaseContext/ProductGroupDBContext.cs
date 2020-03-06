@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace DbManager.ProductGroupRepository
 {
-    public class ProductGroupDBContext:DbContext
+    public class ProductGroupDbContext:DbContext
     {
         public virtual DbSet<ProductGroup> ProductGroup { get; set; }
-        public ProductGroupDBContext()
+        public ProductGroupDbContext()
         {
 
         }

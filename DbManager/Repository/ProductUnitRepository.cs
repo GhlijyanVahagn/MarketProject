@@ -12,13 +12,13 @@ namespace DbManager.Repository
 {
     class ProductUnitRepository : IProductUnitRepository
     {
-        ProductUnitDBContext _context;
+        ProductUnitDbContext _context;
         public ProductUnitRepository()
         {
-            _context = new ProductUnitDBContext();
+            _context = new ProductUnitDbContext();
         }
 
-        public ProductUnitRepository(ProductUnitDBContext context)
+        public ProductUnitRepository(ProductUnitDbContext context)
         {
             _context = context;
         }

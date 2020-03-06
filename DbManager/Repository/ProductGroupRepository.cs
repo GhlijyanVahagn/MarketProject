@@ -10,13 +10,13 @@ namespace DbManager.ProductGroupRepository
 {
     public class ProductGroupRepository : IProductGroupRepository
     {
-        private ProductGroupDBContext _context;
+        private ProductGroupDbContext _context;
 
         public ProductGroupRepository()
         {
-            _context = new ProductGroupDBContext();
+            _context = new ProductGroupDbContext();
         }
-        public ProductGroupRepository(ProductGroupDBContext context)
+        public ProductGroupRepository(ProductGroupDbContext context)
         {
             _context = context;
         }
