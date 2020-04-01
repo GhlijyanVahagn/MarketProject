@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace DbModel
 {
-    public class Producer
+    public abstract class ViewBase
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Country { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public string Description { get; set; }
     }
 }

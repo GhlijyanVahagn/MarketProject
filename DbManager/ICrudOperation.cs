@@ -15,7 +15,9 @@ namespace DbManager
 
         void Delete(int Id);
 
+        void Save();
         Task<IEnumerable<T>> GetAllAsync();
+        
 
     }
 }

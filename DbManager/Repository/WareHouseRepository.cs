@@ -1,4 +1,4 @@
-﻿using DbManager.DatabaseContext;
+﻿using DbManager;
 using DbManager.RepositoryInterfaces;
 using DbModel;
 using System;
@@ -74,28 +74,32 @@ namespace DbManager.Repository
         public List<Warehouse> GetRemindProductsFromWarehouseSearch(string filter)
         {
 
-            using (_context)
-            {
-                return (from wh in _context.Warehouse
-                        join product in _context.Product on wh.ProductId equals product.Id
-                        where (
-                        (filter == null || filter == "") ||
-                        product.Name.Trim().ToLower().Contains(filter.Trim().ToLower()))
+            //using (_context)
+            //{
+            //    return (from wh in _context.Warehouse
+            //            join product in _context.Product on wh.ProductId equals product.Id
+            //            where (
+            //            (filter == null || filter == "") ||
+            //            product.Name.Trim().ToLower().Contains(filter.Trim().ToLower()))
 
-                        && wh.TotalRemind > 0
-                        select new WareHouseViewer
-                        {
-                            BarCode = product.BarCode,
-                            ProductName = product.Name,
-                            RemindTotal = wh.TotalRemind,
-                            RetailPrice = wh.RetailPrice
-                        }).ToList();
+            //            && wh.TotalRemind > 0
+            //            select new WareHouseViewer
+            //            {
+            //                BarCode = product.BarCode,
+            //                ProductName = product.Name,
+            //                RemindTotal = wh.TotalRemind,
+            //                RetailPrice = wh.RetailPrice
+            //            }).ToList();
 
-            }
+            //}
+
+            return null;
         }
 
         public bool RemoveFromWarehouse(int ProductId)
         {
+    
+
             using (_context)
             {
 
@@ -107,6 +111,8 @@ namespace DbManager.Repository
 
                 return _context.SaveChanges() > 0;
             }
+
+
         }
 
         public bool RemoveItemsFromWarehouse(List<int> producIds)

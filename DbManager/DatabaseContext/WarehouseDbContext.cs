@@ -1,4 +1,5 @@
-﻿using DbModel;
+﻿using DbModel.Products;
+using DbModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbManager.DatabaseContext
+namespace DbManager
 {
-    class WarehouseDbContext:DataBaseManager
+    public class WarehouseDbContext:DataBaseManager
     {
-        public virtual DbSet<Warehouse> Warehouse { get; set; }
+        
         public WarehouseDbContext()
         {
 

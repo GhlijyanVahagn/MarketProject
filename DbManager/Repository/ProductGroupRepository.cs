@@ -4,11 +4,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DbModel;
+using DbManager.RepositoryInterfaces;
+using DbModel.Products;
+using DbModel.ViewModel;
 
 namespace DbManager.ProductGroupRepository
 {
-    public class ProductGroupRepository : IProductGroupRepository
+    public class ProductGroupRepository : IRepository<ProductGroup,ProductGroupViewModel>
     {
         private ProductGroupDbContext _context;
 
@@ -58,6 +60,11 @@ namespace DbManager.ProductGroupRepository
         public async Task<IEnumerable<ProductGroup>> GetAllAsync()
         {
           return  await _context.ProductGroup.ToListAsync();
+        }
+
+        public IEnumerable<ProductGroupViewModel> ViewModelList()
+        {
+            throw new NotImplementedException();
         }
     }
 }

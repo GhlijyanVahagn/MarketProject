@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -58,20 +59,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buys\BasketConvertor.cs" />
+    <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Buys\BuyManager.cs" />
-    <Compile Include="Buys\BuyViewer.cs" />
+    <Compile Include="Managers\BasketManagers\BasketBase.cs" />
+    <Compile Include="Managers\BasketManagers\BasketCalculation.cs" />
+    <Compile Include="Managers\BasketManagers\BasketManager.cs" />
+    <Compile Include="Managers\Products\ProducerManager.cs" />
+    <Compile Include="Managers\Products\ProductGroupManager.cs" />
+    <Compile Include="Managers\Products\ProductManager.cs" />
+    <Compile Include="Managers\Validator\EProductCreationValidationTypes.cs" />
+    <Compile Include="Managers\Validator\IValidator.cs" />
+    <Compile Include="Managers\Validator\MarketValidator.cs" />
+    <Compile Include="Managers\Validator\ProductValidator.cs" />
+    <Compile Include="Managers\Warehouses\WarehouseManager.cs" />
+    <Compile Include="Managers\Warehouses\WarehouseSaleManager.cs" />
     <Compile Include="Sales\SaleManager.cs" />
-    <Compile Include="Sales\SaleView.cs" />
     <Compile Include="Shared\ESearchType.cs" />
-    <Compile Include="Products\ProductManager.cs" />
+    <Compile Include="ProductManager.cs" />
     <Compile Include="Products\ProductsLocal.cs" />
-    <Compile Include="Products\ProductView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\ETransactionType.cs" />
     <Compile Include="Transactions\TransactionManager.cs" />
-    <Compile Include="Transactions\TransactionViewer.cs" />
+    <Compile Include="Managers\Products\UnitManager.cs" />
     <Compile Include="User\UsersManager.cs" />
-    <Compile Include="Warehouses\WareHouseManagment.cs" />
+    <Compile Include="Managers\Warehouses\WarehouseBuyManager.cs" />
     <Compile Include="Warehouses\WareHouseViewer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,9 +95,9 @@
       <Project>{0E3E6905-210F-4E61-91E4-1C0662F4E9E1}</Project>
       <Name>DbManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DbModel\DbModel.csproj">
+    <ProjectReference Include="..\DbModel\Models.csproj">
       <Project>{6E3C4712-26D9-4ED7-ADBF-4358D6E37AAD}</Project>
-      <Name>DbModel</Name>
+      <Name>Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\UserIdentity\UserIdentity.csproj">
       <Project>{6c3ad7a2-0d74-4c93-900b-f9d1a00862dc}</Project>

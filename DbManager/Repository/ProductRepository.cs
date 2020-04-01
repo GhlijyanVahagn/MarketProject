@@ -1,44 +1,66 @@
-﻿using DbManager.RepositoryInterfaces;
+﻿using DbManager;
+using DbManager.RepositoryInterfaces;
+using DbModel.Products;
+using DbModel.ViewModel;
 using DbModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DbManager.Repository
 {
-    class ProductRepository : IProductRepository
+    public class ProductRepository : IRepository<Product,ProductViewModel>
     {
-        private readonly 
+        private ProductDbContext context;
+        public ProductRepository()
+        {
+            context = new ProductDbContext();
+        }
         public void Create(Product entity)
         {
-            throw new NotImplementedException();
+            context.Products.Add(entity);
         }
 
         public void Delete(int Id)
         {
-            throw new NotImplementedException();
+            var entity = Read(Id);
+            context.Products.Remove(entity);
         }
 
-        public Task<IEnumerable<Product>> GetAllAsync()
+  
+        public async Task<IEnumerable<Product>> GetAllAsync()
         {
-            throw new NotImplementedException();
+             return await context.Products.ToListAsync();
         }
 
         public Product Read(int Id)
         {
-            throw new NotImplementedException();
+            return context.Products.Find(Id);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            context.SaveChanges();
         }
 
         public void Update(Product entity)
         {
-            throw new NotImplementedException();
+            context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+
+        }
+
+        public IEnumerable<ProductViewModel> ViewModelList()
+        {
+            var sourceList = context.Products.ToListAsync().Result;
+            var result = new List<ProductViewModel>();
+            foreach (var product in sourceList)
+            {
+                result.Add(MarketMapper.Mapper.Map<Product, ProductViewModel>(product));
+            }
+            return result;
         }
     }
 }

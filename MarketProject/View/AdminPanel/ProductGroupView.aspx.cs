@@ -1,33 +1,38 @@
 ﻿using System;
 using DbManager.ProductGroupRepository;
-using DbModel;
+
+using MarketManagment.Managers.Products;
 using MarketManagment;
+using DbModel.ViewModel;
+using MarketManagment.User;
+
 namespace MarketProject.View.AdminPanel
 {
     public partial class ProductGroupView : System.Web.UI.Page
     {
-        IProductGroupReository productGroupRepository;
 
+        ProductGroupManager manager;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!UsersManager.IsUserAutorized)
                 Response.Redirect("~/Login.aspx");
-            else
-                productGroupRepository = new ProductGroupRepository();
+            manager = new ProductGroupManager();
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
+        protected void BtnSave_Click(object sender, EventArgs e)
         {
-            var _newProdGroup = new ProductGroup()
+            var newGroup = new ProductGroupViewModel()
             {
+                
                 Name = txtName.Text.Trim(),
-                Descrption = txtDescription.Text.Trim()
+                Description = txtDescription.Text.Trim()
 
             };
-            if (string.IsNullOrWhiteSpace(_newProdGroup.Name))
+            if (string.IsNullOrWhiteSpace(newGroup.Name))
                 return;
-            productGroupRepository.Create(_newProdGroup);
-            productGroupRepository.Save();
+            manager.Create(newGroup);
+            manager.Save();
+
         }
     }
 }

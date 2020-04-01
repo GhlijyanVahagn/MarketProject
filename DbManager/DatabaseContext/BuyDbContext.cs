@@ -1,4 +1,6 @@
-﻿using DbModel;
+﻿using DbModel.Products;
+using DbModel;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,15 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbManager.DatabaseContext
+namespace DbManager
 {
-    class BuyDbContext:DataBaseManager
+    public class BuyDbContext:DataBaseManager
     {
         public BuyDbContext()
         {
 
         }
-        public virtual DbSet<Buy> Buy { get; set; }
+        //public virtual DbSet<Buy> Buy { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,6 +39,13 @@ namespace DbManager.DatabaseContext
             modelBuilder.Entity<Buy>().Property(x => x.ProductId).IsRequired();
 
             modelBuilder.Entity<Buy>().Property(x => x.Payed).IsRequired();
+
+
+            modelBuilder.Entity<Buy>().Property(x => x.Price).IsRequired();
+            modelBuilder.Entity<Buy>().Property(x => x.WholeSalePrice).IsRequired();
+            modelBuilder.Entity<Buy>().Property(x => x.RetailPrice).IsRequired();
+
+
         }
 
 

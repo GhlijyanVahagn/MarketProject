@@ -1,5 +1,6 @@
 ﻿using DbManager;
 using DbModel;
+using DbModel.ViewModel;
 using MarketManagment.Shared;
 using MarketManagment.Warehouses;
 using System;
@@ -16,18 +17,18 @@ namespace MarketManagment.Sales
 
         public static List<Sale> BasketItems { get; set; } = new List<Sale>();
 
-        public static List<SaleView> ConvertFromSaleToSaleViewer(List<Sale> Sales)
+        public static List<SaleViewModel> ConvertFromSaleToSaleViewer(List<Sale> Sales)
         {
 
-            List<SaleView> saleViewers = new List<SaleView>();
+            List<SaleViewModel> saleViewers = new List<SaleViewModel>();
             foreach (var item in Sales)
             {
-                var _saleViewer = new SaleView();
+                var _saleViewer = new SaleViewModel();
                 _saleViewer.Id = item.Id;
                 _saleViewer.Count = item.Count;
                 _saleViewer.Price = item.Price;
-                _saleViewer.ProductName = ProductManager.GetProductNameById(item.ProductId);
-                _saleViewer.Total = item.Count * item.Price;
+                //_saleViewer.ProductName = ProductManager.GetProductNameById(item.ProductId);
+               // _saleViewer.Total = item.Count * item.Price;
                 _saleViewer.Discount = item.Discount;
                 _saleViewer.Payed = item.Payed;
                 saleViewers.Add(_saleViewer);
@@ -50,7 +51,7 @@ namespace MarketManagment.Sales
             }
         }
 
-        public static List<SaleView> ShowBasketViewItems()
+        public static List<SaleViewModel> ShowBasketViewItems()
         {
             return ConvertFromSaleToSaleViewer(SaleManager.BasketItems);
 
@@ -79,39 +80,41 @@ namespace MarketManagment.Sales
         public static bool ComplateSaleOrder(List<Sale> BasketItems, string LogedInUserName)
         {
 
-            using (DataBaseManager _db=new DataBaseManager())
-            {
-                using (var transact = _db.Database.BeginTransaction())
-                {
-                    try
-                    {
+            //using (DataBaseManager _db=new DataBaseManager())
+            //{
+            //    using (var transact = _db.Database.BeginTransaction())
+            //    {
+            //        try
+            //        {
 
-                        var transaction = new Transaction((int)ETransactionType.Sell, DateTime.Now, LogedInUserName);
-                        _db.Transaction.Add(transaction);
-                        _db.SaveChanges();
-                        foreach (var item in BasketItems)
-                        {
+            //            var transaction = new Transaction((int)ETransactionType.Sell, DateTime.Now, LogedInUserName);
+            //            _db.Transaction.Add(transaction);
+            //            _db.SaveChanges();
+            //            foreach (var item in BasketItems)
+            //            {
 
-                            item.TransactionId = transaction.Id;
-                        }
+            //                item.TransactionId = transaction.Id;
+            //            }
 
-                        _db.Sale.AddRange(BasketItems);
-                        _db.SaveChanges();
-                        WareHouseManagment.SaleFromWarehouseWithTransaction(BasketItems);
+            //            _db.Sale.AddRange(BasketItems);
+            //            _db.SaveChanges();
+            //            WareHouseManagment.SaleFromWarehouseWithTransaction(BasketItems);
 
-                        transact.Commit();
-                        return true;
+            //            transact.Commit();
+            //            return true;
 
-                    }
-                    catch(Exception e)
-                    {
-                        transact.Rollback();
-                        return false;
-                    }
+            //        }
+            //        catch(Exception e)
+            //        {
+            //            transact.Rollback();
+            //            return false;
+            //        }
 
-                }
+            //    }
+
+            return false;
             }
 
         }
     }
-}
+

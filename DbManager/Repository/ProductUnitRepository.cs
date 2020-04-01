@@ -1,5 +1,7 @@
-﻿using DbManager.DatabaseContext;
+﻿using DbManager;
 using DbManager.RepositoryInterfaces;
+using DbModel.Products;
+using DbModel.ViewModel;
 using DbModel;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DbManager.Repository
 {
-    class ProductUnitRepository : IProductUnitRepository
+    public class ProductUnitRepository : IRepository<Unit,ProductUnitViewModel>
     {
         ProductUnitDbContext _context;
         public ProductUnitRepository()
@@ -33,6 +35,7 @@ namespace DbManager.Repository
             _context.Unit.Remove(entity);
         }
 
+
         public async Task<IEnumerable<Unit>> GetAllAsync()
         {
             return await _context.Unit.ToListAsync();
@@ -53,5 +56,18 @@ namespace DbManager.Repository
             _context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
 
         }
+
+        public  IEnumerable<ProductUnitViewModel> ViewModelList()
+        {
+            var sourceList =  _context.Unit.ToListAsync().Result;
+            var result = new List<ProductUnitViewModel>();
+            foreach (var unit in sourceList)
+            {
+                result.Add(MarketMapper.Mapper.Map<Unit, ProductUnitViewModel>(unit));
+            }
+            return result;
+        }
+
+   
     }
 }

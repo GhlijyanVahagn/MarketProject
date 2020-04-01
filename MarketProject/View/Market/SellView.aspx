@@ -20,12 +20,12 @@
                     <div class="searchBlock">
                          <asp:Label CssClass="LableStyle" ID="lblFindBy" runat="server" Text="Find"></asp:Label>
                         <asp:TextBox CssClass="buyFindtext" ID="txtSearchString" runat="server" TabIndex="1" ></asp:TextBox>
-                        <asp:ImageButton CssClass="btnSearch" ID="btnSearch" runat="server" ImageUrl="~/Resources/search.png" OnClick="btnSearch_Click" />
+                        <asp:ImageButton CssClass="btnSearch" ID="btnSearch" runat="server" ImageUrl="~/Resources/search.png" OnClick="BtnSearch_Click" />
                     </div>
          
            
                     <asp:Label CssClass="LableStyle" ID="lblProduct" runat="server" Text="Product"></asp:Label>
-                    <asp:DropDownList CssClass="buyProdTxtBoxProductDropDownList" ID="dropDownProducts" runat="server" OnSelectedIndexChanged="dropDownProducts_SelectedIndexChanged">
+                    <asp:DropDownList CssClass="buyProdTxtBoxProductDropDownList" ID="dropDownProducts" runat="server" OnSelectedIndexChanged="DropDownProducts_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
 
@@ -33,12 +33,12 @@
             
             <div class="auto-style3">
                 <asp:Label CssClass="LableStyle" ID="lblCount" runat="server" Text="Count"></asp:Label>
-                <asp:TextBox CssClass="buyProdTxtBoxCount" ID="txtCount" runat="server" TabIndex="1" OnTextChanged="txtCount_TextChanged" ></asp:TextBox>
+                <asp:TextBox CssClass="buyProdTxtBoxCount" ID="txtCount" runat="server" TabIndex="1" OnTextChanged="TxtCount_TextChanged" ></asp:TextBox>
             </div>
 
             <div>
                 <asp:Label CssClass="LableStyle" ID="lblPrice" runat="server" Text="Price"></asp:Label>
-                <asp:TextBox CssClass="buyProdTxtBoxPrice" ID="txtPrice" runat="server" MaxLength="7" TabIndex="2" OnTextChanged="txtCount_TextChanged"></asp:TextBox>
+                <asp:TextBox CssClass="buyProdTxtBoxPrice" ID="txtPrice" runat="server" MaxLength="7" TabIndex="2" OnTextChanged="TxtCount_TextChanged"></asp:TextBox>
             </div>
 
       
@@ -56,7 +56,7 @@
      
             </div>
     <div class="buyBasketComplateOrder">
-                <asp:Button CssClass="buttonStyle" ID="AddToBasket" runat="server" Text="Add to basket" OnClick="imgButtonAddToCard_Click" />
+                <asp:Button CssClass="buttonStyle" ID="AddToBasket" runat="server" Text="Add to basket" OnClick="ImgButtonAddToCard_Click" />
                 <asp:Button CssClass="buttonStyle" Text="Complate Sale " ID="btnComplateSale" runat="server"  OnClick="ImageButtonComplateOrder_Click" Visible="False" />
                 <asp:Button CssClass="buttonStyle" Text="Cancel Sale " ID="ButtonCancel" runat="server"   Visible="False" OnClick="ButtonCancel_Click" />
 

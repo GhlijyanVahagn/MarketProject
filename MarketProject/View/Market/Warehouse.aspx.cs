@@ -21,8 +21,8 @@ namespace MarketProject.View.Market
         private async void LoadingProductAsync()
         {
 
-            if (!Page.IsPostBack && MarketManagment.Products.ProductsLocal.LocalProducts == null || MarketManagment.Products.ProductsLocal.LocalProducts.Count() == 0)
-                MarketManagment.Products.ProductsLocal.LocalProducts = await ProductManager.GetALLProductDetailInfo();
+            //if (!Page.IsPostBack && MarketManagment.Products.ProductsLocal.LocalProducts == null || MarketManagment.Products.ProductsLocal.LocalProducts.Count() == 0)
+            //    MarketManagment.Products.ProductsLocal.LocalProducts = await ProductManager.GetALLProductDetailInfo();
         }
 
         protected void btnFind_Click(object sender, ImageClickEventArgs e)

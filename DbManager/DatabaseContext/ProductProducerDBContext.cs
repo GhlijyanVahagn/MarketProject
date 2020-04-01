@@ -1,4 +1,4 @@
-﻿using DbModel;
+﻿using DbModel.Products;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbManager.DatabaseContext
+namespace DbManager
 {
-    class ProductProducerDbContext : DataBaseManager
+    public class ProductProducerDbContext : DataBaseManager
     {
-        public virtual DbSet<Producer> Producers { get; set; }
+        //public virtual DbSet<Producer> Producers { get; set; }
 
         public ProductProducerDbContext()
         {
@@ -21,7 +21,10 @@ namespace DbManager.DatabaseContext
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Producer>().HasKey(x => x.Id);
             modelBuilder.Entity<Producer>().Property(x => x.Name).IsRequired().HasMaxLength(100);
+            modelBuilder.Entity<Producer>().Property(x => x.Country).HasMaxLength(250);
+            modelBuilder.Entity<Producer>().Property(x => x.Description).HasMaxLength(250);
+
         }
-        
+
     }
 }

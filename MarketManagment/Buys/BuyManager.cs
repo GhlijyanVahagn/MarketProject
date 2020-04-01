@@ -1,7 +1,11 @@
 ﻿
 using DbManager;
+
 using DbModel;
+using DbModel.Model.BasketModel;
 using MarketManagment.Buys;
+using MarketManagment.Managers.BasketManagers;
+using MarketManagment.Managers.Warehouses;
 using MarketManagment.Shared;
 using MarketManagment.Warehouses;
 using System;
@@ -12,147 +16,74 @@ using System.Threading.Tasks;
 
 namespace MarketManagment
 {
-    public static class BuyManager
+    public  class BuyManager
     {
 
-        public static List<Buy> BasketItems { get; set; } = new List<Buy>();
 
-        public static void AddNewItemToBasket(Buy item)
+        BasketManagerBase basketBase;
+        public BuyManager(BasketManagerBase basket)
         {
-
-            BasketItems.Add(item);
-
+            this.basketBase = basket;
         }
-        public static void RemoveItemFromBasket(BuyViewer item)
-        {
-            //BasketItems.Remove(item);
-        }
-        /// <summary>
-        /// Used In DataSource
-        /// </summary>
-        /// <param name="id"></param>
-        public static void RemoveItemFromBasketById(int id)
-        {
-            if (id < 0)
-                return;
-            var item = BasketItems.Where(x => x.Id == id).FirstOrDefault();
-            BasketItems.Remove(item);
-        }
-        public static void UpdateBasketItemInfo(int Id, decimal count,decimal price,decimal Payed,decimal Total,string ProductName,decimal RetailPrice)
-        {
 
-            foreach(var _editItem in BasketItems.Where(x => x.Id == Id))
+        public BuyManager()
+        {
+            basketBase = new BasketManager();
+        }
+        public string   ComplateOrder()
+        {
+            string message="";
+            using (TransactionDbContext _db = new TransactionDbContext())
             {
-                _editItem.Price = price;
-                _editItem.Count = count;
-                _editItem.Payed = Payed;
-                _editItem.RetailPrice = RetailPrice;
-
-            }
-
-
-        }
-
-        //Count, Price, Payed, Id, ProductName, Total
-        public static void ClearBasket()
-        {
-            BasketItems.Clear();
-
-        }
-
-        public static List<BuyViewer> ConvertFromBuyToBuyViewer(List<Buy> buys)
-        {
-            
-            List<BuyViewer> buyViewers = new List<BuyViewer>();
-            foreach (var item in buys)
-            {
-                var _buyerView = new BuyViewer();
-                _buyerView.Id = item.Id;
-                _buyerView.Count = item.Count;
-                _buyerView.Price = item.Price;
-                _buyerView.ProductName = ProductManager.GetProductNameById(item.ProductId);
-                _buyerView.Total = item.Count * item.Price;
-                _buyerView.RetailPrice = item.RetailPrice;
-                _buyerView.Payed = _buyerView.Total;
-                buyViewers.Add(_buyerView);
-            }
-            return buyViewers;
-        }
-
-        public static decimal TotalMoney
-        {
-            get
-            {
-                return BasketItems.Sum(x => x.Price * x.Count);
-
-            }
-        }
-        public static decimal TotalCount
-        {
-            get
-            {
-                return BasketItems.Sum(x => x.Count);
-            }
-        }
-        public static decimal TotalRetailPrice
-        {
-            get
-            {
-                return BasketItems.Sum(x => x.RetailPrice * x.Count );
-            }
-        }
-        public static List<BuyViewer> ShowBasketViewItems()
-        {
-                return  ConvertFromBuyToBuyViewer(BuyManager.BasketItems);
-            
-        }
-
-        public static bool IsExistItemInBasket
-        {
-            get
-            {
-                return BasketItems.Count() > 0;
-            }
-        }
-
-        public static string ComplateOrder(List<Buy> BasketItems,string LogedInUserName)
-        {
-          
-                using (DataBaseManager _db=new DataBaseManager())
+                using (var transact = _db.Database.BeginTransaction())
                 {
-                    using (var transact = _db.Database.BeginTransaction())
+                    try
                     {
-                        try
+
+                        var transaction = new Transaction((int)ETransactionType.Buy, DateTime.Now, "");
+                        _db.Transaction.Add(transaction);
+                        _db.SaveChanges();
+
+                        BasketToBuyEntityConvertor convertor = new BasketToBuyEntityConvertor(basketBase.Basket, transaction.Id);
+
+                        var buyList = convertor.Convert();
+                        using (BuyDbContext buyDbContext = new BuyDbContext())
                         {
+                            buyDbContext.Buy.AddRange(buyList);
+                            buyDbContext.SaveChanges();
+                        }
 
-                            var transaction = new Transaction((int)ETransactionType.Buy, DateTime.Now, LogedInUserName);
-                            _db.Transaction.Add(transaction);
-                            _db.SaveChanges();
-                            foreach(var item in BasketItems)
-                            {
-                                item.TransactionId = transaction.Id;
-                            }
+                        WarehouseBuyManager warehouseBuy = new WarehouseBuyManager(buyList);
+                        warehouseBuy.ComplateBuyAction();
 
-                            _db.Buy.AddRange(BasketItems);
-                            _db.SaveChanges();
-                            WareHouseManagment.AddToWarehouse(BasketItems);
-
-                            transact.Commit();
-                                return null;
-
-                            }
-                            catch(Exception e)
-                            {
-                            transact.Rollback();
-                                return e.Message;
-                            }
+                        transact.Commit();
                        
+
                     }
+                    catch (Exception e)
+                    {
+                        transact.Rollback();
+                        message = e.Message+" "+e.InnerException.Message;
+                    }
+
                 }
-
             }
+            return message;
+        }
 
-      
+        public IEnumerable<BasketItem> ShowBasketViewItems(int itemId)
+        {
+            if (itemId > 0)
+                return basketBase.Basket.BasketItems.Where(x => x.Id == itemId);
+            else
+                return basketBase.Basket.BasketItems;
+        }
+        public void RemoveBasketItem(int ItemId)
+        {
+            basketBase.Basket.BasketItems.RemoveAt(ItemId);
+        }
+
+       
     }
 
         

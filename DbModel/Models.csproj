@@ -31,8 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,17 +45,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Buy.cs" />
-    <Compile Include="Products\Producer.cs" />
-    <Compile Include="Products\Product.cs" />
-    <Compile Include="Products\ProductGroup.cs" />
-    <Compile Include="Products\Unit.cs" />
-    <Compile Include="Sale.cs" />
-    <Compile Include="Transaction.cs" />
-    <Compile Include="Warehouse.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Model\BasketModel\Basket.cs" />
+    <Compile Include="Model\BasketModel\BasketItem.cs" />
+    <Compile Include="ViewModel\SaleViewModel.cs" />
+    <Compile Include="ViewModel\TransactionVieweModel.cs" />
+    <Compile Include="ViewModel\ViewBase.cs" />
+    <Compile Include="MarketMapper.cs" />
+    <Compile Include="Model\Buy.cs" />
+    <Compile Include="Model\Products\Producer.cs" />
+    <Compile Include="Model\Products\Product.cs" />
+    <Compile Include="Model\Products\ProductBase.cs" />
+    <Compile Include="Model\Products\ProductGroup.cs" />
+    <Compile Include="Model\Products\ProductUnit.cs" />
+    <Compile Include="Model\Sale.cs" />
+    <Compile Include="Model\Transaction.cs" />
+    <Compile Include="Model\Warehouse.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ProducerViewModel.cs" />
+    <Compile Include="ViewModel\ProductGroupViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="ViewModel\ProductUnitViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

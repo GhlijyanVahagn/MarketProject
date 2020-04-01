@@ -6,16 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbManager.DatabaseContext
+namespace DbManager
 {
-    class TransactionDbContext:DataBaseManager
+    public class TransactionDbContext:DataBaseManager
     {
         public TransactionDbContext()
         {
 
         }
 
-        public virtual DbSet<Transaction> Transaction { get; set; }
+        //public virtual DbSet<Transaction> Transaction { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

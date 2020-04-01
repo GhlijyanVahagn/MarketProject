@@ -1,18 +1,38 @@
 ﻿using MarketHelpers;
-using MarketManagment;
+using MarketManagment.Products;
+using MarketManagment.User;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MarketManagment.Managers.Products;
+using DbModel.Products;
+using DbModel.ViewModel;
+using MarketManagment.Managers.Validator;
 
 namespace MarketProject.View.AdminPanel
 {
     public partial class ProductView : System.Web.UI.Page
     {
-     
 
+        ProductManager manager;
+        IEnumerable<ProductViewModel> source;
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!UsersManager.IsUserAutorized)
+                Response.Redirect("~/Login.aspx");
+            if (!IsPostBack)
+            {
+                BindDataToView();
+
+            }
+            manager = manager ?? new ProductManager();
+            FillGrid();
+
+        }
         private void BindDataToView()
         {
 
@@ -41,38 +61,19 @@ namespace MarketProject.View.AdminPanel
 
         }
 
-        private async void FillGrid()
+        private  void FillGrid()
         {
-            var productList = MarketManagment.Products.ProductsLocal.LocalProducts;
+            source=manager.ViewModelList();
+            gridProduct.DataSource = source;
+            gridProduct.DataBind();
 
-            if (productList == null || productList.Count() == 0)
-            {
-                productList = await ProductManager.GetALLProductDetailInfo();
-                MarketManagment.Products.ProductsLocal.LocalProducts = productList;
-
-            }
-
-            //var sqlDataSourceProduct= new SqlDataSource(Helpers.ConnectionString, "SELECT Id,Name,UnicCode,BarCode,ProducerId,UnitId,GroupId,Description FROM Products");
+            //var sqlDataSourceProduct = new SqlDataSource(Helpers.ConnectionString, "SELECT Id,Name,UnicCode,BarCode,ProducerId,UnitId,GroupId,Description FROM Products");
             //gridProduct.DataSource = sqlDataSourceProduct;
             //gridProduct.DataBind();
-
-
-            // var sqlDataSourceProduct = new SqlDataSource(Helpers.ConnectionString, "SELECT Id,Name,UnicCode,BarCode,ProducerId,UnitId,GroupId,Description FROM Products");
-            gridProduct.DataSource = productList;
-            gridProduct.DataBind();
         }
 
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!UsersManager.IsUserAutorized)
-                Response.Redirect("~/Login.aspx");
-            if (!IsPostBack)
-            {
-                BindDataToView();
-                FillGrid();
-            }
-        }
+      
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -82,39 +83,38 @@ namespace MarketProject.View.AdminPanel
             int.TryParse(comboGroup.SelectedValue,out groupId);
             int.TryParse(comboCountry.SelectedValue,out producerId);
 
-            ProductManager.CreateProduct(
-                    new DbModel.Product()
-                    {
-                        Name = txtName.Text,
-                        Description = txtDescription.Text.Trim(),
-                        GroupId = groupId,
-                        UnitId = unitId,
-                        ProducerId = producerId,
-                        BarCode = txtBarCode.Text.Trim(),
-                        UnicCode = txtUnicalCode.Text,
-                    }
-                );
-
-
+            var product = new ProductViewModel()
+            {
+                Name = txtName.Text,
+                Description = txtDescription.Text.Trim(),
+                GroupId = groupId,
+                UnitId = unitId,
+                ProducerId = producerId,
+                BarCode = txtBarCode.Text.Trim(),
+                UnicCode = txtUnicalCode.Text,
+            };
+            int validation=manager.Validatation(new ProductValidator(source, product));
+            if(validation!=-1)
+            {
+                CustomerError.Text = $"<br>     Error occured during Validation, {((EProductCreationValidationTypes)validation).ToString()}</br>";
+                return;
+                
+            }
+            manager.CreateAndSave(product);
             FillGrid();
-      
-
-
-
         }
 
         protected void gridProduct_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int _productId;
-            int.TryParse(gridProduct.Rows[e.RowIndex].Cells[2].Text, out _productId);
-            ProductManager.RemoveProductByIdAsync(_productId);
+            int id;
+            int.TryParse(e.Values["Id"].ToString(),out id);
+            manager.Delete(id);
             FillGrid();
         }
-        private async void RefreshProductLocalList()
+
+        protected void gridProduct_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            MarketManagment.Products.ProductsLocal.LocalProducts = await ProductManager.GetALLProductDetailInfo();
+
         }
-       
-        
     }
 }

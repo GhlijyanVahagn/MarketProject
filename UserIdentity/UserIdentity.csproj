@@ -144,9 +144,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DbModel\DbModel.csproj">
+    <ProjectReference Include="..\DbModel\Models.csproj">
       <Project>{6E3C4712-26D9-4ED7-ADBF-4358D6E37AAD}</Project>
-      <Name>DbModel</Name>
+      <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

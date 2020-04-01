@@ -8,9 +8,9 @@
          
         </div>
         <div>
-            <asp:Label ID="lblName0" runat="server" Text="Description"></asp:Label>
+            <asp:Label CssClass="" ID="lblName0" runat="server" Text="Description"></asp:Label>
             <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
            
-            <asp:Button ID="btnSave" runat="server" Text="Save" Width="215px" OnClick="btnSave_Click" />
+            <asp:Button ID="btnSave" runat="server" Text="Save" Width="215px" OnClick="BtnSave_Click" />
         </div>
    </asp:Content>

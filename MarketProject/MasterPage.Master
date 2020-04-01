@@ -1,4 +1,7 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="MarketProject.MasterPage"  %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="MarketProject.MasterPage"%>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 
 
 <!DOCTYPE html>
@@ -13,6 +16,10 @@
     <link rel="stylesheet" type="text/css" href="~/CSS/SellStyle.css"/>
     <link rel="stylesheet" type="text/css" href="~/CSS/HomeStyle.css"/>
     <link rel="stylesheet" type="text/css" href="~/CSS/ErrorPageStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="CSS/PopupStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="CSS/ProductStyle.css"/>
+
+
 
    
 </head>
@@ -28,10 +35,14 @@
                     <asp:LinkButton ID="lblLogout" Text="Logout" runat="server"></asp:LinkButton>
               </div>
             </div >
+
+       
+
            <div>
               <asp:TreeView CssClass="menu" ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1"></asp:TreeView>
                 <div class="PageContent">
                       <asp:ContentPlaceHolder   ID="WebPageContent" runat="server">
+                        
                       </asp:ContentPlaceHolder>
                 </div>
             </div>

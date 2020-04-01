@@ -3,6 +3,8 @@
 using DbModel;
 
 using MarketManagment;
+using MarketManagment.User;
+
 namespace MarketProject.View.NewUser
 {
 

@@ -74,5 +74,14 @@ namespace MarketProject.View.AdminPanel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridUnit;
+        
+        /// <summary>
+        /// UnitViewModelList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource UnitViewModelList;
     }
 }

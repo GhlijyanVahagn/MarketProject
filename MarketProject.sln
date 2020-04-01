@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketProject", "MarketProj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbManager", "DbManager\DbManager.csproj", "{0E3E6905-210F-4E61-91E4-1C0662F4E9E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbModel", "DbModel\DbModel.csproj", "{6E3C4712-26D9-4ED7-ADBF-4358D6E37AAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "DbModel\Models.csproj", "{6E3C4712-26D9-4ED7-ADBF-4358D6E37AAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserIdentity", "UserIdentity\UserIdentity.csproj", "{6C3AD7A2-0D74-4C93-900B-F9D1A00862DC}"
 EndProject

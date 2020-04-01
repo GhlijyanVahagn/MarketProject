@@ -1,6 +1,7 @@
 ﻿using DbModel;
+using DbModel.ViewModel;
 using MarketHelpers;
-using MarketManagment;
+using MarketManagment.User;
 using MarketManagment.Products;
 using MarketManagment.Sales;
 using System;
@@ -15,7 +16,7 @@ namespace MarketProject.View.Market
 {
     public partial class SellView : System.Web.UI.Page
     {
-        IEnumerable<ProductView> saleProducts = new List<ProductView>();
+        IEnumerable<ProductViewModel> saleProducts = new List<ProductViewModel>();
         protected  void Page_Load(object sender, EventArgs e)
         {
             if (!UsersManager.IsUserAutorized)
@@ -25,18 +26,18 @@ namespace MarketProject.View.Market
             {
                 txtCount.AutoPostBack = true;
                 txtPrice.AutoPostBack = true;
-                fillProductsDropDown();
+                FillProductsDropDown();
             }
             SetBasketComplateVisible();
         }
 
       
-        private async void fillProductsDropDown()
+        private async void FillProductsDropDown()
         {
            
             if(saleProducts == null || saleProducts.Count()==0)
             {
-                saleProducts = await ProductManager.GetAllRemindProductsDetailInfo();
+              //  saleProducts = await ProductManager.GetAllRemindProductsDetailInfo();
             }
             InsertIntoDropDown(saleProducts);
 
@@ -57,19 +58,19 @@ namespace MarketProject.View.Market
       
 
 
-        protected async void btnSearch_Click(object sender, ImageClickEventArgs e)
+        protected async void BtnSearch_Click(object sender, ImageClickEventArgs e)
         {
-            IEnumerable<ProductView> result=null;
-            if (rbnByName.Checked)
-                result = await ProductManager.GetProductInfoByNameFromDbAsync(txtSearchString.Text);
-            else if(rbnByUnicalCode.Checked)
-                result =await ProductManager.getProductInfoByUnicCodeFromDbAsync(txtSearchString.Text);
-            else if (rbnByProducer.Checked)
-                result =await ProductManager.getProductInfoByUnicCodeFromDbAsync(txtSearchString.Text);
-            else if(rbnBarCode.Checked)
-                result =await ProductManager.getProductInfoByBarcodeFromDbAsync(txtSearchString.Text);
+            //IEnumerable<ProductView> result=null;
+            //if (rbnByName.Checked)
+            //    result = await ProductManager.GetProductInfoByNameFromDbAsync(txtSearchString.Text);
+            //else if(rbnByUnicalCode.Checked)
+            //    result =await ProductManager.GetProductInfoByUnicCodeFromDbAsync(txtSearchString.Text);
+            //else if (rbnByProducer.Checked)
+            //    result =await ProductManager.GetProductInfoByUnicCodeFromDbAsync(txtSearchString.Text);
+            //else if(rbnBarCode.Checked)
+            //    result =await ProductManager.GetProductInfoByBarcodeFromDbAsync(txtSearchString.Text);
 
-            InsertIntoDropDown(result);
+            //InsertIntoDropDown(result);
 
 
 
@@ -77,12 +78,12 @@ namespace MarketProject.View.Market
         private void ClearDropDownList()
         {
         }
-        protected void txtCount_TextChanged(object sender, EventArgs e)
+        protected void TxtCount_TextChanged(object sender, EventArgs e)
         {
             CalculatePrice();
         }
 
-        private void InsertIntoDropDown(IEnumerable<ProductView> prodList)
+        private void InsertIntoDropDown(IEnumerable<ProductViewModel> prodList)
         {
        
             if (prodList == null || prodList.Count() == 0)
@@ -93,7 +94,7 @@ namespace MarketProject.View.Market
 
             int index = 1;
             foreach (var item in prodList)
-                dropDownProducts.Items.Insert(index++, Helpers.symbolStart.ToString() + item.Id + Helpers.productSpaces+ "Name " + item.Name + Helpers.productSpaces+"UnicalCode " + item.UnicCode + Helpers.productSpaces+"Made by" + item.Producer);
+                dropDownProducts.Items.Insert(index++, Helpers.symbolStart.ToString() + item.Id + Helpers.productSpaces+ "Name " + item.Name + Helpers.productSpaces+"UnicalCode " + item.UnicCode + Helpers.productSpaces+"Made by" + item.producerView.Name);
         }
         private void AddNewItemToBasket()
         {
@@ -187,7 +188,7 @@ namespace MarketProject.View.Market
             }
         }
 
-        protected void imgButtonAddToCard_Click(object sender, EventArgs e)
+        protected void ImgButtonAddToCard_Click(object sender, EventArgs e)
         {
             AddNewItemToBasket();
             RefreshGridView();
@@ -208,11 +209,11 @@ namespace MarketProject.View.Market
             txtSearchString.Text = string.Empty;
         }
 
-        protected void dropDownProducts_SelectedIndexChanged(object sender, EventArgs e)
+        protected void DropDownProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var id=Helpers.GetProductIdFromDropDownSelectedItem(dropDownProducts.SelectedValue);
-            var price=ProductManager.GetLastSalePriceByProductId(id);
-            txtPrice.Text = price.ToString();
+            //var id=Helpers.GetProductIdFromDropDownSelectedItem(dropDownProducts.SelectedValue);
+            //var price=ProductManager.GetLastSalePriceByProductId(id);
+           // txtPrice.Text = price.ToString();
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManagment.Transactions
+namespace DbModel.ViewModel
 {
-    public class TransactionViewer
+    public class TransactionVieweModel
     {
         public int Id { get; set; }
         public string TypeName { get; set; }

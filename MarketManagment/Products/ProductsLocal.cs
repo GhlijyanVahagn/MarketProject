@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DbModel.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,23 +12,24 @@ namespace MarketManagment.Products
         /// <summary>
         /// Using this static property instead of SQL query
         /// </summary>
-        public static List<ProductView> LocalProducts { get; set; }
+        public static List<ProductViewModel> LocalProducts { get; set; }
 
 
 
 
         public static async void RefreshLocalProductsList(bool ChacForCountChanged)
         {
-            if(ChacForCountChanged)
-            {
-                if (ProductManager.GetProductsCountFromDataBase() != LocalProducts.Count())
-                {
-                    MarketManagment.Products.ProductsLocal.LocalProducts = await ProductManager.GetALLProductDetailInfo();
+            //    if(ChacForCountChanged)
+            //    {
+            //        if (ProductManager.GetProductsCountFromDataBase() != LocalProducts.Count())
+            //        {
+            //            MarketManagment.Products.ProductsLocal.LocalProducts = await ProductManager.GetALLProductDetailInfo();
 
-                }
-            }
-            else
-                MarketManagment.Products.ProductsLocal.LocalProducts = await ProductManager.GetALLProductDetailInfo();
+            //        }
+            //    }
+            //    else
+            //        MarketManagment.Products.ProductsLocal.LocalProducts = await ProductManager.GetALLProductDetailInfo();
+            //}
         }
        
     }

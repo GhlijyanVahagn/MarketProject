@@ -1,5 +1,8 @@
 ﻿using MarketHelpers;
 using MarketManagment;
+
+
+using MarketManagment.Managers.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +10,15 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DbModel.ViewModel;
+using MarketManagment.User;
 
 namespace MarketProject.View.AdminPanel
 {
     public partial class ProducerView : System.Web.UI.Page
     {
+        ProducerManager manager;
+        //ProductProducerRepository repo;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!UsersManager.IsUserAutorized)
@@ -19,19 +26,24 @@ namespace MarketProject.View.AdminPanel
 
             if (!IsPostBack)
                 FillGrid();
+            manager=manager ?? new ProducerManager();
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
+        protected void BtnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtName.Text))
                 return;
-            ProductManager.CreateProducerAsync(
-                new DbModel.Producer()
-                {
-                    Name = txtName.Text,
-                    Country = txtCountry.Text
-                });
-            clearFields();
+
+            var producer = new DbModel.ViewModel.ProducerViewModel()
+            {
+                Name = txtName.Text,
+                Country = txtCountry.Text
+            };
+    
+            manager.CreateAndSave(producer);
+
+            ClearFields();
+
             FillGrid();
         }
 
@@ -42,17 +54,17 @@ namespace MarketProject.View.AdminPanel
             gridProducer.DataBind();
         }
 
-        private void clearFields()
+        private void ClearFields()
         {
             txtName.Text=txtCountry.Text = "";
 
         }
 
-        protected async void gridProducer_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected  void GridProducer_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int _producer;
             int.TryParse(gridProducer.Rows[e.RowIndex].Cells[1].Text, out _producer);
-            var isRemoved=await ProductManager.RemoveProducerById(_producer);
+            manager.Delete(_producer);
             //gridProducer.DataSource = null;
             FillGrid();
 
@@ -73,7 +85,7 @@ namespace MarketProject.View.AdminPanel
 
         }
 
-    protected void gridProducer_RowDeleted(object sender, GridViewDeletedEventArgs e)
+    protected void GridProducer_RowDeleted(object sender, GridViewDeletedEventArgs e)
     {
 
          
