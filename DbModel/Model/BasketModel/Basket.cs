@@ -18,7 +18,7 @@ namespace DbModel.Model.BasketModel
         {
             get
             {
-                return BasketItems.Count > 0;
+                return BasketItems.Count == 0;
             }
         }
         public Basket()
@@ -32,12 +32,7 @@ namespace DbModel.Model.BasketModel
                 return BasketItems.Count;
             }
         }
-
-        [DataObjectMethod(DataObjectMethodType.Delete)]
-
-        public void RemoveItem(int Id)
-        {
-            BasketItems.RemoveAt(Id);
-        }
+        
+     
     }
 }

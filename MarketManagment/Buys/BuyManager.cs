@@ -44,9 +44,9 @@ namespace MarketManagment
                         _db.Transaction.Add(transaction);
                         _db.SaveChanges();
 
-                        BasketToBuyEntityConvertor convertor = new BasketToBuyEntityConvertor(basketBase.Basket, transaction.Id);
+                        BasketToBuyEntityConvertor convertor = new BasketToBuyEntityConvertor(basketBase.Basket, transaction);
 
-                        var buyList = convertor.Convert();
+                        var buyList = convertor.Convert().ToList();
                         using (BuyDbContext buyDbContext = new BuyDbContext())
                         {
                             buyDbContext.Buy.AddRange(buyList);

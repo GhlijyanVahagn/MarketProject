@@ -27,17 +27,20 @@ namespace DbManager
             modelBuilder.Entity<Product>()
                 .HasRequired<Unit>(s => s.Unit)
                 .WithMany(s => s.Products)
-                .HasForeignKey(s => s.UnitId);
+                .HasForeignKey(s => s.UnitId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
                 .HasRequired<Producer>(s => s.Producer)
                 .WithMany(s => s.Products)
-                .HasForeignKey(s => s.ProducerId);
+                .HasForeignKey(s => s.ProducerId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
                 .HasRequired<ProductGroup>(x => x.ProductGroup)
                 .WithMany(x => x.Products)
-                .HasForeignKey(s => s.GroupId);
+                .HasForeignKey(s => s.GroupId)
+                .WillCascadeOnDelete(false);
         }
     }
 }

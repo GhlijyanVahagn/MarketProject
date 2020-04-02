@@ -19,8 +19,7 @@ namespace DbModel.Model.BasketModel
         public decimal Price { get; set; }
         public decimal RetailPrice { get; set; }
         public decimal WholeSalePrice { get; set; }
-
-        public decimal Total{ get { return Count * RetailPrice; } }
+       
         public string ProductName { get { return Product.Name; } }
             
     }

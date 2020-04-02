@@ -11,6 +11,8 @@ namespace DbModel
         public int Id { get; set; }
         public decimal TotalRemind { get; set; }
         public decimal RetailPrice { get; set; }
+        public decimal Price { get; set; }
+        public decimal WholeSalePrice { get; set; }
         public int ProductId { get; set; }
         public virtual Product Products { get; set; }
  

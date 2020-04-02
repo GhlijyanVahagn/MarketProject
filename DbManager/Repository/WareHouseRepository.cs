@@ -1,6 +1,7 @@
 ﻿using DbManager;
 using DbManager.RepositoryInterfaces;
 using DbModel;
+using DbModel.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,11 +19,7 @@ namespace DbManager.Repository
             _context = new WarehouseDbContext();
         }
 
-        public WareHouseRepository(WarehouseDbContext context)
-        {
-            _context = context;
-
-        }
+     
 
         public void AddToWarehouse(List<Buy> buys)
         {
@@ -57,7 +54,20 @@ namespace DbManager.Repository
 
         }
 
-    
+        public void Create(Warehouse entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Warehouse>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
         public async Task<List<Warehouse>> GetALLProductsFromWarehouseAsync()
         {
@@ -94,6 +104,11 @@ namespace DbManager.Repository
             //}
 
             return null;
+        }
+
+        public Warehouse Read(int Id)
+        {
+            throw new NotImplementedException();
         }
 
         public bool RemoveFromWarehouse(int ProductId)
@@ -171,6 +186,21 @@ namespace DbManager.Repository
                     }
                 }
             }
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Warehouse entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<WarehouseViewModel> ViewModelList()
+        {
+            throw new NotImplementedException();
         }
     }
 }

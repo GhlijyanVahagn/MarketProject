@@ -1,4 +1,5 @@
 ﻿using DbModel;
+using DbModel.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DbManager.RepositoryInterfaces
 {
-    interface IWarehouseRepository
+    interface IWarehouseRepository: ICrudOperation<Warehouse>, IViewModel<WarehouseViewModel>
     {
         Task<decimal> GetProductPriceByIdAsync(int productId);
         Task<List<Warehouse>> GetALLProductsFromWarehouseAsync();

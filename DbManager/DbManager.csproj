@@ -103,6 +103,18 @@
     <Compile Include="Migrations\202003271349570_added_priceColumns_BuyTable.Designer.cs">
       <DependentUpon>202003271349570_added_priceColumns_BuyTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004021005008_Create_columns_PriceAndWholeSalePrice_in_Warehouse_Table.cs" />
+    <Compile Include="Migrations\202004021005008_Create_columns_PriceAndWholeSalePrice_in_Warehouse_Table.Designer.cs">
+      <DependentUpon>202004021005008_Create_columns_PriceAndWholeSalePrice_in_Warehouse_Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004021046045_remove_columns_UserNameAndDateTime_from_Buy_Table.cs" />
+    <Compile Include="Migrations\202004021046045_remove_columns_UserNameAndDateTime_from_Buy_Table.Designer.cs">
+      <DependentUpon>202004021046045_remove_columns_UserNameAndDateTime_from_Buy_Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004021257117_ChangeCascadeDelete_TurnOFF.cs" />
+    <Compile Include="Migrations\202004021257117_ChangeCascadeDelete_TurnOFF.Designer.cs">
+      <DependentUpon>202004021257117_ChangeCascadeDelete_TurnOFF.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RepositoryInterfaces\ILogin.cs" />
     <Compile Include="RepositoryInterfaces\IProductRepository.cs" />
@@ -163,6 +175,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003271349570_added_priceColumns_BuyTable.resx">
       <DependentUpon>202003271349570_added_priceColumns_BuyTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004021005008_Create_columns_PriceAndWholeSalePrice_in_Warehouse_Table.resx">
+      <DependentUpon>202004021005008_Create_columns_PriceAndWholeSalePrice_in_Warehouse_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004021046045_remove_columns_UserNameAndDateTime_from_Buy_Table.resx">
+      <DependentUpon>202004021046045_remove_columns_UserNameAndDateTime_from_Buy_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004021257117_ChangeCascadeDelete_TurnOFF.resx">
+      <DependentUpon>202004021257117_ChangeCascadeDelete_TurnOFF.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

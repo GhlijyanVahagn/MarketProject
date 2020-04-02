@@ -1,5 +1,7 @@
 ﻿using DbManager;
+using DbManager.Repository;
 using DbModel;
+using DbModel.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,8 +11,13 @@ using System.Threading.Tasks;
 
 namespace MarketManagment.Managers.Warehouses
 {
-    public class WarehouseManager
+    public class WarehouseManager : BaseManager<Warehouse, WarehouseViewModel>
     {
+        WareHouseRepository repo;
+        public WarehouseManager():base(new WareHouseRepository())
+        {
+           
+        }
         public  bool RemoveProducts(IEnumerable<int> producIds)
         {
             using (WarehouseDbContext _db = new WarehouseDbContext())
@@ -42,12 +49,41 @@ namespace MarketManagment.Managers.Warehouses
 
         }
 
-        public static async Task<IEnumerable<Warehouse>> GetALLProductsFromWarehouse()
+        
+
+        public override void Create(WarehouseViewModel entity)
         {
-            using (WarehouseDbContext _db = new WarehouseDbContext())
-            {
-                return await _db.Warehouse.ToListAsync();
-            }
+            throw new NotImplementedException();
+        }
+
+        public override void Delete(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override WarehouseViewModel Read(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task<IEnumerable<WarehouseViewModel>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update(WarehouseViewModel entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IEnumerable<WarehouseViewModel> ViewModelList()
+        {
+            throw new NotImplementedException();
         }
     }
 }

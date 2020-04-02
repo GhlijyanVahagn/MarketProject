@@ -23,7 +23,7 @@ namespace MarketProject.View.Components
                 Session["Products"] = value;
             }
         }
-
+        public bool IsProductChanged;
         public int SelectedProductId
         {
             get
@@ -45,7 +45,7 @@ namespace MarketProject.View.Components
                 DropDownProducts.DataSource = objData;
                 DropDownProducts.DataBind();
             }
-
+            IsProductChanged = false;
         }
         private ListItemCollection ProductsBinderList()
         {
@@ -60,10 +60,17 @@ namespace MarketProject.View.Components
 
         protected void DropDownProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
+            IsProductChanged = true;
+
+
         }
 
         protected void btnSearch_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void DropDownProducts_TextChanged(object sender, EventArgs e)
         {
 
         }

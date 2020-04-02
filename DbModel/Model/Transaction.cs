@@ -9,8 +9,8 @@ namespace DbModel
         public int Type { get; set; }
         public DateTime Date { get; set; }
         public string UserName { get; set; }
-        public List<Buy> Buys { get; set; }
-        public List<Sale> Sales { get; set; }
+        public  List<Buy> Buys { get; set; }
+        public  List<Sale> Sales { get; set; }
 
 
         public Transaction(int TransactionType,DateTime date, string UserName)

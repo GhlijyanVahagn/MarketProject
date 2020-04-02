@@ -16,10 +16,47 @@ namespace MarketManagment.Managers.BasketManagers
             this.Basket = basket;
         }
         
-        public decimal GetTotal()
-        {
-            return Basket.BasketItems.Sum(x => x.RetailPrice * x.Count);
-        }
        
+        public int BasketItemsCount
+        {
+            get
+            {
+                return Basket.BasketItems.Count;
+            }
+        }
+
+        public decimal TotalRetailPrice
+        {
+            get
+            {
+                return Basket.BasketItems.Sum(x => x.RetailPrice * x.Count);
+
+            }
+        }
+        public decimal TotalWholeSalePrice
+        {
+            get
+            {
+                return Basket.BasketItems.Sum(x => x.WholeSalePrice * x.Count);
+
+            }
+        }
+        public decimal TotalPrice
+        {
+            get
+            {
+                return Basket.BasketItems.Sum(x => x.Price * x.Count);
+
+            }
+
+        }
+        public decimal TotalCount
+        {
+            get
+            {
+                return Basket.BasketItems.Sum(x => x.Count);
+            }
+        }
+
     }
 }

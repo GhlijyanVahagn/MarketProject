@@ -30,8 +30,8 @@
 
 
 
-        <asp:dropdownlist CssClass="buyProdTxtBoxProductDropDownList" id="DropDownProducts" runat="server" autopostback="false" datatextfield="Value"
-        datavaluefield="Text" OnSelectedIndexChanged="DropDownProducts_SelectedIndexChanged" >
+        <asp:dropdownlist CssClass="buyProdTxtBoxProductDropDownList" id="DropDownProducts" runat="server" autopostback="True" datatextfield="Value"
+        datavaluefield="Text" OnSelectedIndexChanged="DropDownProducts_SelectedIndexChanged" OnTextChanged="DropDownProducts_TextChanged" >
     </asp:dropdownlist>    
                 </div>
 </div>

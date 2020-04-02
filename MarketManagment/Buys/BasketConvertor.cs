@@ -1,5 +1,7 @@
 ﻿using DbModel;
 using DbModel.Model.BasketModel;
+using DbModel.Products;
+using DbModel.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,24 +13,23 @@ namespace MarketManagment.Buys
     class BasketToBuyEntityConvertor
     {
         Basket Basek;
-        int TransactId;
-        public BasketToBuyEntityConvertor(Basket basket,int transactionId)
+        Transaction Transact;
+        public BasketToBuyEntityConvertor(Basket basket,Transaction transaction)
         {
             this.Basek = basket;
-            this.TransactId = transactionId;
+            this.Transact = transaction;
         }
         public IEnumerable<Buy> Convert()
         {
             foreach(var bItem in Basek.BasketItems)
             {
                 Buy buy = new Buy();
-                buy.DateTime = DateTime.Now;
                 buy.Price = bItem.Price;
                 buy.RetailPrice = bItem.RetailPrice;
                 buy.WholeSalePrice = bItem.WholeSalePrice;
                 buy.ProductId = bItem.ProductId;
                 buy.Count = bItem.Count;
-                buy.TransactionId = TransactId;
+                buy.TransactionId =Transact.Id;
                 yield return buy;
             }
         }

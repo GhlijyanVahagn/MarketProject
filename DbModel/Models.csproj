@@ -66,6 +66,7 @@
     <Compile Include="ViewModel\ProductGroupViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\ProductUnitViewModel.cs" />
+    <Compile Include="ViewModel\WarehouseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

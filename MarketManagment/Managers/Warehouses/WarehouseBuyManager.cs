@@ -78,23 +78,36 @@ namespace MarketManagment.Managers.Warehouses
                 foreach (var buy in buys)
                 {
 
-                    var _prod = _db.Warehouse.Where(x => x.ProductId == buy.ProductId).FirstOrDefault();
-                    if (_prod == null)
+                    var warehouse = _db.Warehouse.Where(x => x.ProductId == buy.ProductId).FirstOrDefault();
+                    if (warehouse == null)
                     {
                         //need to add product 
 
-                        _db.Warehouse.Add(new Warehouse() { ProductId = buy.ProductId, TotalRemind = buy.Count, RetailPrice = buy.RetailPrice });
+                        _db.Warehouse.Add(new Warehouse()
+                        {
+                            ProductId = buy.ProductId,
+                            TotalRemind = buy.Count,
+                            RetailPrice = buy.RetailPrice,
+                            Price = buy.Price,
+                            WholeSalePrice = buy.WholeSalePrice,
+
+                        });
                     }
 
                     else
                     {
                         //need to  update product
 
-                        if (buy.RetailPrice != 0 && buy.RetailPrice != _prod.RetailPrice)
-                            _prod.RetailPrice = buy.RetailPrice;
-                        _prod.TotalRemind += buy.Count;
-                        _db.Warehouse.Attach(_prod);
-                        _db.Entry<Warehouse>(_prod).State = EntityState.Modified;
+                        if (buy.RetailPrice != 0 && buy.RetailPrice != warehouse.RetailPrice)
+                        {
+                            warehouse.RetailPrice = buy.RetailPrice;
+                            warehouse.Price = buy.Price;
+                            warehouse.WholeSalePrice = buy.WholeSalePrice;
+
+                        }
+                        warehouse.TotalRemind += buy.Count;
+                        _db.Warehouse.Attach(warehouse);
+                        _db.Entry<Warehouse>(warehouse).State = EntityState.Modified;
                     }
 
                 }

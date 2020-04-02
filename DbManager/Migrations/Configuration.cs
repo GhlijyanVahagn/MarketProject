@@ -11,10 +11,12 @@ namespace DbManager.Migrations
         {
             AutomaticMigrationsEnabled = false;
             AutomaticMigrationDataLossAllowed = true;
+      
         }
 
         protected override void Seed(DbManager.DataBaseManager context)
         {
+          
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
