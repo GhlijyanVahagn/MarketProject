@@ -6,9 +6,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DbManager.Repository;
+using DbModel.ViewModel;
+using System.ComponentModel;
+
 namespace MarketProject.View.Market
 {
-    public partial class Warehouse : System.Web.UI.Page
+    public partial class WarehouseView : System.Web.UI.Page
     {
         private WareHouseRepository repository;
         protected void Page_Load(object sender, EventArgs e)
@@ -27,7 +30,19 @@ namespace MarketProject.View.Market
 
         protected void btnFind_Click(object sender, ImageClickEventArgs e)
         {
-            var x= repository.GetRemindProductsFromWarehouseSearch(txtProductName.Text);
+            //var x= repository.GetRemindProductsFromWarehouseSearch(txtProductName.Text);
+        }
+
+        public void Delete(int Id)
+        {
+
+        }
+        [DataObjectMethod(DataObjectMethodType.Fill)]
+        public List<WarehouseViewModel> GetWarehouses()
+        {
+            repository = new WareHouseRepository();
+            var res=repository.ViewModelList().ToList();
+            return res;
         }
     }
 }

@@ -117,8 +117,8 @@
     <Content Include="View\Market\BuyView.aspx" />
     <Content Include="CSS\BuyStyle.css" />
     <Content Include="CSS\SellStyle.css" />
-    <Content Include="View\Market\Transactions.aspx" />
-    <Content Include="View\Market\Warehouse.aspx" />
+    <Content Include="View\Market\TransactionsView.aspx" />
+    <Content Include="View\Market\WarehouseView.aspx" />
     <Content Include="View\ShopCreator\ShopCreator.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -234,19 +234,19 @@
     <Compile Include="View\Market\BuyView.aspx.designer.cs">
       <DependentUpon>BuyView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\Market\Transactions.aspx.cs">
-      <DependentUpon>Transactions.aspx</DependentUpon>
+    <Compile Include="View\Market\TransactionsView.aspx.cs">
+      <DependentUpon>TransactionsView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Market\Transactions.aspx.designer.cs">
-      <DependentUpon>Transactions.aspx</DependentUpon>
+    <Compile Include="View\Market\TransactionsView.aspx.designer.cs">
+      <DependentUpon>TransactionsView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\Market\Warehouse.aspx.cs">
-      <DependentUpon>Warehouse.aspx</DependentUpon>
+    <Compile Include="View\Market\WarehouseView.aspx.cs">
+      <DependentUpon>WarehouseView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Market\Warehouse.aspx.designer.cs">
-      <DependentUpon>Warehouse.aspx</DependentUpon>
+    <Compile Include="View\Market\WarehouseView.aspx.designer.cs">
+      <DependentUpon>WarehouseView.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\ShopCreator\ShopCreator.aspx.cs">
       <DependentUpon>ShopCreator.aspx</DependentUpon>

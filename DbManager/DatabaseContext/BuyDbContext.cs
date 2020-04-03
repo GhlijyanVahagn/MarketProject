@@ -22,25 +22,27 @@ namespace DbManager
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Buy>().HasKey(x => x.Id);
-
-            modelBuilder.Entity<Buy>()
-                .HasRequired<Product>(x => x.Product)
-                .WithMany(x => x.Buy)
-                .HasForeignKey(x => x.ProductId)
-                .WillCascadeOnDelete(false);
-
-
-            modelBuilder.Entity<Buy>()
-                .HasRequired<Transaction>(x => x.Transaction)
-                .WithMany(x => x.Buys)
-                .HasForeignKey(x => x.TransactionId)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<Buy>().Property(x => x.Count).IsRequired();
             modelBuilder.Entity<Buy>().Property(x => x.ProductId).IsRequired();
             modelBuilder.Entity<Buy>().Property(x => x.Price).IsRequired();
             modelBuilder.Entity<Buy>().Property(x => x.WholeSalePrice);
             modelBuilder.Entity<Buy>().Property(x => x.RetailPrice);
+            modelBuilder.Entity<Buy>().Property(x => x.TransactionId).IsRequired();
+
+            modelBuilder.Entity<Buy>()
+                .HasRequired<Product>(x => x.Product)
+                .WithMany(x => x.Buy)
+                .HasForeignKey(x => x.ProductId);
+
+
+
+            modelBuilder.Entity<Buy>()
+                .HasRequired<Transaction>(x => x.Transaction)
+                .WithMany(x => x.Buys)
+                .HasForeignKey(x => x.TransactionId);
+         
+
+        
 
 
         }

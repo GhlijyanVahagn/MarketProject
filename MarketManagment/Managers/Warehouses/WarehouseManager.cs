@@ -13,7 +13,7 @@ namespace MarketManagment.Managers.Warehouses
 {
     public class WarehouseManager : BaseManager<Warehouse, WarehouseViewModel>
     {
-        WareHouseRepository repo;
+
         public WarehouseManager():base(new WareHouseRepository())
         {
            

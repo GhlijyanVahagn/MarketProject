@@ -10,7 +10,7 @@
 namespace MarketProject.View.Market {
     
     
-    public partial class Warehouse {
+    public partial class WarehouseView {
         
         /// <summary>
         /// txtProductName control.

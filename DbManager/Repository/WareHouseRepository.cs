@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DbManager.Repository
 {
-    public class WareHouseRepository : IWarehouseRepository
+    public class WareHouseRepository : IRepository<Warehouse,WarehouseViewModel>
     {
         private WarehouseDbContext _context;
         public WareHouseRepository()
@@ -200,7 +200,17 @@ namespace DbManager.Repository
 
         public IEnumerable<WarehouseViewModel> ViewModelList()
         {
-            throw new NotImplementedException();
+            List<WarehouseViewModel> result=new List<WarehouseViewModel>();
+            var warehouses=_context.Warehouse.ToList();
+            foreach(var item in warehouses)
+            {
+               var view= MarketMapper.Mapper.Map<Warehouse, WarehouseViewModel>(item);
+                result.Add(view);
+
+            }
+            return result;
+
+
         }
     }
 }

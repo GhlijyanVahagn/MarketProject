@@ -14,6 +14,7 @@ namespace DbModel
         public decimal Price { get; set; }
         public decimal WholeSalePrice { get; set; }
         public int ProductId { get; set; }
+        //public Product product { get; set; }
         public virtual Product Products { get; set; }
  
  

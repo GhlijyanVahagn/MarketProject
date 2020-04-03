@@ -33,7 +33,7 @@ namespace MarketManagment
         public string   ComplateOrder()
         {
             string message="";
-            using (TransactionDbContext _db = new TransactionDbContext())
+            using (DataBaseManager _db = new DataBaseManager())
             {
                 using (var transact = _db.Database.BeginTransaction())
                 {
@@ -47,11 +47,10 @@ namespace MarketManagment
                         BasketToBuyEntityConvertor convertor = new BasketToBuyEntityConvertor(basketBase.Basket, transaction);
 
                         var buyList = convertor.Convert().ToList();
-                        using (BuyDbContext buyDbContext = new BuyDbContext())
-                        {
-                            buyDbContext.Buy.AddRange(buyList);
-                            buyDbContext.SaveChanges();
-                        }
+                        
+                            _db.Buy.AddRange(buyList);
+                            _db.SaveChanges();
+                        
 
                         WarehouseBuyManager warehouseBuy = new WarehouseBuyManager(buyList);
                         warehouseBuy.ComplateBuyAction();

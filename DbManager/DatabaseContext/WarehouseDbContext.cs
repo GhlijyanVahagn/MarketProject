@@ -31,8 +31,8 @@ namespace DbManager
             modelBuilder.Entity<Warehouse>()
            .HasRequired<Product>(s => s.Products)
            .WithMany(g => g.Warehouses)
-           .HasForeignKey<int>(s => s.ProductId)
-           .WillCascadeOnDelete(false);
+           .HasForeignKey<int>(s => s.ProductId);
+           
 
         }
     }

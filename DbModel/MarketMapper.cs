@@ -31,6 +31,38 @@ namespace DbModel
                                                                 map => map.MapFrom(
                                                                 source => source.Unit)).ReverseMap() ;
 
+                cfg.CreateMap<Warehouse, WarehouseViewModel>().ForMember(destination => destination.ProductView,
+                                                                    map => map.MapFrom(source => source.Products))
+                                                             .ForMember(destination => destination.ProductId,
+                                                                    map => map.MapFrom(source => source.ProductId))
+                                                             .ForMember(destination => destination.Id,
+                                                                    map => map.MapFrom(source => source.Id))
+
+                                                              .ForMember(destination => destination.Price,
+                                                                    map => map.MapFrom(source => source.Price))
+                                                              .ForMember(destination => destination.RetailSalePrice,
+                                                                    map => map.MapFrom(source => source.RetailPrice))
+                                                              .ForMember(destination => destination.WholeSalePrice,
+                                                                    map => map.MapFrom(source => source.WholeSalePrice))
+                                                              .ForMember(destination => destination.Remind,
+                                                                    map => map.MapFrom(source => source.TotalRemind))
+
+                                                              .ForMember(destination => destination.Unit,
+                                                                    map => map.MapFrom(source => source.Products.Unit.Name))
+                                                              .ForMember(destination => destination.Group,
+                                                                    map => map.MapFrom(source => source.Products.ProductGroup.Name))
+                                                              .ForMember(destination => destination.Producer,
+                                                                    map => map.MapFrom(source => source.Products.Producer.Name))
+
+                                                                        .ForMember(destination => destination.Code,
+                                                                    map => map.MapFrom(source => source.Products.UnicCode))
+                                                              .ForMember(destination => destination.BarCode,
+                                                                    map => map.MapFrom(source => source.Products.BarCode))
+                                                              .ForMember(destination => destination.Product,
+                                                                    map => map.MapFrom(source => source.Products.Name))
+                                                                    ;
+
+
                 //cfg.CreateMap<ProductViewModel, Product>().ForMember(destination => destination.ProducerId,
                 //                                               map => map.MapFrom(
                 //                                               source => source.ProducerId))

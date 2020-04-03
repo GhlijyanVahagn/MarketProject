@@ -160,8 +160,7 @@ namespace MarketProject.View.Market
 
                 GridViewBasket.FooterRow.Cells[2].Text = calculation.TotalCount.ToString();
                 GridViewBasket.FooterRow.Cells[4].Text = calculation.TotalPrice.ToString();
-                GridViewBasket.FooterRow.Cells[5].Text = calculation.TotalRetailPrice.ToString();
-                GridViewBasket.FooterRow.Cells[6].Text = calculation.TotalWholeSalePrice.ToString();
+
 
                 
             }

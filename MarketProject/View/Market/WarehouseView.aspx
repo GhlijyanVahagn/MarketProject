@@ -1,4 +1,4 @@
-﻿<%@ Page MasterPageFile="~/MasterPage.Master" Language="C#" AutoEventWireup="true" CodeBehind="Warehouse.aspx.cs" Inherits="MarketProject.View.Market.Warehouse" Async="true" %>
+﻿<%@ Page MasterPageFile="~/MasterPage.Master" Language="C#" AutoEventWireup="true" CodeBehind="WarehouseView.aspx.cs" Inherits="MarketProject.View.Market.WarehouseView" Async="true" %>
 
 <asp:Content ID="Content2" runat="server" contentplaceholderid="WebPageContent" ViewStateMode="Enabled">
     <h3>Warehouse</h3>
@@ -20,15 +20,24 @@
               
                 HorizontalAlign="Center"
                  AllowPaging="True" PageSize="15" ShowFooter="True" AutoGenerateColumns="False" CellPadding="4"  
-                ForeColor="#333333" GridLines="None" 
+                ForeColor="#333333" GridLines="None" CellSpacing="2" 
         
         >
           <Columns>
-              <asp:BoundField DataField="ProductName" HeaderText="ProductName" SortExpression="ProductName" />
-              <asp:BoundField DataField="UnicCode" HeaderText="UnicCode" SortExpression="UnicCode" />
-              <asp:BoundField DataField="BarCode" HeaderText="BarCode" SortExpression="BarCode" />
-              <asp:BoundField DataField="RemindTotal" HeaderText="RemindTotal" SortExpression="RemindTotal" />
-              <asp:BoundField DataField="RetailPrice" HeaderText="RetailPrice" SortExpression="RetailPrice" />
+              <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" />
+              <asp:BoundField DataField="Product" HeaderText="Product" SortExpression="Product" />
+              <asp:BoundField DataField="Remind" HeaderText="Total Remind" SortExpression="TotalRemind" />
+
+              <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+              <asp:BoundField DataField="RetailSalePrice" HeaderText="Retail Sale Price" SortExpression="RetailSalePrice" />
+              <asp:BoundField DataField="WholeSalePrice" HeaderText="WholeSale Price" SortExpression="WholeSalePrice" />
+
+              <asp:BoundField DataField="Code" HeaderText="Code" SortExpression="Code" />
+              <asp:BoundField DataField="BarCode" HeaderText="Producer" SortExpression="BarCode" />
+
+              <asp:BoundField DataField="Unit" HeaderText="Unit" SortExpression="Unit" />
+              <asp:BoundField DataField="Group" HeaderText="Group" SortExpression="Group" />
+              <asp:BoundField DataField="Producer" HeaderText="Producer" SortExpression="Producer" />
           </Columns>
           <EditRowStyle BackColor="#2461BF" />
                 <FooterStyle  BackColor="#507CD1" Font-Bold="True" Font-Size="Large" HorizontalAlign="Right" ForeColor="White"  />
@@ -42,18 +51,8 @@
                 <SortedDescendingCellStyle BackColor="#E9EBEF" />
                 <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
+          <asp:ObjectDataSource ID="ObjectDataSourceWarehouse" runat="server" SelectMethod="GetWarehouses" TypeName="MarketProject.View.Market.WarehouseView"></asp:ObjectDataSource>
     </div>
 
   
-    <asp:ObjectDataSource 
-        ID="ObjectDataSourceWarehouse" 
-        runat="server" SelectMethod="GetRemindProductsFromWarehouseSearch" TypeName="MarketManagment.Warehouses.WareHouseManagment" 
-       
-        >
-        <SelectParameters>
-            <asp:ControlParameter ControlID="txtProductName" Name="filter" PropertyName="Text" Type="String" />
-        </SelectParameters>
-      
-        
-    </asp:ObjectDataSource>
-</asp:Content>
+    </asp:Content>
