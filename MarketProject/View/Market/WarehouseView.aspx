@@ -20,7 +20,7 @@
               
                 HorizontalAlign="Center"
                  AllowPaging="True" PageSize="15" ShowFooter="True" AutoGenerateColumns="False" CellPadding="4"  
-                ForeColor="#333333" GridLines="None" CellSpacing="2" 
+                ForeColor="#333333" GridLines="None" AutoGenerateSelectButton="True" CellSpacing="2" 
         
         >
           <Columns>

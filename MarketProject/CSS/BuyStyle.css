@@ -12,7 +12,7 @@
 
 .buyProdTxtBoxProductDropDownList {
     margin: 20px 50px 0px 25px;
-    width: 600px;
+    width: 100px;
     height: 25px;
     font-size: 15px;
     border-radius: 6px;
@@ -20,6 +20,7 @@
 .buyProdTxtBoxCount {
     margin: 30px 10px 0px 40px;
     border-radius: 6px;
+    width: 50px;
 }
 .buyProdTxtBoxPrice {
     margin: 30px 15px 0px 45px;
@@ -28,6 +29,7 @@
 .buyProdTxtBoxDiscount {
     margin: 30px 15px 0px 27px;
     border-radius: 6px;
+    width: 100px;
 }
 .buyBasketTitle {
     text-align: center;
@@ -96,23 +98,19 @@
 .buyProdTxtBoxRetailPrice {
     margin: 30px 15px 0px 8px;
     border-radius: 6px;
+    width: 200px;
 }
 
 .buyBasketComplateOrder {
     margin: 20px 0px 20px 10px;
+
 }
-
-
-
-
-
 
 .buyFindtext {
     margin-left:50px;
     margin-top:20px;
-   width:300px;
+   width:100px;
    border-radius:6px;
- 
 }
 
 .btnSearch {

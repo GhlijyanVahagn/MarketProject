@@ -72,6 +72,7 @@
     <Compile Include="Managers\Validator\IValidator.cs" />
     <Compile Include="Managers\Validator\MarketValidator.cs" />
     <Compile Include="Managers\Validator\ProductValidator.cs" />
+    <Compile Include="Managers\Validator\UnitValidator.cs" />
     <Compile Include="Managers\Warehouses\WarehouseManager.cs" />
     <Compile Include="Managers\Warehouses\WarehouseSaleManager.cs" />
     <Compile Include="Sales\SaleManager.cs" />

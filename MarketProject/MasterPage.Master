@@ -18,6 +18,8 @@
     <link rel="stylesheet" type="text/css" href="~/CSS/ErrorPageStyle.css"/>
     <link rel="stylesheet" type="text/css" href="CSS/PopupStyle.css"/>
     <link rel="stylesheet" type="text/css" href="CSS/ProductStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="CSS/GlobalStyle.css"/>
+
 
 
 

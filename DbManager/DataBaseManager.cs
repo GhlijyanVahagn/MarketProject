@@ -25,7 +25,7 @@ namespace DbManager
         public virtual DbSet<ProductGroup> ProductGroup { get; set; }
         public virtual DbSet<Transaction> Transaction { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
-
+        public virtual DbSet<Sale> Sale { get; set; }
 
         #region Product
         //public virtual DbSet<Producer> Producers { get; set; }

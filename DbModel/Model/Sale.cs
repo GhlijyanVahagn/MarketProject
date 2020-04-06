@@ -15,8 +15,7 @@ namespace DbModel
         public decimal Price { get; set; }
         public decimal Payed { get; set; }
         public decimal Discount { get; set; }
-        public DateTime DateTime { get; set; }
-        public string UserName { get; set; }
+     
         public virtual Product Product { get; set; }
         public virtual Transaction Transaction { get; set; }
     }

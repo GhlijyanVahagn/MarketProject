@@ -15,13 +15,10 @@ namespace MarketHelpers
 
         public static string ConnectionString { get; set; } = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        private readonly static char symbolSpaces= '*';
-        public readonly static char symbolStart = '№';
 
 
 
 
-        public static readonly string productSpaces = new string(symbolSpaces, 5);
         public static string GetUserRealIp()
         {
             string url = "http://checkip.dyndns.org";
@@ -47,18 +44,7 @@ namespace MarketHelpers
             var info =JsonConvert.DeserializeObject<GloabalInfo>(response);
             return info;
         }
-        public static int GetProductIdFromDropDownSelectedItem(string txt)
-        {
-            if (string.IsNullOrWhiteSpace(txt))
-                return -1;
-            int id = -1;
-            var startIndex = txt.IndexOf(symbolStart);
-            var endIndex = txt.IndexOf(symbolSpaces);
-            var idstr = txt.Substring(startIndex+1, endIndex-1);
-
-            int.TryParse(idstr, out id);
-            return id;
-        }
+   
 
    
 

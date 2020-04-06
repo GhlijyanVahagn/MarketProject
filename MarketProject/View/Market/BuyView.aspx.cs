@@ -27,12 +27,12 @@ namespace MarketProject.View.Market
         {
             get
             {
-                return (Basket)Session["basket"];
+                return (Basket)Session["basketBuyAction"];
             }
 
             set
             {
-                Session["basket"] = value;
+                Session["basketBuyAction"] = value;
             }
         }
         #region ObjectDataSource Methods Dont Remove
@@ -68,7 +68,7 @@ namespace MarketProject.View.Market
             if (basketManager==null)
             {
                 basketManager = new BasketManager();
-                basketManager.Basket = (Basket)Session["basket"];
+                basketManager.Basket = (Basket)Session["basketBuyAction"];
                 if (basketManager.Basket == null)
                     basketManager.Basket = new Basket();
             }
@@ -137,7 +137,6 @@ namespace MarketProject.View.Market
             basketManager.Basket.BasketItems.Add(basketItem);
 
             basketSession = basketManager.Basket;
-            //basketSession = basketManager.Basket;
             RefreshGridView();
             SetBasketComplateVisible();
             ClearBoardFields();

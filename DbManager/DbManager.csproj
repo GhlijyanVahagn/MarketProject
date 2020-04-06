@@ -61,6 +61,7 @@
     <Compile Include="DatabaseContext\BuyDbContext.cs" />
     <Compile Include="DatabaseContext\ProductDbContext.cs" />
     <Compile Include="DatabaseContext\ProductUnitDbContext.cs" />
+    <Compile Include="DatabaseContext\SaleDbContext.cs" />
     <Compile Include="DatabaseContext\TransactionDbContext.cs" />
     <Compile Include="DatabaseContext\WarehouseDbContext.cs" />
     <Compile Include="DataBaseManager.cs" />
@@ -114,6 +115,10 @@
     <Compile Include="Migrations\202004021257117_ChangeCascadeDelete_TurnOFF.cs" />
     <Compile Include="Migrations\202004021257117_ChangeCascadeDelete_TurnOFF.Designer.cs">
       <DependentUpon>202004021257117_ChangeCascadeDelete_TurnOFF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004060822415_Remove_dateAnduserFiledsFromSale.cs" />
+    <Compile Include="Migrations\202004060822415_Remove_dateAnduserFiledsFromSale.Designer.cs">
+      <DependentUpon>202004060822415_Remove_dateAnduserFiledsFromSale.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RepositoryInterfaces\ILogin.cs" />
@@ -184,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004021257117_ChangeCascadeDelete_TurnOFF.resx">
       <DependentUpon>202004021257117_ChangeCascadeDelete_TurnOFF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004060822415_Remove_dateAnduserFiledsFromSale.resx">
+      <DependentUpon>202004060822415_Remove_dateAnduserFiledsFromSale.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

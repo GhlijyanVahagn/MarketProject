@@ -8,6 +8,8 @@ using MarketManagment;
 using MarketHelpers;
 using DbModel.ViewModel;
 using MarketManagment.User;
+using System.Collections.Generic;
+using MarketManagment.Managers.Validator;
 
 namespace MarketProject.View.AdminPanel
 {
@@ -15,12 +17,13 @@ namespace MarketProject.View.AdminPanel
     public partial class UnitView : System.Web.UI.Page
     {
         UnitManager manager;
+        IEnumerable<ProductUnitViewModel> unitsList;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!UsersManager.IsUserAutorized)
                 Response.Redirect("~/Login.aspx");
             manager=manager ?? new UnitManager();
-            var unitsList = manager.ViewModelList();
+            unitsList = manager.ViewModelList();
             var binder = new UIControlBinder();
             binder.Bind<ProductUnitViewModel>(unitsList, gridUnit);
 
@@ -37,9 +40,13 @@ namespace MarketProject.View.AdminPanel
                 Description = txtDescription.Text
             };
 
-          
 
 
+            var valid=manager.Validatation(new UnitValidator(unitsList, newUnit));
+            if(valid!=-1)
+            {
+                return;
+            }
             manager.Create(newUnit);
             manager.Save();
         }

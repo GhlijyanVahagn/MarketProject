@@ -11,13 +11,33 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using DbModel.Model.BasketModel;
+using MarketManagment.Managers.BasketManagers;
 
 namespace MarketProject.View.Market
 {
     public partial class SellView : System.Web.UI.Page
     {
         IEnumerable<ProductViewModel> saleProducts = new List<ProductViewModel>();
-        protected  void Page_Load(object sender, EventArgs e)
+
+        BasketManager basketManager;
+        SaleManager SaleManager;
+
+        public Basket basketSession
+        {
+            get
+            {
+                return (Basket)Session["basketSaleAction"];
+            }
+
+            set
+            {
+                Session["basketSaleAction"] = value;
+            }
+        }
+
+
+        protected void Page_Load(object sender, EventArgs e)
         {
             if (!UsersManager.IsUserAutorized)
                 Response.Redirect("~/Login.aspx");
@@ -26,22 +46,28 @@ namespace MarketProject.View.Market
             {
                 txtCount.AutoPostBack = true;
                 txtPrice.AutoPostBack = true;
-                FillProductsDropDown();
+
+            }
+            if (basketManager == null)
+            {
+                basketManager = new BasketManager();
+                basketManager.Basket = (Basket)Session["basketSaleAction"];
+                if (basketManager.Basket == null)
+                    basketManager.Basket = new Basket();
             }
             SetBasketComplateVisible();
         }
 
-      
-        private async void FillProductsDropDown()
+        protected void Page_LoadComplete(object sender, EventArgs e)
         {
-           
-            if(saleProducts == null || saleProducts.Count()==0)
+            if (ProductsControl.IsProductChanged)
             {
-              //  saleProducts = await ProductManager.GetAllRemindProductsDetailInfo();
+                ClearBoardFields();
             }
-            InsertIntoDropDown(saleProducts);
-
         }
+
+      
+       
 
         private void CalculatePrice()
         {
@@ -58,72 +84,53 @@ namespace MarketProject.View.Market
       
 
 
-        protected async void BtnSearch_Click(object sender, ImageClickEventArgs e)
-        {
-            //IEnumerable<ProductView> result=null;
-            //if (rbnByName.Checked)
-            //    result = await ProductManager.GetProductInfoByNameFromDbAsync(txtSearchString.Text);
-            //else if(rbnByUnicalCode.Checked)
-            //    result =await ProductManager.GetProductInfoByUnicCodeFromDbAsync(txtSearchString.Text);
-            //else if (rbnByProducer.Checked)
-            //    result =await ProductManager.GetProductInfoByUnicCodeFromDbAsync(txtSearchString.Text);
-            //else if(rbnBarCode.Checked)
-            //    result =await ProductManager.GetProductInfoByBarcodeFromDbAsync(txtSearchString.Text);
-
-            //InsertIntoDropDown(result);
-
-
-
-        }
-        private void ClearDropDownList()
-        {
-        }
+     
+        
         protected void TxtCount_TextChanged(object sender, EventArgs e)
         {
             CalculatePrice();
         }
 
-        private void InsertIntoDropDown(IEnumerable<ProductViewModel> prodList)
-        {
-       
-            if (prodList == null || prodList.Count() == 0)
-                return;
-            dropDownProducts.Items.Clear();
-            dropDownProducts.Items.Insert(0, "Select product");
-
-
-            int index = 1;
-            foreach (var item in prodList)
-                dropDownProducts.Items.Insert(index++, Helpers.symbolStart.ToString() + item.Id + Helpers.productSpaces+ "Name " + item.Name + Helpers.productSpaces+"UnicalCode " + item.UnicCode + Helpers.productSpaces+"Made by" + item.producerView.Name);
-        }
+    
         private void AddNewItemToBasket()
         {
             if (string.IsNullOrWhiteSpace(txtCount.Text) || string.IsNullOrWhiteSpace(txtPrice.Text))
                 return;
             int nextIndex = SaleManager.BasketItems.Count();
             var _userName = Session[Sessions.LogedInUserName] ?? "Debug Mode";
+
             decimal _price, _count, _discount;
             decimal.TryParse(txtCount.Text, out _count);
             decimal.TryParse(txtPrice.Text, out _price);
             decimal.TryParse(txtDiscount.Text, out _discount);
+
             if(_count<=0)
             {
                 Response.Redirect("~/error.aspx");
             }
+            var basketItem = new BasketItem()
+            {
+                Id = basketManager.Basket.BasketItemsCount,
+                Count = Convert.ToDecimal(txtCount.Text),
+                ProductId = ProductsControl.SelectedProductId,
+                Price = Convert.ToDecimal(txtPrice.Text),
+            };
+            basketItem.Product = ((IEnumerable<ProductViewModel>)Session["Products"]).FirstOrDefault(x => x.Id == basketItem.ProductId);
+            if (basketManager.Basket.BasketItems.FirstOrDefault(x => x.ProductId == basketItem.ProductId) != null)
+            {
 
-            SaleManager.AddNewItemToBasket(
-                new Sale()
-                {
-                    Id = nextIndex++,
-                    Count = _count,
-                    Price = _price,
-                    UserName = _userName.ToString(),
-                    DateTime = DateTime.Now,
-                    Discount = _discount,
-                    ProductId = Helpers.GetProductIdFromDropDownSelectedItem(dropDownProducts.SelectedValue)
+                panelPopup.Visible = true;
+                modalPopup.Show();
+                return;
+            }
+            basketManager.Basket.BasketItems.Add(basketItem);
 
-                }
-            );
+            basketSession = basketManager.Basket;
+            
+            RefreshGridView();
+            SetBasketComplateVisible();
+            ClearBoardFields();
+           
 
         }
 
@@ -139,13 +146,13 @@ namespace MarketProject.View.Market
         private void FillFooter()
         {
 
-            GridViewBasketSale.FooterRow.HorizontalAlign = HorizontalAlign.Center;
-            GridViewBasketSale.FooterRow.VerticalAlign = VerticalAlign.Middle;
+            //GridViewBasketSale.FooterRow.HorizontalAlign = HorizontalAlign.Center;
+            //GridViewBasketSale.FooterRow.VerticalAlign = VerticalAlign.Middle;
      
-            GridViewBasketSale.FooterRow.Cells[2].Text = $"COUNT\n{SaleManager.TotalCount }";
-            //GridViewBasketSale.FooterRow.Cells[5].Text = $"Retail\n{SaleManager.TotalRetailPrice}";
+            //GridViewBasketSale.FooterRow.Cells[2].Text = $"COUNT\n{SaleManager.TotalCount }";
+            ////GridViewBasketSale.FooterRow.Cells[5].Text = $"Retail\n{SaleManager.TotalRetailPrice}";
 
-            GridViewBasketSale.FooterRow.Cells[6].Text = $"TOTAL\n{SaleManager.TotalMoney}";
+            //GridViewBasketSale.FooterRow.Cells[6].Text = $"TOTAL\n{SaleManager.TotalMoney}";
 
         }
 
@@ -206,14 +213,9 @@ namespace MarketProject.View.Market
             txtCount.Text = string.Empty;
             txtDiscount.Text = string.Empty;
             txtPrice.Text = string.Empty;
-            txtSearchString.Text = string.Empty;
+         
         }
 
-        protected void DropDownProducts_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //var id=Helpers.GetProductIdFromDropDownSelectedItem(dropDownProducts.SelectedValue);
-            //var price=ProductManager.GetLastSalePriceByProductId(id);
-           // txtPrice.Text = price.ToString();
-        }
+    
     }
 }

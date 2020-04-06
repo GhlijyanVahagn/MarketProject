@@ -30,6 +30,7 @@ namespace MarketProject.View.AdminPanel
             };
             if (string.IsNullOrWhiteSpace(newGroup.Name))
                 return;
+            
             manager.Create(newGroup);
             manager.Save();
 

@@ -1,34 +1,13 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master"    AutoEventWireup="true" CodeBehind="SellView.aspx.cs"    Inherits="MarketProject.View.Market.SellView"   Async="true"   %>
-
+<%@ Register Src="~/View/Components/ProductsControl.ascx" TagPrefix="uc1" TagName="ProductsControl" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content  ID="Content2" runat="server" contentplaceholderid="WebPageContent" ViewStateMode="Enabled">
     <div class="backGroundSell">
            <asp:Label CssClass="SalePageTitle" Width="100%" ID="lblTitle" runat="server" Text="Sale Manager"></asp:Label>
-          
-                <div>
-                <asp:Label ID="lblFinProbBY" CssClass="searchLabel" runat="server" Text="Search product by "></asp:Label>
-
-                <asp:RadioButton CssClass="searchRadioButtons" ID="rbnByName" runat="server" Text="Name" GroupName="prod" />
-
-                <asp:RadioButton CssClass="searchRadioButtons" ID="rbnByUnicalCode" runat="server" Text="UnicCode" GroupName="prod"  />
-
-                <asp:RadioButton CssClass="searchRadioButtons" ID="rbnBarCode" runat="server" Text="BarCcode" GroupName="prod"  />
-
-                <asp:RadioButton CssClass="searchRadioButtons" ID="rbnByProducer" runat="server" Text="Producer" GroupName="prod" />
-                </div>
-
-                <div>
-                    <div class="searchBlock">
-                         <asp:Label CssClass="LableStyle" ID="lblFindBy" runat="server" Text="Find"></asp:Label>
-                        <asp:TextBox CssClass="buyFindtext" ID="txtSearchString" runat="server" TabIndex="1" ></asp:TextBox>
-                        <asp:ImageButton CssClass="btnSearch" ID="btnSearch" runat="server" ImageUrl="~/Resources/search.png" OnClick="BtnSearch_Click" />
-                    </div>
-         
-           
-                    <asp:Label CssClass="LableStyle" ID="lblProduct" runat="server" Text="Product"></asp:Label>
-                    <asp:DropDownList CssClass="buyProdTxtBoxProductDropDownList" ID="dropDownProducts" runat="server" OnSelectedIndexChanged="DropDownProducts_SelectedIndexChanged">
-                    </asp:DropDownList>
-                </div>
-
+            <div>
+                    <uc1:ProductsControl  runat="server" id="ProductsControl" />
+            </div>
+    
            
             
             <div class="auto-style3">
@@ -103,7 +82,18 @@
     </div>
 
 
-       
+      <asp:Button ID="popupShowButton" CssClass="InvisibleButton" runat="server" />
+    <asp:ScriptManager runat="server">
+
+    </asp:ScriptManager>
+<cc1:ModalPopupExtender ID="modalPopup" runat="server" PopupControlID="panelPopup" TargetControlID="popupShowButton"
+    CancelControlID="popupCloseButton" BackgroundCssClass="modalBackground">
+</cc1:ModalPopupExtender>
+<asp:Panel ID="panelPopup" runat="server" CssClass="modalPopup"  Visible="false">
+    <iframe  id="irm1" src="~/Popup/Attention.aspx" runat="server" ></iframe>
+   <br/>
+    <asp:Button ID="popupCloseButton" runat="server" Text="x" />
+</asp:Panel> 
       
       
          

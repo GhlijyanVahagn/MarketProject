@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\ErrorPageStyle.css" />
+    <Content Include="CSS\GlobalStyle.css" />
     <Content Include="CSS\HomeStyle.css" />
     <Content Include="CSS\PopupStyle.css" />
     <Content Include="CSS\ProductStyle.css" />

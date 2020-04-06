@@ -83,7 +83,14 @@ namespace DbModel
 
                 cfg.CreateMap<Sale, SaleViewModel>().ForMember(destination => destination.ProductName,
                                                                 map => map.MapFrom(
-                                                                source => source.Product.Name));
+                                                                source => source.Product.Name))
+                                                    .ForMember(destination => destination.ProductUnit,
+                                                                map => map.MapFrom(
+                                                                source => source.Product.Unit.Name))
+                                                     .ForMember(destination => destination.ProductCode,
+                                                                map => map.MapFrom(
+                                                                source => source.Product.UnicCode))
+                                                                ;
                                                      
 
 

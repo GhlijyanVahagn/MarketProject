@@ -20,7 +20,7 @@
                 <div>
                     <div class="searchBlock">
                          <asp:Label CssClass="LableStyle" ID="lblFindBy" runat="server" Text="Find"></asp:Label>
-                        <asp:TextBox CssClass="buyFindtext" ID="txtSearchString" runat="server" TabIndex="1" ></asp:TextBox>
+                        <asp:TextBox CssClass="buyFindtext" ID="txtSearchString" runat="server" TabIndex="1"  ></asp:TextBox>
                         <asp:ImageButton CssClass="btnSearch" ID="btnSearch" runat="server" ImageUrl="~/Resources/search.png" OnClick="btnSearch_Click" />
                     </div>
          
@@ -31,7 +31,7 @@
 
 
         <asp:dropdownlist CssClass="buyProdTxtBoxProductDropDownList" id="DropDownProducts" runat="server" autopostback="True" datatextfield="Value"
-        datavaluefield="Text" OnSelectedIndexChanged="DropDownProducts_SelectedIndexChanged" OnTextChanged="DropDownProducts_TextChanged" >
+        datavaluefield="Text" OnSelectedIndexChanged="DropDownProducts_SelectedIndexChanged" OnTextChanged="DropDownProducts_TextChanged" Font-Bold="True" Width="200px" >
     </asp:dropdownlist>    
                 </div>
 </div>
