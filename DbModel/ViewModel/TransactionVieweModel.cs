@@ -9,7 +9,6 @@ namespace DbModel.ViewModel
     public class TransactionVieweModel
     {
         public int Id { get; set; }
-        public string TypeName { get; set; }
         public DateTime Date { get; set; }
         public string UserName { get; set; }
     }

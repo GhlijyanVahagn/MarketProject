@@ -7,14 +7,16 @@
           
                 <div>
                     <asp:Label ID="lblFinProbBY" CssClass="searchLabel" runat="server" Text="Search product by "></asp:Label>
-
-                    <asp:RadioButton CssClass="searchRadioButtons" ID="rbnByName" runat="server" Text="Name" GroupName="prod" />
-
-                    <asp:RadioButton CssClass="searchRadioButtons" ID="rbnByUnicalCode" runat="server" Text="UnicCode" GroupName="prod"  />
-
-                    <asp:RadioButton CssClass="searchRadioButtons" ID="rbnBarCode" runat="server" Text="BarCcode" GroupName="prod"  />
-
-                    <asp:RadioButton CssClass="searchRadioButtons" ID="rbnByProducer" runat="server" Text="Producer" GroupName="prod" />
+                     <asp:dropdownlist   CssClass="buyProdTxtBoxProductDropDownList" 
+                                         id="dropDownSearchCriteria" 
+                                         runat="server" 
+                                         autopostback="True" 
+                                         datatextfield="Value"
+                                         datavaluefield="Text" 
+                                         OnSelectedIndexChanged="dropDownSearchCriteria_SelectedIndexChanged"  
+                                         Font-Bold="True">
+                     </asp:dropdownlist>    
+             
                 </div>
 
                 <div>
@@ -31,7 +33,7 @@
 
 
         <asp:dropdownlist CssClass="buyProdTxtBoxProductDropDownList" id="DropDownProducts" runat="server" autopostback="True" datatextfield="Value"
-        datavaluefield="Text" OnSelectedIndexChanged="DropDownProducts_SelectedIndexChanged" OnTextChanged="DropDownProducts_TextChanged" Font-Bold="True" Width="200px" >
+        datavaluefield="Text" OnSelectedIndexChanged="DropDownProducts_SelectedIndexChanged" OnTextChanged="DropDownProducts_TextChanged" Font-Bold="True">
     </asp:dropdownlist>    
                 </div>
 </div>

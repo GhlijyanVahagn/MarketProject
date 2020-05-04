@@ -114,39 +114,6 @@ namespace MarketManagment.Managers.Warehouses
 
                 _db.SaveChanges();
             }
-
-
-
-
-
         }
-
-       
-
-
-
-
-        //public static  List<WareHouseViewer> ConvertFromWarehouseToWarehouseViewer(List<Warehouse> warehouses)
-        //{
-
-        //    var resultList = new List<WareHouseViewer>();
-        //    //foreach(var item in warehouses)
-        //    //{
-
-
-        //    //   // var whItem = ProductManager.GetProductById(item.ProductId);
-        //    //    resultList.Add(
-        //    //        new WareHouseViewer()
-        //    //        {
-        //    //            RemindTotal = item.TotalRemind,
-        //    //            RetailPrice = item.RetailPrice,
-        //    //            ProductName = whItem.Name,
-        //    //            UnicCode=whItem.UnicCode,
-        //    //            BarCode= whItem.BarCode,
-
-        //    //        });
-        //    //}
-        //    return resultList;
-        //}
     }
 }

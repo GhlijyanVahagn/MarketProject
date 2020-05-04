@@ -11,6 +11,5 @@ namespace DbManager.RepositoryInterfaces
 
     interface IProductUnitRepository: ICrudOperation<Unit>,IViewModel<ProductUnitViewModel>
     {
-        void Save();
     }
 }

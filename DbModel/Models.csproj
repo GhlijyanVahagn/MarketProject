@@ -45,9 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\ProductSearchTypes.cs" />
+    <Compile Include="Enums\ETransactionType.cs" />
     <Compile Include="Model\BasketModel\Basket.cs" />
     <Compile Include="Model\BasketModel\BasketItem.cs" />
     <Compile Include="ViewModel\SaleViewModel.cs" />
+    <Compile Include="ViewModel\TransactionDetailView.cs" />
     <Compile Include="ViewModel\TransactionVieweModel.cs" />
     <Compile Include="ViewModel\ViewBase.cs" />
     <Compile Include="MarketMapper.cs" />

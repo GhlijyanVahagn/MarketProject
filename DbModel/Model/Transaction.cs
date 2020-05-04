@@ -12,7 +12,10 @@ namespace DbModel
         public  List<Buy> Buys { get; set; }
         public  List<Sale> Sales { get; set; }
 
+        public Transaction()
+        {
 
+        }
         public Transaction(int TransactionType,DateTime date, string UserName)
         {
             this.Type = TransactionType;

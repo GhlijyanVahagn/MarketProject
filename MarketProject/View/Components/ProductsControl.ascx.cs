@@ -44,6 +44,9 @@ namespace MarketProject.View.Components
                 var objData = ProductsBinderList(); 
                 DropDownProducts.DataSource = objData;
                 DropDownProducts.DataBind();
+
+                dropDownSearchCriteria.DataSource = InitSearchCriteria();
+                dropDownSearchCriteria.DataBind();
             }
             IsProductChanged = false;
         }
@@ -56,6 +59,24 @@ namespace MarketProject.View.Components
                 ProductItems.Add(new ListItem(item.Id.ToString(), item.Name));
             }
             return ProductItems;
+        }
+
+        private ListItemCollection InitSearchCriteria()
+        {
+            ListItemCollection types = new ListItemCollection();
+            types.AddRange
+                (
+                    new ListItem[] {
+                        new ListItem("Select","Select",false),
+                        new ListItem("Name","Name"),
+                        new ListItem("Code","Code"),
+                        new ListItem("Producer","Producer"),
+                        new ListItem("Barcode","Barcode"),
+                        new ListItem("Group","Group"),
+
+                    }
+             );
+            return types;
         }
 
         protected void DropDownProducts_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,6 +92,11 @@ namespace MarketProject.View.Components
         }
 
         protected void DropDownProducts_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dropDownSearchCriteria_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

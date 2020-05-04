@@ -1,4 +1,5 @@
 ﻿using DbModel;
+using DbModel.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -24,6 +25,8 @@ namespace DbManager
             modelBuilder.Entity<Transaction>().Property(x => x.Type).IsRequired();
             modelBuilder.Entity<Transaction>().Property(x => x.Date).IsRequired();
             modelBuilder.Entity<Transaction>().Property(x => x.UserName).IsRequired();
+
+           
         }
     }
 }

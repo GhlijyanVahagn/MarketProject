@@ -12,6 +12,6 @@ namespace DbManager.ProductGroupRepository
     public interface IProductGroupRepository:ICrudOperation<ProductGroup>,IViewModel<ProductGroupViewModel>
     {
         
-        void Save();
+
     }
 }

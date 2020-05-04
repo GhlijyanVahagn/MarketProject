@@ -6,10 +6,5 @@ using System.Threading.Tasks;
 
 namespace MarketManagment.Shared
 {
-    public enum ETransactionType:int
-    {
-        Buy,
-        Sell,
-        Inverntory
-    }
+   
 }

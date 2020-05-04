@@ -16,10 +16,7 @@ namespace MarketHelpers
         {
 
         }
-        public void Bind<TSource>(IEnumerable<TSource> source, BaseDataBoundControl control)  where TSource : ViewBase                                                              
-                                                                                         
-                                                              
-
+        public void Bind<TSource>(IEnumerable<TSource> source, BaseDataBoundControl control)  where TSource : ViewBase 
         {
             if (control== null)
                 throw new InvalidOperationException("Some of controls are null, Binding impossible. ");
@@ -42,11 +39,10 @@ namespace MarketHelpers
            
         }
         public void Bind<TSource1, TSource2, TSource3>(IEnumerable<TSource1> source1, IEnumerable<TSource2> source2, IEnumerable<TSource3> source3,
-                                                                                        BaseDataBoundControl control1, BaseDataBoundControl control2, BaseDataBoundControl control3) where TSource1 : ViewBase
-                                                                       where TSource2 : ViewBase
-                                                     
-
-
+                                                       BaseDataBoundControl control1, BaseDataBoundControl control2, BaseDataBoundControl control3) 
+                                                                                        where TSource1 : ViewBase
+                                                                                        where TSource2 : ViewBase
+                                                                                        where TSource3 : ViewBase
         {
             if (control1 == null || control2 == null || control3==null)
                 throw new InvalidOperationException("Some of controls are null, Binding impossible. ");

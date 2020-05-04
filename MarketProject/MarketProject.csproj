@@ -95,6 +95,8 @@
     <Content Include="Images\2.jpg" />
     <Content Include="Images\3.jpg" />
     <Content Include="Images\4.jpg" />
+    <Content Include="Resources\inactive.png" />
+    <Content Include="Resources\selected.png" />
     <Content Include="View\Components\ProductsControl.ascx" />
     <Content Include="View\Login.aspx" />
     <Content Include="MessageBoxUserControl.ascx" />

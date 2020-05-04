@@ -117,7 +117,7 @@ namespace MarketProject.View.Market
                 return;
             var basketItem = new BasketItem()
             {
-                Id = basketManager.Basket.BasketItemsCount,
+                BasketItemId = basketManager.Basket.BasketItemsCount,
                 Count = Convert.ToDecimal(txtCount.Text),
                 ProductId = ProductsControl.SelectedProductId,
                 Price = Convert.ToDecimal(txtPrice.Text),

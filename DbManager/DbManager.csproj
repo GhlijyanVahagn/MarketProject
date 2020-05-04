@@ -120,6 +120,10 @@
     <Compile Include="Migrations\202004060822415_Remove_dateAnduserFiledsFromSale.Designer.cs">
       <DependentUpon>202004060822415_Remove_dateAnduserFiledsFromSale.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005042007025_Created_TransactionDetail_SP.cs" />
+    <Compile Include="Migrations\202005042007025_Created_TransactionDetail_SP.Designer.cs">
+      <DependentUpon>202005042007025_Created_TransactionDetail_SP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RepositoryInterfaces\ILogin.cs" />
     <Compile Include="RepositoryInterfaces\IProductRepository.cs" />
@@ -192,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004060822415_Remove_dateAnduserFiledsFromSale.resx">
       <DependentUpon>202004060822415_Remove_dateAnduserFiledsFromSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005042007025_Created_TransactionDetail_SP.resx">
+      <DependentUpon>202005042007025_Created_TransactionDetail_SP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

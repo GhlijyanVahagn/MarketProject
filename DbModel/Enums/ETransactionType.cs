@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManagment
+namespace DbModel.Enums
 {
-    public enum EProductBy:int
+    public enum ETransactionType : int
     {
-        Name,
-        UnicCode,
-        BarCode,
-        Producer
+        Buy,
+        Sell,
     }
 }

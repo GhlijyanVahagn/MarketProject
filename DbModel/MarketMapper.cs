@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using DbModel.Model.BasketModel;
 using DbModel.Products;
 using DbModel.ViewModel;
 
@@ -89,12 +90,36 @@ namespace DbModel
                                                                 source => source.Product.Unit.Name))
                                                      .ForMember(destination => destination.ProductCode,
                                                                 map => map.MapFrom(
-                                                                source => source.Product.UnicCode))
+                                                                source => source.Product.UnicCode)) ;
+                                                               
+
+                cfg.CreateMap<BasketItem, Sale>().ForMember(destination => destination.TransactionId,
+                                                                map => map.Ignore())
+                                                  .ForMember(destination => destination.Transaction,
+                                                                map => map.Ignore())
+                                                   .ForMember(destination => destination.Id,
+                                                                map => map.Ignore())
+                                                   .ForMember(destination => destination.Payed,
+                                                                map => map.MapFrom(
+                                                                    source => source.Payed))
+                                                   .ForMember(destination => destination.Product,
+                                                                map => map.Ignore())
+                                                                    ;
+
+
+
+                cfg.CreateMap<BasketItem, Buy>().ForMember(destination => destination.TransactionId,
+                                                                map => map.Ignore())
+                                                  .ForMember(destination => destination.Transaction,
+                                                                map => map.Ignore())
+                                                  .ForMember(destination => destination.Id,
+                                                                map => map.Ignore())
+                                                  .ForMember(destination => destination.Product,
+                                                                map => map.Ignore())
                                                                 ;
-                                                     
 
 
-
+                cfg.CreateMap<Transaction, TransactionVieweModel>();
 
             });
             configuration.AssertConfigurationIsValid();

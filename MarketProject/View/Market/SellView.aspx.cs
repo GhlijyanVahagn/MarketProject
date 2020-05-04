@@ -13,6 +13,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using DbModel.Model.BasketModel;
 using MarketManagment.Managers.BasketManagers;
+using System.ComponentModel;
 
 namespace MarketProject.View.Market
 {
@@ -23,7 +24,27 @@ namespace MarketProject.View.Market
         BasketManager basketManager;
         SaleManager SaleManager;
 
-        public Basket basketSession
+        #region ObjectDataSource Methods Dont Remove
+        [DataObjectMethod(DataObjectMethodType.Fill)]
+        public List<BasketItem> GetItems()
+        {
+            if (basketSession != null)
+                return basketSession.BasketItems;
+            else
+                return null;
+        }
+
+
+        public void RemoveItem(int Id)
+        {
+            basketSession.BasketItems.RemoveAt(Id);
+            SetBasketComplateVisible();
+
+
+        }
+        #endregion
+
+        private Basket basketSession
         {
             get
             {
@@ -33,6 +54,16 @@ namespace MarketProject.View.Market
             set
             {
                 Session["basketSaleAction"] = value;
+            }
+        }
+        private string UserName
+        {
+            get
+            {
+                if (Session[Sessions.LogedInUserName] == null)
+                    return "Debug Mode";
+                else
+                    return Session[Sessions.LogedInUserName].ToString();
             }
         }
 
@@ -46,6 +77,7 @@ namespace MarketProject.View.Market
             {
                 txtCount.AutoPostBack = true;
                 txtPrice.AutoPostBack = true;
+               
 
             }
             if (basketManager == null)
@@ -96,7 +128,7 @@ namespace MarketProject.View.Market
         {
             if (string.IsNullOrWhiteSpace(txtCount.Text) || string.IsNullOrWhiteSpace(txtPrice.Text))
                 return;
-            int nextIndex = SaleManager.BasketItems.Count();
+           
             var _userName = Session[Sessions.LogedInUserName] ?? "Debug Mode";
 
             decimal _price, _count, _discount;
@@ -110,7 +142,7 @@ namespace MarketProject.View.Market
             }
             var basketItem = new BasketItem()
             {
-                Id = basketManager.Basket.BasketItemsCount,
+                BasketItemId = basketManager.Basket.BasketItemsCount,
                 Count = Convert.ToDecimal(txtCount.Text),
                 ProductId = ProductsControl.SelectedProductId,
                 Price = Convert.ToDecimal(txtPrice.Text),
@@ -137,22 +169,37 @@ namespace MarketProject.View.Market
     
         private void RefreshGridView()
         {
-            //GridViewBasket.DataSource = MarketManagment.BuyManager.BasketViewItems;
+            
             GridViewBasketSale.DataBind();
             FillFooter();
-            btnComplateSale.Visible = ButtonCancel.Visible= SaleManager.IsExistItemInBasket;
+           // btnComplateSale.Visible = ButtonCancel.Visible= SaleManager.IsExistItemInBasket;
 
         }
+
+        private void SetBasketComplateVisible()
+        {
+            if (basketSession != null)
+            {
+                bool isVisible = !basketSession.IsEmpty;
+                btnComplateSale.Visible = isVisible;
+                ButtonCancel.Visible = isVisible;
+            }
+
+        }
+
         private void FillFooter()
         {
+            if (GridViewBasketSale.FooterRow != null)
+            {
+                GridViewBasketSale.FooterRow.HorizontalAlign = HorizontalAlign.Center;
+                GridViewBasketSale.FooterRow.VerticalAlign = VerticalAlign.Middle;
 
-            //GridViewBasketSale.FooterRow.HorizontalAlign = HorizontalAlign.Center;
-            //GridViewBasketSale.FooterRow.VerticalAlign = VerticalAlign.Middle;
-     
-            //GridViewBasketSale.FooterRow.Cells[2].Text = $"COUNT\n{SaleManager.TotalCount }";
-            ////GridViewBasketSale.FooterRow.Cells[5].Text = $"Retail\n{SaleManager.TotalRetailPrice}";
+                BasketCalculation calculation = new BasketCalculation(basketSession);
 
-            //GridViewBasketSale.FooterRow.Cells[6].Text = $"TOTAL\n{SaleManager.TotalMoney}";
+                GridViewBasketSale.FooterRow.Cells[3].Text = calculation.TotalPrice.ToString();
+       
+            }
+           
 
         }
 
@@ -172,24 +219,23 @@ namespace MarketProject.View.Market
 
       
 
-        private void SetBasketComplateVisible()
-        {
-          //  lblBasketTitle.Visible =  ImageButtonComplateOrder.Visible = BuyManager.IsExistItemInBasket;
-
-        }
+      
 
         protected void ImageButtonComplateOrder_Click(object sender, EventArgs e)
         {
-            var _userName = Session[Sessions.LogedInUserName]?? "Debug Mode";
+
+         
 
             // Created Without Async because Method  in transaction 
-            var isOk = SaleManager.ComplateSaleOrder(SaleManager.BasketItems, _userName.ToString());
-            if (!isOk)
-                Response.Redirect("~/Error.aspx");
+            SaleManager manager = new SaleManager(basketManager);
+
+            var errorMessage = manager.Sale(UserName);
+            if (errorMessage != string.Empty)
+                Response.Redirect($"~/Error.aspx?error={errorMessage}");
 
             else
             {
-                SaleManager.ClearBasketItems();
+               // SaleManager.ClearBasketItems();
                 RefreshGridView();
                 ClearBoardFields();
             }
@@ -203,7 +249,7 @@ namespace MarketProject.View.Market
 
         protected void ButtonCancel_Click(object sender, EventArgs e)
         {
-            SaleManager.ClearBasketItems();
+           // SaleManager.ClearBasketItems();
             RefreshGridView();
             ClearBoardFields();
         }

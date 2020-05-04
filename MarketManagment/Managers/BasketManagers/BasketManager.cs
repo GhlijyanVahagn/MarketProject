@@ -44,7 +44,7 @@ namespace MarketManagment.Managers.BasketManagers
 
         public  BasketItem GetItem(int Id)
         {
-           return Basket.BasketItems.FirstOrDefault(x => x.Id == Id);
+           return Basket.BasketItems.FirstOrDefault(x => x.BasketItemId == Id);
         }
 
         public  List<BasketItem> GetItems()

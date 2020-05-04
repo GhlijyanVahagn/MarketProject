@@ -22,40 +22,13 @@ namespace MarketProject.View.Components {
         protected global::System.Web.UI.WebControls.Label lblFinProbBY;
         
         /// <summary>
-        /// rbnByName control.
+        /// dropDownSearchCriteria control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbnByName;
-        
-        /// <summary>
-        /// rbnByUnicalCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbnByUnicalCode;
-        
-        /// <summary>
-        /// rbnBarCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbnBarCode;
-        
-        /// <summary>
-        /// rbnByProducer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbnByProducer;
+        protected global::System.Web.UI.WebControls.DropDownList dropDownSearchCriteria;
         
         /// <summary>
         /// lblFindBy control.

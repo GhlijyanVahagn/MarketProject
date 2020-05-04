@@ -76,7 +76,6 @@
     <Compile Include="Managers\Warehouses\WarehouseManager.cs" />
     <Compile Include="Managers\Warehouses\WarehouseSaleManager.cs" />
     <Compile Include="Sales\SaleManager.cs" />
-    <Compile Include="Shared\ESearchType.cs" />
     <Compile Include="ProductManager.cs" />
     <Compile Include="Products\ProductsLocal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

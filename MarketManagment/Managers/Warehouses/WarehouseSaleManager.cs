@@ -16,12 +16,12 @@ namespace MarketManagment.Managers.Warehouses
         {
             this.sales = salesList;
         }
-        public  void SaleWithTransaction()
+        public  void ComplateSale()
         {
             using (WarehouseDbContext _db = new WarehouseDbContext())
             {
-                using (var transact = _db.Database.BeginTransaction())
-                {
+                //using (var transact = _db.Database.BeginTransaction())
+                //{
                     try
                     {
                         foreach (var sale in sales)
@@ -35,9 +35,10 @@ namespace MarketManagment.Managers.Warehouses
 
                             else
                             {
-                                //need to  update product
+                            //need to  update product
 
-
+                            if (_whProd.TotalRemind < sale.Count)
+                                throw new Exception("Count not available");
                                 _whProd.TotalRemind -= sale.Count;
                                 _db.Warehouse.Attach(_whProd);
                                 _db.Entry<Warehouse>(_whProd).State = EntityState.Modified;
@@ -46,16 +47,14 @@ namespace MarketManagment.Managers.Warehouses
                         }
 
                         _db.SaveChanges();
-                        transact.Commit();
+                        //transact.Commit();
                     }
                     catch
                     {
-                        transact.Rollback();
-                        throw new InvalidOperationException();
+                        //transact.Rollback();
+                        throw ;
                     }
                 }
             }
         }
-
-    }
 }

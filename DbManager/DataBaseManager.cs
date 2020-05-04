@@ -18,6 +18,11 @@ namespace DbManager
           
             Database.SetInitializer<DataBaseManager>(new CreateDatabaseIfNotExists<DataBaseManager>());
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Types().Configure(t => t.MapToStoredProcedures());
+        }
         public virtual DbSet<Unit> Unit { get; set; }
         public virtual DbSet<Producer> Producers { get; set; }
         public virtual DbSet<Buy> Buy { get; set; }
@@ -26,6 +31,8 @@ namespace DbManager
         public virtual DbSet<Transaction> Transaction { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<Sale> Sale { get; set; }
+
+
 
         #region Product
         //public virtual DbSet<Producer> Producers { get; set; }

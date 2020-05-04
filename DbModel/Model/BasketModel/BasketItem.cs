@@ -10,7 +10,7 @@ namespace DbModel.Model.BasketModel
 {
     public class BasketItem
     {
-        public int Id { get; set; }
+        public int BasketItemId { get; set; }
         public ProductViewModel Product { get; set; }
         public decimal Count { get; set; }
         public int ProductId { get; set; }
@@ -19,7 +19,7 @@ namespace DbModel.Model.BasketModel
         public decimal Price { get; set; }
         public decimal RetailPrice { get; set; }
         public decimal WholeSalePrice { get; set; }
-       
+        public decimal Payed { get; set; }
         public string ProductName { get { return Product.Name; } }
             
     }

@@ -2,6 +2,7 @@
 using DbManager;
 
 using DbModel;
+using DbModel.Enums;
 using DbModel.Model.BasketModel;
 using MarketManagment.Buys;
 using MarketManagment.Managers.BasketManagers;
@@ -33,6 +34,13 @@ namespace MarketManagment
         public string   ComplateOrder()
         {
             string message="";
+
+            var buyList = new List<Buy>();
+            foreach(var basketItem in basketBase.Basket.BasketItems)
+            {
+                var buyItem = MarketMapper.Mapper.Map<BasketItem, Buy>(basketItem);
+                buyList.Add(buyItem);
+            }
             using (DataBaseManager _db = new DataBaseManager())
             {
                 using (var transact = _db.Database.BeginTransaction())
@@ -44,9 +52,14 @@ namespace MarketManagment
                         _db.Transaction.Add(transaction);
                         _db.SaveChanges();
 
-                        BasketToBuyEntityConvertor convertor = new BasketToBuyEntityConvertor(basketBase.Basket, transaction);
+                        //BasketToBuyEntityConvertor convertor = new BasketToBuyEntityConvertor(basketBase.Basket, transaction);
 
-                        var buyList = convertor.Convert().ToList();
+                        //var buyList = convertor.Convert().ToList();
+
+                        foreach (var item in buyList)
+                        {
+                            item.TransactionId = transaction.Id;
+                        }
                         
                             _db.Buy.AddRange(buyList);
                             _db.SaveChanges();
@@ -73,7 +86,7 @@ namespace MarketManagment
         public IEnumerable<BasketItem> ShowBasketViewItems(int itemId)
         {
             if (itemId > 0)
-                return basketBase.Basket.BasketItems.Where(x => x.Id == itemId);
+                return basketBase.Basket.BasketItems.Where(x => x.BasketItemId == itemId);
             else
                 return basketBase.Basket.BasketItems;
         }
