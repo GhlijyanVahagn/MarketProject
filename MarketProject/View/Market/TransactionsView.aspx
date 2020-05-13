@@ -1,7 +1,24 @@
 ﻿<%@ Page MasterPageFile="~/MasterPage.Master" Language="C#"  AutoEventWireup="true" CodeBehind="TransactionsView.aspx.cs" Inherits="MarketProject.View.Market.Transactions" %>
+
+
 <asp:Content ID="Content2" runat="server" contentplaceholderid="WebPageContent">
 
+  
 
+
+<script type="text/javascript">
+function divexpandcollapse(divname) {
+var div = document.getElementById(divname);
+var img = document.getElementById('img' + divname);
+if (div.style.display == "none") {
+div.style.display = "inline";
+img.src = "../../Resources/SubgridPlus.png";
+} else {
+div.style.display = "none";
+img.src = "../../Resources/collapse_hideGrid.png";
+}
+}
+</script>
        
 
  <div>
@@ -56,7 +73,41 @@
                                 <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" />
                                 <asp:CommandField ShowSelectButton="True" />
 
-                                <asp:TemplateField></asp:TemplateField>
+                                 <asp:TemplateField>
+        <ItemTemplate>
+            <img alt = "" style="cursor: pointer" src="../../Resources/SubgridPlus.png" width="16" />
+            <asp:Panel ID="pnlOrders" runat="server" Style="display: none">
+            <div class="userGrid">
+                <asp:GridView ID="GridViewDetailes" runat="server" AutoGenerateColumns="False"  CellPadding="4" ForeColor="#333333" GridLines="None">
+                <AlternatingRowStyle BackColor="White" />
+                <Columns>
+                    <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" />
+                    <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" />
+                    <asp:BoundField DataField="ActionDate" HeaderText="ActionDate" SortExpression="ActionDate" />
+                    <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
+                    <asp:BoundField DataField="Count" HeaderText="Count" SortExpression="Count" />
+                    <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                    <asp:BoundField DataField="Payed" HeaderText="Payed" SortExpression="Payed" />
+                    <asp:BoundField DataField="Discount" HeaderText="Discount" SortExpression="Discount" />
+                    <asp:BoundField DataField="Product" HeaderText="Product" SortExpression="Product" />
+                </Columns>
+    
+                <EditRowStyle BackColor="#2461BF" />
+                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EFF3FB" />
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                <SortedDescendingHeaderStyle BackColor="#4870BE" />
+    
+            </asp:GridView>
+             </div>
+            </asp:Panel>
+        </ItemTemplate>
+    </asp:TemplateField>
 
                             </Columns>
                             <EditRowStyle BackColor="#2461BF" />
@@ -73,6 +124,7 @@
                  </asp:View>
 
               <asp:View ID="Tab2" runat="server" >
+
                  <asp:GridView ID="GridViewSaleTransactions" runat="server" DataSourceID="ObjectDataSourceSale" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>

@@ -31,7 +31,7 @@ namespace MarketProject
             }
             else
             {
-                Session[Sessions.LogedInUserName] = logedIn;
+                Session[MarketSessions.LogedInUserName] = logedIn;
 
                 login.IsUserAutorized = true;
                 Response.Redirect("~/Default.aspx");

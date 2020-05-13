@@ -20,23 +20,19 @@ namespace MarketManagment.Managers.Products
 
      
 
-        public override void Create(ProductGroupViewModel entity)
-        {
-            var prodGroup=ConvertView_DTO(entity);
-            Repository.Create(prodGroup);
+        //public override void Create(ProductGroupViewModel entity)
+        //{
+        //    var prodGroup=ConvertViewModeltoDbModel(entity);
+        //    Repository.Create(prodGroup);
 
-        }
+        //}
 
         public override void Delete(int Id)
         {
             Repository.Delete(Id);
         }
 
-        public override async Task<IEnumerable<ProductGroupViewModel>> GetAllAsync()
-        {
-            // return await Repository.GetAllAsync();
-            return null;
-        }
+      
 
         public override ProductGroupViewModel Read(int Id)
         {

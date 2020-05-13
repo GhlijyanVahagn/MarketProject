@@ -65,10 +65,12 @@
     <Compile Include="Managers\BasketManagers\BasketBase.cs" />
     <Compile Include="Managers\BasketManagers\BasketCalculation.cs" />
     <Compile Include="Managers\BasketManagers\BasketManager.cs" />
+    <Compile Include="Managers\Customers\CustomerManager.cs" />
     <Compile Include="Managers\Products\ProducerManager.cs" />
     <Compile Include="Managers\Products\ProductGroupManager.cs" />
     <Compile Include="Managers\Products\ProductManager.cs" />
-    <Compile Include="Managers\Validator\EProductCreationValidationTypes.cs" />
+    <Compile Include="Managers\Validator\BaseValidator.cs" />
+    <Compile Include="Managers\Validator\CustomerValidator.cs" />
     <Compile Include="Managers\Validator\IValidator.cs" />
     <Compile Include="Managers\Validator\MarketValidator.cs" />
     <Compile Include="Managers\Validator\ProductValidator.cs" />

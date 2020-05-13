@@ -12,7 +12,7 @@ namespace DbManager
     {
       
         //public virtual DbSet<Unit> Unit { get; set; }
-        public ProductUnitDbContext()
+        public ProductUnitDbContext():base()
         {
 
         }

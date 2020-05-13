@@ -40,15 +40,15 @@ namespace MarketProject.View.AdminPanel
                 Description = txtDescription.Text
             };
 
-
+           
 
             var valid=manager.Validatation(new UnitValidator(unitsList, newUnit));
-            if(valid!=-1)
+            if(valid!=string.Empty)
             {
                 return;
             }
-            manager.Create(newUnit);
-            manager.Save();
+            manager.CreateAndSave(newUnit);
+
         }
         void RedirectToLoginPage()
         {

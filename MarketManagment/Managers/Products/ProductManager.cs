@@ -21,11 +21,11 @@ namespace MarketManagment.Managers.Products
         //    Repository.Create(entity);
         //}
 
-        public override void Create(ProductViewModel entity)
-        {
-            var product = ConvertView_DTO(entity);
-            Repository.Create(product);
-        }
+        //public override void Create(ProductViewModel entity)
+        //{
+        //    var product = ConvertViewModeltoDbModel(entity);
+        //    Repository.Create(product);
+        //}
 
         public override void Delete(int Id)
         {
@@ -33,12 +33,7 @@ namespace MarketManagment.Managers.Products
     
         }
 
-        public override async Task<IEnumerable<ProductViewModel>> GetAllAsync()
-        {
-            //return await Repository.GetAllAsync();
-            return null;
-
-        }
+      
 
     
 

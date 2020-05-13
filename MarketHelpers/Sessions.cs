@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace MarketHelpers
 {
-    public static class Sessions
+    public static class MarketSessions
     {
         public static string LogedInUserName { get; } = "LogedInUserName";
         public static string LogedInUserEmail { get; } = "LogedInUserEmail";
+        public static string PopupMessage { get; } = "PopupMessage";
 
     }
 }

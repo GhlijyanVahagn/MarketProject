@@ -14,6 +14,7 @@ namespace MarketManagment.Buys
     {
         //Basket Basek;
         //Transaction Transact;
+         
         //public BasketToBuyEntityConvertor(Basket basket,Transaction transaction)
         //{
         //    this.Basek = basket;

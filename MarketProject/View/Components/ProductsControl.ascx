@@ -1,10 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ProductsControl.ascx.cs" Inherits="MarketProject.View.Components.ProductsControl"%>
 
 
-<div>
+<div class="searchBlock">
 
    
-          
+          <h3 style="text-align:center">Products</h3>
                 <div>
                     <asp:Label ID="lblFinProbBY" CssClass="searchLabel" runat="server" Text="Search product by "></asp:Label>
                      <asp:dropdownlist   CssClass="buyProdTxtBoxProductDropDownList" 
@@ -20,7 +20,7 @@
                 </div>
 
                 <div>
-                    <div class="searchBlock">
+                    <div >
                          <asp:Label CssClass="LableStyle" ID="lblFindBy" runat="server" Text="Find"></asp:Label>
                         <asp:TextBox CssClass="buyFindtext" ID="txtSearchString" runat="server" TabIndex="1"  ></asp:TextBox>
                         <asp:ImageButton CssClass="btnSearch" ID="btnSearch" runat="server" ImageUrl="~/Resources/search.png" OnClick="btnSearch_Click" />

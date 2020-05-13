@@ -8,6 +8,8 @@
       <siteMapNode url="~/View/AdminPanel/UnitView.aspx" title="Unit"  description="Create Unit" />
       <siteMapNode url="~/View/AdminPanel/ProducerView.aspx" title="Producer"  description="Create Prodact producer" />
       <siteMapNode url="~/View/AdminPanel/ProductView.aspx" title="Product"  description="Create Product" />
+      <siteMapNode url="~/View/AdminPanel/NewCustomer.aspx" title="Customer"  description="Create Product" />
+
       <siteMapNode url="~/TestMessageBox.aspx" title="Message"  description="Message" />
 
     </siteMapNode>

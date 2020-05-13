@@ -10,17 +10,17 @@
   <style>
 .center {
 
-  margin: auto;
+  margin: 30px 0 0 0 ;
 
   text-align:center;
-  padding: 50px;
+  padding: 10px;
 }
 </style>
 </head>
 <body>
     
         <div >
-            <h5 class="center">Current item already in basket.</h5>
+           <asp:Label CssClass="center" runat="server" ID ="displayTxt"> </asp:Label>
         </div>
 
 </body>

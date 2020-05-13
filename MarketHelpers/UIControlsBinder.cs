@@ -1,5 +1,6 @@
 ﻿using DbManager;
 using DbModel;
+using DbModel.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

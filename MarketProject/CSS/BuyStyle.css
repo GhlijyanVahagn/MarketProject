@@ -121,8 +121,13 @@
 }
 
 .searchBlock {
-  
-   
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    margin: 5px;
+    padding: 5px;
+    width: 400px;
+    border-radius: 15px 15px 15px 15px;
 }
 .backGroundBuy {
     background-color: aliceblue;

@@ -121,6 +121,9 @@ namespace DbModel
 
                 cfg.CreateMap<Transaction, TransactionVieweModel>();
 
+                cfg.CreateMap<Customer, CustomerViewModel>().ReverseMap();
+
+
             });
             configuration.AssertConfigurationIsValid();
 

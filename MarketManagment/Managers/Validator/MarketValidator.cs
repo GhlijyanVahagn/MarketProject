@@ -14,7 +14,7 @@ namespace MarketManagment.Managers.Validator
             this.validator = validator;
         }
 
-        public int Validate()
+        public string Validate()
         {
            return  validator.Validate();
         }

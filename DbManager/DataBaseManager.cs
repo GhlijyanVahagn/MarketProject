@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,6 @@ namespace DbManager
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Types().Configure(t => t.MapToStoredProcedures());
         }
         public virtual DbSet<Unit> Unit { get; set; }
         public virtual DbSet<Producer> Producers { get; set; }
@@ -31,7 +31,7 @@ namespace DbManager
         public virtual DbSet<Transaction> Transaction { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<Sale> Sale { get; set; }
-
+        public virtual DbSet<Customer> Customer { get; set; }
 
 
         #region Product

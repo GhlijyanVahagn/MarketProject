@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master"    AutoEventWireup="true" CodeBehind="SellView.aspx.cs"    Inherits="MarketProject.View.Market.SellView"   Async="true"   %>
 <%@ Register Src="~/View/Components/ProductsControl.ascx" TagPrefix="uc1" TagName="ProductsControl" %>
+<%@ Register Src="~/View/Components/CustomerControl.ascx" TagPrefix="uc2" TagName="CustomerControl" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content  ID="Content2" runat="server" contentplaceholderid="WebPageContent" ViewStateMode="Enabled">
 
@@ -7,13 +9,15 @@
          
         <div class="split left">
         
-        <div>
+              <div>
                     <uc1:ProductsControl  runat="server" id="ProductsControl" />
-            </div>
-    
+             </div>
+            <div>
+                    <uc2:CustomerControl  runat="server" id="CustomerControl" />
+             </div>
            
-            
-            <div class="auto-style3">
+            <div class="searchBlock">
+                <div class="auto-style3">
                 <asp:Label CssClass="LableStyle" ID="lblCount" runat="server" Text="Count"></asp:Label>
                 <asp:TextBox CssClass="buyProdTxtBoxCount" ID="txtCount" runat="server" TabIndex="1" OnTextChanged="TxtCount_TextChanged" ></asp:TextBox>
             </div>
@@ -37,6 +41,8 @@
 
      
             </div>
+            </div>
+            
                             <asp:Button CssClass="buttonStyle" ID="AddToBasket" runat="server" Text="Add to basket" OnClick="ImgButtonAddToCard_Click" />
 
                </div>

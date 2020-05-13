@@ -8,84 +8,95 @@ using System.Threading.Tasks;
 
 namespace MarketManagment.Managers.Validator
 {
-    public class ProductValidator:IValidator
+    public class ProductValidator:ValidatorBase<ProductViewModel>
     {
-        IEnumerable<ProductViewModel> productsList;
-        ProductViewModel productView;
-        public ProductValidator(IEnumerable<ProductViewModel> products, ProductViewModel viewModel)
+  
+        public ProductValidator(IEnumerable<ProductViewModel> products, ProductViewModel viewModel):base(products, viewModel)
         {
-            this.productsList = products;
-            this.productView = viewModel;
+   
         }
 
-        public int Validate()
+        public override string Validate()
         {
-            int result = -1;
+            if (!IsModelValid)
+                return ValidationErrorMessage;
 
-            if (productsList == null || productView == null)
-                return (int)EProductCreationValidationTypes.sourceIsNull;
-            result =isNameDublicated();
-            if (result != -1)
+            string result;
+
+
+            if (ViewList == null || ViewItem == null)
+                return "sourceIsNull";
+            result = isNameDublicated();
+            if (result !=string.Empty)
                 return result;
 
-            result=isCodeDublicated();
-            if (result != -1)
+            result = isCodeDublicated();
+            if (result != string.Empty)
                 return result;
 
-            result=isBarCodeDublicated();
-            if (result != -1)
+            result = isBarCodeDublicated();
+            if (result != string.Empty)
                 return result;
-           result= isUnitMissing();
-            if (result != -1)
+            result = isUnitMissing();
+            if (result != string.Empty)
                 return result;
 
-            result=isGroupMissing();
-            if (result != -1)
+            result = isGroupMissing();
+            if (result != string.Empty)
                 return result;
 
             return result;
         }
 
-        private int isNameDublicated()
+        private string isNameDublicated()
         {
-            var name = productView.Name.Trim().ToLower();
-            if (productsList.FirstOrDefault(x => x.Name.Trim().ToLower() == name) != null)
-                return (int)EProductCreationValidationTypes.nameIsDublicated;
-            return -1;
+            var name = ViewItem.Name.Trim().ToLower();
+            if (ViewList.FirstOrDefault(x => x.Name.Trim().ToLower() == name) != null)
+              //  return (int)EProductCreationValidationTypes.nameIsDublicated;
+            return "nameIsDublicated";
+
+            return string.Empty;
 
         }
 
-        private int isCodeDublicated()
+        private string isCodeDublicated()
         {
-            var unicCode = productView.UnicCode.Trim().ToLower();
-            if (productsList.FirstOrDefault(x => x.UnicCode.Trim().ToLower() == unicCode) != null)
-                return (int)EProductCreationValidationTypes.codeIsDublicated;
-            return -1;
+            var unicCode = ViewItem.UnicCode.Trim().ToLower();
+            if (ViewList.FirstOrDefault(x => x.UnicCode.Trim().ToLower() == unicCode) != null)
+                //return (int)EProductCreationValidationTypes.codeIsDublicated;
+            return "codeIsDublicated";
+
+            return string.Empty;
 
         }
 
-        private int isBarCodeDublicated()
+        private string isBarCodeDublicated()
         {
-            var unicCode = productView.BarCode.Trim().ToLower();
-            if (productsList.FirstOrDefault(x => x.BarCode.Trim().ToLower() == unicCode) != null)
-                return (int)EProductCreationValidationTypes.barCodeIsDublicated;
-            return -1;
+            var unicCode = ViewItem.BarCode.Trim().ToLower();
+            if (ViewList.FirstOrDefault(x => x.BarCode.Trim().ToLower() == unicCode) != null)
+                //return (int)EProductCreationValidationTypes.barCodeIsDublicated;
+                return "barCodeIsDublicated";
+
+            return string.Empty;
         }
-        private int isUnitMissing()
+        private string isUnitMissing()
         {
-            var unitId = productView.UnitId;
+            var unitId = ViewItem.UnitId;
             if (unitId <= 0)
-                return (int)EProductCreationValidationTypes.unitIsMissing;
-            return -1;
+                //return (int)EProductCreationValidationTypes.unitIsMissing;
+                return "unitIsMissing";
+
+            return string.Empty;
 
         }
 
-        private int isGroupMissing()
+        private string isGroupMissing()
         {
-            var groupId = productView.GroupId;
+            var groupId = ViewItem.GroupId;
             if (groupId <= 0)
-                return (int)EProductCreationValidationTypes.groupIsMissing;
-            return -1;
+                // return (int)EProductCreationValidationTypes.groupIsMissing;
+                return "groupIsMissing";
+            return string.Empty;
 
         }
     }

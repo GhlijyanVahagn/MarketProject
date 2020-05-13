@@ -93,10 +93,10 @@ namespace MarketProject.View.AdminPanel
                 BarCode = txtBarCode.Text.Trim(),
                 UnicCode = txtUnicalCode.Text,
             };
-            int validation=manager.Validatation(new ProductValidator(source, product));
-            if(validation!=-1)
+            var errorMessage=manager.Validatation(new ProductValidator(source, product));
+            if(errorMessage != string.Empty)
             {
-                CustomerError.Text = $"<br>     Error occured during Validation, {((EProductCreationValidationTypes)validation).ToString()}</br>";
+                CustomerError.Text = errorMessage;
                 return;
                 
             }

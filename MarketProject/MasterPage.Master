@@ -2,7 +2,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
-
+ 
 
 <!DOCTYPE html>
 
@@ -44,7 +44,18 @@
               <asp:TreeView CssClass="menu" ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1"></asp:TreeView>
                 <div class="PageContent">
                       <asp:ContentPlaceHolder   ID="WebPageContent" runat="server" >
-                        
+                         <asp:UpdateProgress ID="prgLoadingStatus" runat="server" DynamicLayout="true">
+    <ProgressTemplate>
+        <div id="overlay">
+            <div id="modalprogress">
+                <div id="theprogress">
+                    <asp:Image ID="imgWaitIcon" runat="server" ImageAlign="AbsMiddle" ImageUrl="~/Resources/Loading.gif" />
+                    Please wait...
+                </div>
+            </div>
+        </div>
+    </ProgressTemplate>
+</asp:UpdateProgress>  
                       </asp:ContentPlaceHolder>
                 </div>
             </div>

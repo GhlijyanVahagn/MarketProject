@@ -31,6 +31,15 @@ namespace MarketProject.View.Market {
         protected global::MarketProject.View.Components.ProductsControl ProductsControl;
         
         /// <summary>
+        /// CustomerControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::MarketProject.View.Components.CustomerControl CustomerControl;
+        
+        /// <summary>
         /// lblCount control.
         /// </summary>
         /// <remarks>

@@ -35,6 +35,7 @@
       <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -47,8 +48,11 @@
   <ItemGroup>
     <Compile Include="Enums\ProductSearchTypes.cs" />
     <Compile Include="Enums\ETransactionType.cs" />
+    <Compile Include="Enums\Gender.cs" />
     <Compile Include="Model\BasketModel\Basket.cs" />
     <Compile Include="Model\BasketModel\BasketItem.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\SaleViewModel.cs" />
     <Compile Include="ViewModel\TransactionDetailView.cs" />
     <Compile Include="ViewModel\TransactionVieweModel.cs" />

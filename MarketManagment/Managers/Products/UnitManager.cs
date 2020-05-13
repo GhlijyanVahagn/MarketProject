@@ -22,23 +22,19 @@ namespace MarketManagment.Managers.Products
         //    Repository.Create(entity);
         //}
 
-        public override void Create(ProductUnitViewModel entity)
-        {
-            var unitModel = ConvertView_DTO(entity);
-            Repository.Create(unitModel);
-            Save();
-        }
+        //public override void Create(ProductUnitViewModel entity)
+        //{
+        //    var unitModel = ConvertViewModeltoDbModel(entity);
+        //    Repository.Create(unitModel);
+        //    Save();
+        //}
 
         public override void Delete(int Id)
         {
             Repository.Delete(Id);
         }
 
-        public override async Task<IEnumerable<ProductUnitViewModel>> GetAllAsync()
-        {
-            //return await Repository.GetAllAsync();
-            return null;
-        }
+      
 
         public override ProductUnitViewModel Read(int Id)
         {

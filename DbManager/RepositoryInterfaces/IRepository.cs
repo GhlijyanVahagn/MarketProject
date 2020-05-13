@@ -8,6 +8,6 @@ namespace DbManager.RepositoryInterfaces
 {
     public interface IRepository<TModel,TViewModel>: IViewModel<TViewModel>, ICrudOperation<TModel> where TModel : class
     {
-
+       
     }
 }

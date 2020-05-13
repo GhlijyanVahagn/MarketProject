@@ -19,27 +19,12 @@ namespace MarketManagment.Managers.Products
         {
             
         }
-
-        public override void Create(ProducerViewModel producer)
-        {
-            var dtoProducer = ConvertView_DTO(producer);
-
-            Repository.Create(dtoProducer);
-        }
-
         public override void Delete(int Id)
         {
             Repository.Delete(Id);
         }
 
-        public override async Task<IEnumerable<ProducerViewModel>> GetAllAsync()
-        {
       
-            var dtoProducer= await Repository.GetAllAsync();
-           var viewList= ConverDTOList_ViewlList(dtoProducer);
-
-            return viewList;
-        }
 
         public override ProducerViewModel Read(int Id)
         {

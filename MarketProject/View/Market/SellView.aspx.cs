@@ -60,10 +60,10 @@ namespace MarketProject.View.Market
         {
             get
             {
-                if (Session[Sessions.LogedInUserName] == null)
+                if (Session[MarketSessions.LogedInUserName] == null)
                     return "Debug Mode";
                 else
-                    return Session[Sessions.LogedInUserName].ToString();
+                    return Session[MarketSessions.LogedInUserName].ToString();
             }
         }
 
@@ -129,7 +129,7 @@ namespace MarketProject.View.Market
             if (string.IsNullOrWhiteSpace(txtCount.Text) || string.IsNullOrWhiteSpace(txtPrice.Text))
                 return;
            
-            var _userName = Session[Sessions.LogedInUserName] ?? "Debug Mode";
+            var _userName = Session[MarketSessions.LogedInUserName] ?? "Debug Mode";
 
             decimal _price, _count, _discount;
             decimal.TryParse(txtCount.Text, out _count);
@@ -147,12 +147,14 @@ namespace MarketProject.View.Market
                 ProductId = ProductsControl.SelectedProductId,
                 Price = Convert.ToDecimal(txtPrice.Text),
             };
+
             basketItem.Product = ((IEnumerable<ProductViewModel>)Session["Products"]).FirstOrDefault(x => x.Id == basketItem.ProductId);
             if (basketManager.Basket.BasketItems.FirstOrDefault(x => x.ProductId == basketItem.ProductId) != null)
             {
-
+                Session[MarketSessions.PopupMessage] = "Current Product already exist in basket.";
                 panelPopup.Visible = true;
                 modalPopup.Show();
+         
                 return;
             }
             basketManager.Basket.BasketItems.Add(basketItem);
@@ -196,7 +198,7 @@ namespace MarketProject.View.Market
 
                 BasketCalculation calculation = new BasketCalculation(basketSession);
 
-                GridViewBasketSale.FooterRow.Cells[3].Text = calculation.TotalPrice.ToString();
+                GridViewBasketSale.FooterRow.Cells[4].Text = calculation.TotalPrice.ToString();
        
             }
            

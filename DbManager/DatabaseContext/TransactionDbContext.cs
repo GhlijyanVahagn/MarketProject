@@ -20,6 +20,9 @@ namespace DbManager
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Types<Transaction >().Configure(t => t.MapToStoredProcedures());
+
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Transaction>().HasKey(u => u.Id);
             modelBuilder.Entity<Transaction>().Property(x => x.Type).IsRequired();

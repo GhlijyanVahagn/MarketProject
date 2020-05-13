@@ -8,6 +8,6 @@ namespace MarketManagment.Managers.Validator
 {
     public interface IValidator
     {
-        int Validate();
+        string Validate();
     }
 }

@@ -51,10 +51,10 @@ namespace MarketManagment.Managers.Warehouses
 
         
 
-        public override void Create(WarehouseViewModel entity)
-        {
-            throw new NotImplementedException();
-        }
+        //public override void Create(WarehouseViewModel entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public override void Delete(int Id)
         {
@@ -66,10 +66,7 @@ namespace MarketManagment.Managers.Warehouses
             throw new NotImplementedException();
         }
 
-        public override Task<IEnumerable<WarehouseViewModel>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+    
 
         public override void Save()
         {
