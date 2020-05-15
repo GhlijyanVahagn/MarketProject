@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="Enums\ProductSearchTypes.cs" />
     <Compile Include="Enums\ETransactionType.cs" />
-    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\BasketModel\Basket.cs" />
     <Compile Include="Model\BasketModel\BasketItem.cs" />
     <Compile Include="Model\Customer.cs" />

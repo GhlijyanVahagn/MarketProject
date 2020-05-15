@@ -16,19 +16,11 @@ namespace DbManager.Migrations
 
         protected override void Seed(DbManager.DataBaseManager context)
         {
-          
-            //  This method will be called after migrating to the latest version.
+                context.Gender.AddOrUpdate(
+                  new DbModel.Gender {Id=1, Name="Mail" },
+                  new DbModel.Gender { Id=2,Name = "Femail" }
+                );
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
         }
     }
 }

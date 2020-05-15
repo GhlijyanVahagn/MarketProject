@@ -12,7 +12,6 @@ namespace MarketManagment.User
     
     public static  class UsersManager
     {
-       
         public static bool IsUserAutorized { get; set; } = false;
 
         public static string Currency { get; set; }

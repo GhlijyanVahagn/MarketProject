@@ -16,21 +16,21 @@ namespace MarketProject
         }
         protected void btnInvokeMessageBox_Click(object sender, EventArgs e)
         {
-            MessageBox messageBox = new MessageBox();
-            messageBox.MessageTitle = "Information";
-            messageBox.MessageText = "Hello everyone, I am an Asp.net MessageBox. Please put your message here and click the following button to close me.";
-            Literal1.Text = messageBox.Show(this);
+            //MessageBox messageBox = new MessageBox();
+            //messageBox.MessageTitle = "Information";
+            //messageBox.MessageText = "Hello everyone, I am an Asp.net MessageBox. Please put your message here and click the following button to close me.";
+            //Literal1.Text = messageBox.Show(this);
         }
 
         protected void btnInvokeConfirm_Click(object sender, EventArgs e)
         {
-            string title = "Confirm";
-            string text = @"Hello everyone, I am an Asp.net MessageBox. You can set MessageBox.SuccessEvent and MessageBox.FailedEvent and Click Yes(OK) or No(Cancel) buttons for calling them. The Methods must be a WebMethod because client-side application will call web services.";
-            MessageBox messageBox = new MessageBox(text, title, MessageBox.MessageBoxIcons.Question, MessageBox.MessageBoxButtons.OKCancel, MessageBox.MessageBoxStyle.StyleA);
-            messageBox.SuccessEvent.Add("OkClick");
-            messageBox.SuccessEvent.Add("OkClick");
-            messageBox.FailedEvent.Add("CancalClick");
-            Literal1.Text = messageBox.Show(this);
+            //string title = "Confirm";
+            //string text = @"Hello everyone, I am an Asp.net MessageBox. You can set MessageBox.SuccessEvent and MessageBox.FailedEvent and Click Yes(OK) or No(Cancel) buttons for calling them. The Methods must be a WebMethod because client-side application will call web services.";
+            //MessageBox messageBox = new MessageBox(text, title, MessageBox.MessageBoxIcons.Question, MessageBox.MessageBoxButtons.OKCancel, MessageBox.MessageBoxStyle.StyleA);
+            //messageBox.SuccessEvent.Add("OkClick");
+            //messageBox.SuccessEvent.Add("OkClick");
+            //messageBox.FailedEvent.Add("CancalClick");
+            //Literal1.Text = messageBox.Show(this);
         }
 
         [WebMethod]

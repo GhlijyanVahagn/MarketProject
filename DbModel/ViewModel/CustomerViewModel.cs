@@ -12,7 +12,7 @@ namespace DbModel.ViewModel
     {
         [Required(ErrorMessage ="Surname can't be empty")]
         public string Surname { get; set; }
-        public Gender Gender { get; set; }
+        public int GenderId { get; set; }
         [DataType(DataType.Date,ErrorMessage = "Incorrect date fromat")]
         public DateTime Birthday { get; set; }
         [EmailAddress(ErrorMessage ="Incorrect email address")]

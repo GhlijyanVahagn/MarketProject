@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="DatabaseContext\BuyDbContext.cs" />
     <Compile Include="DatabaseContext\CustomerDbContext.cs" />
+    <Compile Include="DatabaseContext\GenderDbContext.cs" />
     <Compile Include="DatabaseContext\ProductDbContext.cs" />
     <Compile Include="DatabaseContext\ProductUnitDbContext.cs" />
     <Compile Include="DatabaseContext\SaleDbContext.cs" />
@@ -136,6 +137,10 @@
     <Compile Include="Migrations\202005130748572_ CustomerValidations.cs" />
     <Compile Include="Migrations\202005130748572_ CustomerValidations.designer.cs">
       <DependentUpon>202005130748572_ CustomerValidations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005131639168_added_EntityGender.cs" />
+    <Compile Include="Migrations\202005131639168_added_EntityGender.designer.cs">
+      <DependentUpon>202005131639168_added_EntityGender.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RepositoryInterfaces\ILogin.cs" />
@@ -213,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005130748572_ CustomerValidations.resx">
       <DependentUpon>202005130748572_ CustomerValidations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005131639168_added_EntityGender.resx">
+      <DependentUpon>202005131639168_added_EntityGender.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

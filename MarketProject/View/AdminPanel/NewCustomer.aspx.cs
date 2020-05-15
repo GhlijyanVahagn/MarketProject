@@ -1,6 +1,7 @@
 ﻿
 using DbModel;
 using DbModel.ViewModel;
+using MarketHelpers;
 using MarketManagment.Managers.Customers;
 using MarketManagment.Managers.Validator;
 using System;
@@ -25,8 +26,15 @@ namespace MarketProject.View.AdminPanel
       
         }
 
+        enum EGender
+        {
+            Mail=1,
+            Femail=2
+        }
+
         protected void createNewCustomer_Click(object sender, EventArgs e)
         {
+
             var newCustomer = new CustomerViewModel()
             {
                 Name = CustomerNametxt.Text,
@@ -34,10 +42,10 @@ namespace MarketProject.View.AdminPanel
                 Phone = phonetxt.Text,
                 Email = emailtxt.Text,
                 Address = Addresstxt.Text,
-                Birthday = Convert.ToDateTime(birthdaytxt.Text),
-                Description = ""
+                GenderId = dropDownGender.SelectedValue.ConvertEnumValueToInt32<EGender>(),
+                Birthday = birthdaytxt.Text.ConvertToDateTime(),
+                Description = DescriptionText.Text
             };
-
             string errorMessage=manager.Validatation(new CustomerValidator(null, newCustomer));
 
             if (errorMessage != string.Empty)

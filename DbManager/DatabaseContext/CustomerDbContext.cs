@@ -20,11 +20,16 @@ namespace DbManager.DatabaseContext
             modelBuilder.Entity<Customer>().HasKey(x => x.Id);
             modelBuilder.Entity<Customer>().Property(x => x.Name).IsRequired().HasMaxLength(50);
             modelBuilder.Entity<Customer>().Property(x => x.Surname).IsRequired().HasMaxLength(50);
-            modelBuilder.Entity<Customer>().Property(x => x.Gender);
             modelBuilder.Entity<Customer>().Property(x => x.Birthday);
             modelBuilder.Entity<Customer>().Property(x => x.Email);
             modelBuilder.Entity<Customer>().Property(x => x.Address).HasMaxLength(500);
             modelBuilder.Entity<Customer>().Property(x => x.Phone).HasMaxLength(100);
+
+            modelBuilder.Entity<Customer>()
+              .HasRequired<Gender>(s => s.Gender)
+              .WithMany(s => s.Customers)
+              .HasForeignKey(s => s.GenderId)
+              .WillCascadeOnDelete(false);
         }
     }
 }

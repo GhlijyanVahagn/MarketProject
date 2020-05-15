@@ -13,7 +13,10 @@
         <br/>Surname<asp:TextBox ID="Surnametxt" runat="server"></asp:TextBox>
     </div >
       <div style="padding:5px; margin:10px;">
-        <br/>Gender<asp:TextBox ID="Gendertxt" runat="server"></asp:TextBox>
+        <br/>Gender<asp:DropDownList ID="dropDownGender" runat="server" Height="17px" Width="130px">
+              <asp:ListItem>Mail</asp:ListItem>
+              <asp:ListItem>Femail</asp:ListItem>
+          </asp:DropDownList>
     </div>
       <div style="padding:5px; margin:10px;">
         <br/>Birthday<asp:TextBox ID="birthdaytxt" runat="server"></asp:TextBox>
@@ -27,6 +30,11 @@
       <div style="padding:5px; margin:10px;">
         <br/>Address<asp:TextBox ID="Addresstxt" runat="server"></asp:TextBox>
      </div>
+       <div style="padding:5px; margin:10px;">
+        <br/>Description<asp:TextBox ID="DescriptionText"  runat="server" Height="47px" TextMode="MultiLine"></asp:TextBox>
+     </div>
+
+
       <div style="padding:5px; margin:10px;">
     <br/><asp:Button ID="createNewCustomer" runat="server" Text="Create" OnClick="createNewCustomer_Click" />
           <br />

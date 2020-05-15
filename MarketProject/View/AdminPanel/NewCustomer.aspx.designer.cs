@@ -31,13 +31,13 @@ namespace MarketProject.View.AdminPanel {
         protected global::System.Web.UI.WebControls.TextBox Surnametxt;
         
         /// <summary>
-        /// Gendertxt control.
+        /// dropDownGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Gendertxt;
+        protected global::System.Web.UI.WebControls.DropDownList dropDownGender;
         
         /// <summary>
         /// birthdaytxt control.
@@ -74,6 +74,15 @@ namespace MarketProject.View.AdminPanel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Addresstxt;
+        
+        /// <summary>
+        /// DescriptionText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DescriptionText;
         
         /// <summary>
         /// createNewCustomer control.

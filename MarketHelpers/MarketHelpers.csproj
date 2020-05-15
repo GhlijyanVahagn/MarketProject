@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorized.cs" />
+    <Compile Include="EnumConvertor.cs" />
     <Compile Include="GlobalInfo.cs" />
+    <Compile Include="SafeConvert.cs" />
     <Compile Include="Sessions.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
