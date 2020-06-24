@@ -6,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using DbModel;
+using DbModel.Products;
+
 
 using System.Data.Entity.Migrations;
-using DbModel.Products;
 
 namespace DbManager
 {
