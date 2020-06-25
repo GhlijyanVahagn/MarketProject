@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Specialized;
 using MarketManagment.Managers.Validator;
-
+using MarketLogger;
 namespace MarketManagment.Managers
 {
     public abstract class BaseManager<T,TVIEW> where T:class
@@ -25,11 +25,17 @@ namespace MarketManagment.Managers
         }
         public void CreateAndSave(TVIEW entity)
         {
-
-
-            T model= MarketMapper.Mapper.Map<TVIEW, T>(entity);
-            Repository.Create(model);
-            Repository.Save();
+            try
+            {
+                T model = MarketMapper.Mapper.Map<TVIEW, T>(entity);
+                Repository.Create(model);
+                Repository.Save();
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogger.log(ex);
+            }
+         
 
         }
         public async Task<IEnumerable<TVIEW>> GetAllAsync()

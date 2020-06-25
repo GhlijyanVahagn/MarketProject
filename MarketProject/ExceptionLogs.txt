@@ -1,0 +1,239 @@
+Source	 Error is here
+Data	 System.Collections.ListDictionaryInternal
+HelpLink	 
+Thread	 16
+StackTrace	    at MarketManagment.Managers.BaseManager`2.CreateAndSave(TVIEW entity) in C:\Users\Vahag\Source\Repos\MarketProject\MarketManagment\Managers\BaseManager.cs:line 40
+HelpLink	 
+Thread	 19
+Date	 6/24/2020 5:40:53 PM
+
+		Source	 Main is Argument exception
+Date	 6/24/2020 5:40:53 PM
+
+				Source	 Main is Argument exception
+		Data	 System.Collections.ListDictionaryInternal
+		StackTrace	 
+		HelpLink	 
+		Thread	 16
+		Thread	 19
+		Date	 6/24/2020 5:40:53 PM
+
+					Date	 6/24/2020 5:40:53 PM
+
+							Source	 Null reference is  inner  exception
+				Source	 Null reference is  inner  exception
+				Data	 System.Collections.ListDictionaryInternal
+				StackTrace	 
+				HelpLink	 
+				Thread	 16
+				Thread	 19
+				Date	 6/24/2020 5:40:53 PM
+
+									Date	 6/24/2020 5:40:53 PM
+
+											Source	 sqlException is inner inner 
+						Data	 System.Collections.ListDictionaryInternal
+						Data	 System.Collections.ListDictionaryInternal
+						StackTrace	 
+						HelpLink	 
+						StackTrace	 
+						HelpLink	 
+						Thread	 16
+						Thread	 19
+						Date	 6/24/2020 5:40:53 PM
+
+--------------------------------------------------------------------------------
+												Source	 Error is here
+												Data	 System.Collections.ListDictionaryInternal
+HelpLink	 
+Thread	 18
+												StackTrace	    at MarketManagment.Managers.BaseManager`2.CreateAndSave(TVIEW entity) in C:\Users\Vahag\Source\Repos\MarketProject\MarketManagment\Managers\BaseManager.cs:line 40
+HelpLink	 
+Thread	 20
+Date	 6/24/2020 5:40:53 PM
+
+				Source	 Main is				Date	 6/24/2020 5:40:53 PM
+
+										Source	 sqlException is inner inner 
+					Data	 System.Collections.ListDictionaryInternal
+					StackTrace	 
+					HelpLink	 
+					Thread	 18
+					Date	 6/24/2020 5:40:53 PM
+
+--------------------------------------------------------------------------------ions.ListDictionaryInternal
+				StackTrace	 
+				HelpLink	 
+				Thread	 18
+								Date	 6/24/2020 5:40:53 PM
+
+										Source	 sqlException is inner inner 
+					Data	 System.Collections.ListDictionaryInternal
+					StackTrace	 
+					HelpLink	 
+					Thread	 18
+					Date	 6/24/2020 5:40:53 PM
+
+--------------------------------------------------------------------------------
+Source	 Error is here
+Data	 System.Collections.ListDictionaryInternal
+HelpLink	 
+Thread	 13
+HelpLink	 
+Thread	 16
+HelpLink	 
+Thread	 15
+HelpLink	 
+Thread	 14
+Date	 6/24/2020 5:43:02 PM
+
+		Source	 Main is Argument exception
+	Data	 System.Collections.ListDictionaryInternal
+	StackTrace	 
+	HelpLink	 
+	Thread	 13
+	Date	 6/24/2020 5:43:02 PM
+
+				Source	 Null reference is  inner  exception
+		Data	 System.Collections.ListDictionaryInternal
+		StackTrace	 
+		HelpLink	 
+		Thread	 13
+		Date	 6/24/2020 5:43:02 PM
+
+						Source	 sqlException is inner inner 
+			Data	 System.Collections.ListDictionaryInternal
+			StackTrace	 
+			HelpLink	 
+			Thread	 13
+			Date	 6/24/2020 5:43:02 PM
+
+--------------------------------------------------------------------------------
+Source	 Error is here
+Data	 System.Collections.ListDictionaryInternal
+HelpLink	 
+Thread	 13
+HelpLink	 
+Thread	 16
+HelpLink	 
+Thread	 15
+HelpLink	 
+Thread	 14
+Date	 6/24/2020 5:43:02 PM
+
+		Source	 Main is Argument exception
+	Data	 System.Collections.ListDictionaryInternal
+	StackTrace	 
+	HelpLink	 
+	Thread	 13
+	Date	 6/24/2020 5:43:02 PM
+
+				Source	 Null reference is  inner  exception
+		Data	 System.Collections.ListDictionaryInternal
+		StackTrace	 
+		HelpLink	 
+		Thread	 13
+		Date	 6/24/2020 5:43:02 PM
+
+						Source	 sqlException is inner inner 
+			Data	 System.Collections.ListDictionaryInternal
+			StackTrace	 
+			HelpLink	 
+			Thread	 13
+			Date	 6/24/2020 5:43:02 PM
+
+--------------------------------------------------------------------------------StackTrace	    at MarketManagment.Managers.BaseManager`2.CreateAndSave(TVIEW entity) in C:\Users\Vahag\Source\Repos\MarketProject\MarketManagment\Managers\BaseManager.cs:line 40
+			HelpLink	 
+			Thread	 17
+			Date	 6/24/2020 5:43:02 PM
+
+								Source	 Main is Argument exception
+				Data	 System.Collections.ListDictionaryInternal
+				StackTrace	 
+				HelpLink	 
+				Thread	 17
+				Date	 6/24/2020 5:43:02 PM
+
+										Source	 Null reference is  inner  exception
+					Data	 System.Collections.ListDictionaryInternal
+					StackTrace	 
+					HelpLink	 
+					Thread	 17
+					Date	 6/24/2020 5:43:02 PM
+
+												Source	 sqlException is inner inner 
+						Data	 System.Collections.ListDictionaryInternal
+						StackTrace	 
+						HelpLink	 
+						Thread	 17
+						Date	 6/24/2020 5:43:02 PM
+
+--------------------------------------------------------------------------------
+Source	 Error is here
+Data	 System.Collections.ListDictionaryInternal
+StackTrace	    at MarketManagment.Managers.BaseManager`2.CreateAndSave(TVIEW entity) in C:\Users\Vahag\Source\Repos\MarketProject\MarketManagment\Managers\BaseManager.cs:line 40
+HelpLink	 
+Thread	 18
+Date	 6/24/2020 5:43:02 PM
+
+		Source	 Main is Argument exception
+	Data	 System.Collections.ListDictionaryInternal
+	StackTrace	 
+	HelpLink	 
+	Thread	 18
+	Date	 6/24/2020 5:43:02 PM
+
+				Source	 Null reference is  inner  exception
+		Data	 System.Collections.ListDictionaryInternal
+		StackTrace	 
+		HelpLink	 
+		Thread	 18
+		Date	 6/24/2020 5:43:02 PM
+
+						Source	 sqlException is inner inner 
+			Data	 System.Collections.ListDictionaryInternal
+			StackTrace	 
+			HelpLink	 
+			Thread	 18
+			Date	 6/24/2020 5:43:02 PM
+
+--------------------------------------------------------------------------------
+Source	 Error is here
+Data	 System.Collections.ListDictionaryInternal
+HelpLink	 
+Thread	 15
+StackTrace	    at MarketManagment.Managers.BaseManager`2.CreateAndSave(TVIEW entity) in C:\Users\Vahag\Source\Repos\MarketProject\MarketManagment\Managers\BaseManager.cs:line 40
+HelpLink	 
+Thread	 17
+HelpLink	 
+HelpLink	 
+Thread	 12
+Thread	 16
+HelpLink	 
+Thread	 13
+HelpLink	 
+Thread	 14
+Date	 6/24/2020 5:45:14 PM
+
+		Source	 Main is Argument exception
+	Data	 System.Collections.ListDictionaryInternal
+	StackTrace	 
+	HelpLink	 
+	Thread	 15
+	Date	 6/24/2020 5:45:14 PM
+
+				Source	 Null reference is  inner  exception
+		Data	 System.Collections.ListDictionaryInternal
+		StackTrace	 
+		HelpLink	 
+		Thread	 15
+		Date	 6/24/2020 5:45:14 PM
+
+						Source	 sqlException is inner inner 
+			Data	 System.Collections.ListDictionaryInternal
+			StackTrace	 
+			HelpLink	 
+			Thread	 15
+			Date	 6/24/2020 5:45:14 PM
+
+--------------------------------------------------------------------------------

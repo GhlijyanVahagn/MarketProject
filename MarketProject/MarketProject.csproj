@@ -95,6 +95,9 @@
     <Content Include="CSS\ShopCreatorStyle.css" />
     <Content Include="CSS\Master.css" />
     <Content Include="Error.aspx" />
+    <Content Include="ExceptionLogs.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Resources\addToBAsket.png" />
     <Content Include="CSS\MessageBox.css" />

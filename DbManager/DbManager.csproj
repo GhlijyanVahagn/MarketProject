@@ -207,6 +207,10 @@
       <Project>{6e3c4712-26d9-4ed7-adbf-4358d6e37aad}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logger\MarketLogger.csproj">
+      <Project>{57DF9953-5847-4B8C-84EC-8815D4A34B70}</Project>
+      <Name>MarketLogger</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

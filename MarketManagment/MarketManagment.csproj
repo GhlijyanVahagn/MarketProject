@@ -105,6 +105,10 @@
       <Project>{6E3C4712-26D9-4ED7-ADBF-4358D6E37AAD}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logger\MarketLogger.csproj">
+      <Project>{57df9953-5847-4b8c-84ec-8815d4a34b70}</Project>
+      <Name>MarketLogger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UserIdentity\UserIdentity.csproj">
       <Project>{6c3ad7a2-0d74-4c93-900b-f9d1a00862dc}</Project>
       <Name>UserIdentity</Name>
