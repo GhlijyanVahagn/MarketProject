@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketHelpers", "MarketHelp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketLogger", "Logger\MarketLogger.csproj", "{57DF9953-5847-4B8C-84EC-8815D4A34B70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketApi", "MarketApi\MarketApi.csproj", "{F7178843-7772-4380-8FCA-7E103F27F26D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{57DF9953-5847-4B8C-84EC-8815D4A34B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57DF9953-5847-4B8C-84EC-8815D4A34B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57DF9953-5847-4B8C-84EC-8815D4A34B70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7178843-7772-4380-8FCA-7E103F27F26D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7178843-7772-4380-8FCA-7E103F27F26D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7178843-7772-4380-8FCA-7E103F27F26D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7178843-7772-4380-8FCA-7E103F27F26D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

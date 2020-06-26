@@ -10,6 +10,7 @@ using DbModel.ViewModel;
 using MarketManagment.User;
 using System.Collections.Generic;
 using MarketManagment.Managers.Validator;
+using System.Net.Http;
 
 namespace MarketProject.View.AdminPanel
 {
@@ -32,7 +33,7 @@ namespace MarketProject.View.AdminPanel
            
         }
 
-        protected void BtnSave_Click(object sender, EventArgs e)
+        protected async void BtnSave_Click(object sender, EventArgs e)
         {
             var newUnit = new ProductUnitViewModel
             {
@@ -40,6 +41,8 @@ namespace MarketProject.View.AdminPanel
                 Description = txtDescription.Text
             };
 
+            HttpClient client = new HttpClient();
+            var x=await client.GetAsync("https://localhost:44313/api/Login/4");
            
 
             var valid=manager.Validatation(new UnitValidator(unitsList, newUnit));
